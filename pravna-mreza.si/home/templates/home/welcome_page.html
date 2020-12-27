@@ -1,0 +1,88 @@
+{% load i18n wagtailcore_tags static %}
+
+<div class="row row-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <h1><span class="serif">Pravna mreža</span><br />za varstvo demokracije</h1>
+        {{ page.intro_text|safe }}
+      </div>
+      <div class="col-lg-5">
+        <img class="img-fluid" src="{% static 'img/not-logo.png' %}" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-purple">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <h2><span class="serif">Pošči</span><br />pomoč</h2>
+      </div>
+      <div class="col-lg-8">
+        <div class="square-button">
+          <img class="img-fluid" src="{% static 'img/faq.png' %}" />
+          <p>Pogosta vprašanja</p>
+        </div>
+        <div class="square-button">
+          <img class="img-fluid" src="{% static 'img/mnenja.png' %}" />
+          <p>Pravna<br />mnenja</p>
+        </div>
+        <div class="square-button">
+          <img class="img-fluid" src="{% static 'img/vzorci.png' %}" />
+          <p>Vzorci<br />pritožb</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        {{ page.description_text|safe }}
+      </div>
+      <div class="col-lg-4 offset-lg-1">
+        <div class="square-button square-button-light">
+          <img class="img-fluid" src="{% static 'img/srce.png' %}" />
+          <h3>Doniraj</h3>
+          <p>Prispevaj sredstva za pomoč protestnikom.</p>
+        </div>
+        <div class="square-button square-button-light">
+          <img class="img-fluid" src="{% static 'img/pomoc.png' %}" />
+          <h3>Pomagaj</h3>
+          <p>Prispevaj pravniško znanje.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="button-blank" href="/">Več o mreži &gt;&gt;&gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-light-purple">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>Zadnje novice</h3>
+      </div>
+    </div>
+    {% for novica in novice %}
+      <div class="row news-preview">
+        <div class="col col-9">
+          <h3>{{ novica.title }}</h3>
+          <h4>{{ novica.date|date:'d. m. Y' }}</h4>
+          <p>{{ novica.body|safe }}</p>
+        </div>
+        <div class="col col-3">
+          <a class="button-blank button-blank-small" href="{{ novica.url }}">Več &gt;&gt;&gt;</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

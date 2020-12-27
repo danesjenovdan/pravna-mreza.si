@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,800&family=Space+Grotesk:wght@300;400;700&display=swap');
+
+h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-weight: 700;
+    color: #3a1791;
+    text-transform: uppercase;
+}
+
+h1 span.serif,
+h2 span.serif,
+h3 span.serif {
+    font-family: 'Alegreya', 'serif';
+    font-weight: 800;
+    color: #17093a;
+    text-transform: none;
+}
+
+p {
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-weight: 300;
+    color: #17093a;
+    font-size: 27px;
+}
+
+h1 {
+    font-size: 67px;
+    line-height: 63px;
+}
+h1 span.serif {
+    letter-spacing: 5.33px;
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 80px;
+    line-height: 80px;
+}
+h2 span.serif {
+    letter-spacing: 6.4px;
+    font-size: 68px;
+}
+
+.row-white {
+    padding-top: 116px;
+    padding-bottom: 116px;
+}
+
+.row-purple {
+    background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%);
+    color: #ffffff;
+    padding-top: 116px;
+    padding-bottom: 116px;
+}
+.row-purple h2,
+.row-purple h2 span.serif {
+    color: #ffffff;
+}
+
+.row-light-purple {
+    background-image: linear-gradient(-218deg, #f3f1f9 0%, #f7f6fb 100%);
+    padding-top: 94px;
+    padding-bottom: 94px;
+}
+.row-light-purple h3 {
+    color: #17093a;
+    font-family: 'Alegreya', 'serif';
+    font-size: 40px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3.2px;
+    line-height: normal;
+    margin-bottom: 69px;
+}
+
+/* BUTTONS */
+.button-blank {
+    border: 2px solid #3a1791;
+    padding: 29px 40px;
+    background-color: transparent;
+    display: inline-block;
+
+    color: #3a1791;
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-size: 24px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.92px;
+    line-height: normal;
+
+    transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.button-blank:hover {
+    background-color: #3a1791;;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button-blank-small {
+    font-size: 18px;
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.44px;
+    padding: 22px 38px;
+}
+
+/* SQUARE BUTTONS */
+.square-button {
+    background-color: #3a1791;
+    padding: 30px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    float: right;
+    margin-left: 6px;
+
+    transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.square-button p {
+    color: #d8d1e9;
+    font-family: 'Space Grotesk';
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 26.67px;
+}
+.square-button img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+.square-button:hover {
+    background-color: #ffffff;
+}
+.square-button:hover p {
+    color: #3a1791;
+}
+
+.square-button-light {
+    background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
+    margin-bottom: 29px;
+    width: auto;
+    height: auto;
+    position: relative;
+}
+.square-button-light::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(-218deg, #d3c8ee 0%, #ece6f8 100%);
+    opacity: 0;
+    z-index: 0;
+
+    transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.square-button-light img {
+    position: relative;
+}
+.square-button-light h3 {
+    color: #160444;
+    font-family: 'Alegreya', 'serif';
+    font-size: 40px;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 3.2px;
+    line-height: normal;
+    z-index: 1;
+    position: relative;
+}
+.square-button-light p {
+    color: #17093a;
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1.92px;
+    line-height: normal;
+    z-index: 1;
+    position: relative;
+}
+.square-button-light:hover::before {
+    opacity: 1;
+}
+.square-button-light:hover p {
+    color: #3a1791;
+}
+
+/* NEWS LISTING */
+.news-preview h3 {
+    color: #3a1791;
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-size: 40px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+    margin-bottom: 0;
+    text-transform: none;
+}
+.news-preview h4 {
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 26px;
+    color: #807b8b;
+    margin-top: 0;
+}
+.news-preview p {
+    color: #17093a;
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: normal;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+/* FOOTER */
+footer {
+    background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%);
+    padding-top: 59px;
+    color: #d8d1e9;
+    font-size: 24px;
+}
+footer a {
+    color: #d8d1e9;
+    font-family: "Space Grotesk";
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 30px;
+    letter-spacing: 1.92px;
+    line-height: normal;
+}
+footer .row-credits p {
+    color: #938aa8;
+    font-family: 'Space Grotesk', 'sans-serif';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: left;
+}
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #938aa8;
+}
