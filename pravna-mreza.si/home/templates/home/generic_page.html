@@ -46,6 +46,33 @@
   </div>
 </header>
 
-generic page
+{% for block in page.body %}
+  {% if block.block_type == 'heading' %}
+  <div class="row row-white row-block-{{ block.block_type }}">
+    <div class="container container-narrow">
+      <div class="row">
+        <div class="col-lg-7">
+          <h1>
+            <div class="spaced serif">{{ block.value.part_one }}</div>
+            <div class="spaced">{{ block.value.part_two }}</div>
+          </h1>
+          <hr>
+          {{ block.value.intro_text|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% elif block.block_type == 'paragraph' %}
+  <div class="row row-light-purple row-block-{{ block.block_type }}">
+    <div class="container container-narrow">
+      <div class="row">
+        <div class="col">
+          {{ block.value|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
 
 {% endblock content %}

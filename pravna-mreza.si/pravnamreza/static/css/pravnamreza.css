@@ -348,3 +348,97 @@ header.row-purple .square-button p {
 header.row-purple .square-button:hover {
   background: #fff;
 }
+
+/* PARAGRAPH BLOCKS */
+.row-block-paragraph h1,
+.row-block-paragraph h2,
+.row-block-paragraph h3,
+.row-block-paragraph h4 {
+  font-family: "Space Grotesk", "sans-serif";
+  font-weight: 700;
+  color: #17093a;
+  text-transform: none;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.row-block-paragraph h2 {
+  font-size: 2.5rem;
+}
+
+.row-block-paragraph h3 {
+  font-size: 1.75rem;
+}
+
+.row-block-paragraph h4 {
+  font-size: 1.5rem;
+}
+
+.row-block-paragraph p,
+.row-block-paragraph ul,
+.row-block-paragraph ol {
+  font-family: "Space Grotesk", "sans-serif";
+  font-weight: 300;
+  font-size: 1.125rem;
+  color: #17093a;
+  margin-bottom: 1rem;
+}
+
+.row-block-paragraph ul {
+  list-style-type: disc;
+}
+
+.row-block-paragraph ol {
+  list-style-type: decimal;
+}
+
+.row-block-paragraph ul ul,
+.row-block-paragraph ol ol,
+.row-block-paragraph ul ol,
+.row-block-paragraph ol ul {
+  margin-bottom: 0;
+}
+
+.row-block-paragraph b,
+.row-block-paragraph strong {
+  font-weight: 700;
+}
+
+.row-block-paragraph i,
+.row-block-paragraph em {
+  font-style: italic;
+}
+
+.row-block-paragraph a,
+.row-block-paragraph a:hover,
+.row-block-paragraph a:active {
+  font-weight: 400;
+  color: #3a1791;
+  text-decoration: underline;
+}
+
+.row-block-paragraph a:hover {
+  text-decoration: none;
+}
+
+.row-block-paragraph .richtext-image {
+  display: block;
+}
+
+.row-block-paragraph .richtext-image.full-width {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+}
+
+.row-block-paragraph .richtext-image.left {
+  float: left;
+  margin-right: 1.5rem;
+}
+
+.row-block-paragraph .richtext-image.right {
+  float: right;
+  margin-left: 1.5rem;
+}

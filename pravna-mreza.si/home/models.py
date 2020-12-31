@@ -1,8 +1,9 @@
 from django.db import models
 
+from wagtail.core import blocks
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 from novice.models import NovicaPage
 
@@ -27,4 +28,15 @@ class HomePage(Page):
 
 
 class GenericPage(Page):
-    pass
+    body = StreamField([
+        ('heading', blocks.StructBlock([
+            ('part_one', blocks.CharBlock()),
+            ('part_two', blocks.CharBlock()),
+            ('intro_text', blocks.RichTextBlock()),
+        ], icon='title')),
+        ('paragraph', blocks.RichTextBlock()),
+    ])
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+    ]
