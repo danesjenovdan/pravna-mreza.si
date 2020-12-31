@@ -10,6 +10,14 @@
   padding-bottom: 75px;
 }
 
+@media (max-width: 575.98px) {
+  .row-white,
+  .row-purple {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+}
+
 .row-purple {
   background-image: linear-gradient(
     -241deg,
@@ -50,6 +58,12 @@ h1 {
   line-height: 1;
 }
 
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 36px;
+  }
+}
+
 h1 .spaced {
   letter-spacing: 5.33px;
 }
@@ -57,6 +71,12 @@ h1 .spaced {
 h2 {
   font-size: 48px;
   line-height: 1;
+}
+
+@media (max-width: 575.98px) {
+  h2 {
+    font-size: 36px;
+  }
 }
 
 h2 .spaced {
@@ -83,6 +103,12 @@ p {
   font-size: 24px;
 }
 
+@media (max-width: 575.98px) {
+  p {
+    font-size: 17px;
+  }
+}
+
 hr {
   border-top-width: 3px;
   border-top-color: #d8d1e9;
@@ -93,6 +119,14 @@ hr {
 hr.short {
   width: 115px;
   margin-left: 0;
+}
+
+@media (max-width: 575.98px) {
+  .main-logo {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* SQUARE BUTTONS */
@@ -301,6 +335,13 @@ footer nav .separator {
   height: 14px;
 }
 
+@media (max-width: 575.98px) {
+  footer nav .separator {
+    flex: 1;
+    border-left: none;
+  }
+}
+
 footer hr {
   border-color: #938aa8;
   opacity: 0.25;
@@ -425,11 +466,11 @@ header.row-purple .square-button:hover {
 
 .row-block-paragraph .richtext-image {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .row-block-paragraph .richtext-image.full-width {
-  max-width: 100%;
-  height: auto;
   margin: 2rem auto;
 }
 
