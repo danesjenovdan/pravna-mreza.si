@@ -16,9 +16,15 @@ class HomePage(Page):
         FieldPanel('description_text', classname="full")
     ]
 
+    parent_page_types = []
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         novice = NovicaPage.objects.all().live().order_by('-first_published_at')
         context['novice'] = novice
         return context
+
+
+class GenericPage(Page):
+    pass

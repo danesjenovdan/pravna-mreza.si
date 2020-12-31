@@ -311,3 +311,40 @@ footer .row-credits p {
   color: #938aa8;
   font-size: 12px;
 }
+
+/* HEADER */
+header.row-purple {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+header.row-purple h2 {
+  font-size: 17px;
+}
+
+header.row-purple h2 .spaced {
+  letter-spacing: 3px;
+}
+
+header.row-purple .square-button {
+  background: none;
+  border: 1px solid #3a1791;
+  width: 125px;
+  height: auto;
+  flex-direction: row;
+  padding: 10px 15px;
+  justify-content: start;
+}
+
+header.row-purple .square-button img {
+  height: 20px;
+}
+
+header.row-purple .square-button p {
+  font-size: 12px;
+  letter-spacing: 0.96px;
+}
+
+header.row-purple .square-button:hover {
+  background: #fff;
+}
