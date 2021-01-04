@@ -9,14 +9,16 @@
   <div class="container container-narrow">
     <div class="row">
       <div class="col-lg-3 d-flex align-items-center">
-        <h2>
-          <div class="spaced serif">Pravna mreža</div>
-          <div class="spaced">za varstvo demokracije</div>
-        </h2>
+        <a href="/" class="home-link">
+          <h2>
+            <div class="spaced serif">Pravna mreža</div>
+            <div class="spaced">za varstvo demokracije</div>
+          </h2>
+        </a>
       </div>
       <div class="col-lg-9">
         <div class="float-right">
-          <a href="#" class="square-button ml-3 float-left">
+          <a href="/pogosta-vprasanja/" class="square-button ml-3 float-left">
             <div class="d-flex align-items-center mr-2">
               <img src="{% static 'img/faq.png' %}" class="mr-1" />
             </div>
@@ -24,7 +26,7 @@
               <p>Pogosta vprašanja</p>
             </div>
           </a>
-          <a href="#" class="square-button ml-3 float-left">
+          <a href="/pravna-mnenja/" class="square-button ml-3 float-left">
             <div class="d-flex align-items-center mr-2">
               <img src="{% static 'img/mnenja.png' %}" class="mr-1" />
             </div>
@@ -32,7 +34,7 @@
               <p>Pravna<br />mnenja</p>
             </div>
           </a>
-          <a href="#" class="square-button ml-3 float-left">
+          <a href="/primeri-pritozb/" class="square-button ml-3 float-left">
             <div class="d-flex align-items-center mr-2">
               <img src="{% static 'img/vzorci.png' %}" class="mr-1" />
             </div>
@@ -57,6 +59,10 @@
             <div class="spaced">{{ block.value.part_two }}</div>
           </h1>
           <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           {{ block.value.intro_text|safe }}
         </div>
       </div>

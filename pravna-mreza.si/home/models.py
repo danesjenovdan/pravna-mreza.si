@@ -30,9 +30,9 @@ class HomePage(Page):
 class GenericPage(Page):
     body = StreamField([
         ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock()),
-            ('part_two', blocks.CharBlock()),
-            ('intro_text', blocks.RichTextBlock()),
+            ('part_one', blocks.CharBlock(required=False)),
+            ('part_two', blocks.CharBlock(required=False)),
+            ('intro_text', blocks.RichTextBlock(required=False)),
         ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
     ])
