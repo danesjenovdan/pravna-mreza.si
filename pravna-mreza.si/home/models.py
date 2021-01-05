@@ -1,11 +1,25 @@
 from django.db import models
-
-from wagtail.core import blocks
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-
 from novice.models import NovicaPage
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.core import blocks
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.models import Image
+
+
+@register_setting
+class OgSettings(BaseSetting):
+    og_title = models.CharField(max_length=255)
+    og_description = models.CharField(max_length=255)
+    og_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+
+    panels = [
+        FieldPanel('og_title'),
+        FieldPanel('og_description'),
+        ImageChooserPanel('og_image'),
+    ]
 
 
 class HomePage(Page):
