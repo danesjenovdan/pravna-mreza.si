@@ -1,4 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,800&family=Space+Grotesk:wght@300;400;700&display=swap");
+body {
+  overflow: hidden;
+}
+
+.flex-page-height {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+}
 
 .container-narrow {
   max-width: 912px;
@@ -359,8 +368,19 @@ header.row-purple {
   padding-bottom: 18px;
 }
 
+header a.home-link {
+  display: block;
+}
+
+header a.home-link,
+header a.home-link:hover {
+  text-decoration: none;
+}
+
 header.row-purple h2 {
   font-size: 17px;
+  margin: -0.25rem;
+  padding: 0.25rem;
 }
 
 header.row-purple h2 .spaced {
