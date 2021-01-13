@@ -13,6 +13,13 @@ body {
   max-width: 912px;
 }
 
+@media (max-width: 575.98px) {
+  .container-narrow {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 .row-white,
 .row-purple {
   padding-top: 75px;
@@ -110,12 +117,30 @@ p {
   font-weight: 300;
   color: #17093a;
   font-size: 24px;
+  line-height: 1.6;
 }
 
 @media (max-width: 575.98px) {
   p {
-    font-size: 17px;
+    font-size: 18px;
   }
+}
+
+p a,
+p a:hover,
+p a:active {
+  font-weight: 400;
+  color: #3a1791;
+  text-decoration: underline;
+}
+
+p a:hover {
+  text-decoration: none;
+}
+
+p b,
+p strong {
+  font-weight: 700;
 }
 
 hr {
@@ -152,6 +177,14 @@ hr.short {
   position: relative;
 }
 
+@media (max-width: 575.98px) {
+  .square-button {
+    width: calc(33% - 4px);
+    height: calc(33% - 4px);
+    padding: 10px;
+  }
+}
+
 .square-button,
 .square-button:hover,
 .square-button:active,
@@ -163,6 +196,12 @@ hr.short {
   display: block;
   width: auto;
   height: 50px;
+}
+
+@media (max-width: 575.98px) {
+  .square-button img {
+    height: 25px;
+  }
 }
 
 .square-button h3,
@@ -183,10 +222,21 @@ hr.short {
 .square-button p {
   font-family: "Space Grotesk";
   font-size: 18px;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: 1.6px;
   font-weight: 400;
   margin-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+  .square-button h3,
+  .square-button p {
+    margin-top: 1rem;
+  }
+
+  .square-button p {
+    font-size: 14px;
+  }
 }
 
 .square-button:hover {
@@ -206,6 +256,13 @@ hr.short {
 .row-white .square-button {
   width: auto;
   height: 250px;
+}
+
+@media (max-width: 575.98px) {
+  .row-white .square-button {
+    height: auto;
+    padding: 20px;
+  }
 }
 
 .row-white .square-button::before {
@@ -235,6 +292,12 @@ hr.short {
 
 .row-white .square-button p {
   font-size: 16px;
+}
+
+@media (max-width: 575.98px) {
+  .row-white .square-button p {
+    margin-top: 0;
+  }
 }
 
 .row-white .square-button:hover {
@@ -378,7 +441,7 @@ header a.home-link:hover {
 }
 
 header.row-purple h2 {
-  font-size: 17px;
+  font-size: 18px;
   margin: -0.25rem;
   padding: 0.25rem;
 }
@@ -397,6 +460,18 @@ header.row-purple .square-button {
   justify-content: start;
 }
 
+@media (max-width: 575.98px) {
+  header.row-purple .square-button {
+    width: calc(33% - 4px);
+    padding: 10px;
+  }
+
+  header.row-purple .square-button:first-child {
+    width: 33%;
+    padding: 10px;
+  }
+}
+
 header.row-purple .square-button img {
   height: 20px;
 }
@@ -404,6 +479,12 @@ header.row-purple .square-button img {
 header.row-purple .square-button p {
   font-size: 12px;
   letter-spacing: 0.96px;
+}
+
+@media (max-width: 575.98px) {
+  header.row-purple .square-button p {
+    margin-top: 0;
+  }
 }
 
 header.row-purple .square-button:hover {
@@ -440,13 +521,31 @@ header.row-purple .square-button:hover {
 
 .row-block-paragraph p,
 .row-block-paragraph ul,
-.row-block-paragraph ol {
+.row-block-paragraph ol,
+.row-block-paragraph blockquote {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 2rem;
+  font-size: 18px;
+  line-height: 1.7;
   color: #17093a;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 575.98px) {
+  .row-block-paragraph p,
+  .row-block-paragraph ul,
+  .row-block-paragraph ol,
+  .row-block-paragraph blockquote {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.row-block-paragraph blockquote {
+  padding-left: 1.5em;
+  border-left: 3px solid #d8d1e9;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .row-block-paragraph ul {
