@@ -49,6 +49,7 @@ class GenericPage(Page):
             ('intro_text', blocks.RichTextBlock(required=False)),
         ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
+        ('DonationEmbed', blocks.StaticBlock(admin_text='Donation embed'))
     ])
 
     content_panels = Page.content_panels + [

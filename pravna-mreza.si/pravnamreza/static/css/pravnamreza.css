@@ -604,3 +604,9 @@ header.row-purple .square-button:hover {
   float: right;
   margin-left: 1.5rem;
 }
+
+#DonationEmbed {
+  border: 0;
+  width: 100%;
+  min-height: 960px;
+}
