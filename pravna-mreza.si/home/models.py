@@ -7,6 +7,21 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
+from wagtail.snippets.models import register_snippet
+
+
+@register_snippet
+class Infopush(models.Model):
+    title = models.TextField()
+    text = RichTextField()
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('text', classname="full")
+    ]
+
+    def __str__(self):
+        return self.title
 
 
 @register_setting
