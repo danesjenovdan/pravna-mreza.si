@@ -2,7 +2,9 @@
 <div class="row mt-4 mt-lg-5">
     <div class="col">
         <div class="infopush">
-            <h3><div class="serif text-uppercase">{{ infopush.title }}</div></h3>
+            {% if infopush.title %}
+                <h3><div class="serif text-uppercase">{{ infopush.title }}</div></h3>
+            {% endif %}
             {{ infopush.text|safe }}
         </div>
     </div>
