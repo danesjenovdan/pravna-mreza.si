@@ -12,7 +12,7 @@ from wagtail.snippets.models import register_snippet
 
 @register_snippet
 class Infopush(models.Model):
-    title = models.TextField()
+    title = models.TextField(null=True, blank=True)
     text = RichTextField()
 
     panels = [
