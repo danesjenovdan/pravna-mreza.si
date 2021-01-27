@@ -1,0 +1,10 @@
+{% for infopush in infopushes %}
+<div class="row mt-4 mt-lg-5">
+    <div class="col">
+        <div class="infopush">
+            <h3><div class="serif text-uppercase">{{ infopush.title }}</div></h3>
+            {{ infopush.text|safe }}
+        </div>
+    </div>
+</div>
+{% endfor %}

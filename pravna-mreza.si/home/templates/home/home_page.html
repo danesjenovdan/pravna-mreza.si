@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n wagtailcore_tags static %}
+{% load i18n wagtailcore_tags static infopush %}
 
 {% block body_class %}page page--home{% endblock %}
 
@@ -20,6 +20,7 @@
         <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" />
       </div>
     </div>
+    {% infopush %}
   </div>
 </div>
 
