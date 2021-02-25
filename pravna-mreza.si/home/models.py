@@ -51,7 +51,7 @@ class HomePage(Page):
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        novice = NovicaPage.objects.all().live().order_by('-first_published_at')
+        novice = NovicaPage.objects.all().live().order_by('-first_published_at')[:3]
         context['novice'] = novice
         return context
 

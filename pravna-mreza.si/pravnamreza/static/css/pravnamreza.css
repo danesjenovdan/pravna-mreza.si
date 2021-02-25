@@ -391,6 +391,34 @@ hr.short {
   font-size: 16px;
 }
 
+.archive-link {
+  font-family: "Space Grotesk", "sans-serif";
+  font-weight: 700;
+  letter-spacing: 1.28px;
+  text-decoration: none;
+}
+
+.archive-link, .archive-link:hover {
+  color: #3a1791;
+}
+
+/* PAGINATION */
+.page-num {
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.25rem;
+}
+
+.page-num.active {
+  border: 1px solid #3a1791;
+}
+
+.page-num a {
+  color: #3a1791;
+  font-weight: 700;
+  font-family: "Space Grotesk", "sans-serif";
+  text-decoration: none;
+}
+
 /* FOOTER */
 footer .row-purple {
   padding-top: 0;
