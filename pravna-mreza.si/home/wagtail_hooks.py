@@ -6,6 +6,10 @@ from wagtail.admin.rich_text.editors.draftail import features as draftail_featur
 from wagtail.core import hooks
 from wagtail.core.rich_text import LinkHandler
 from django.utils.text import slugify
+from wagtail.contrib.modeladmin.options import (
+    ModelAdmin, modeladmin_register)
+from .models import Objava
+
 
 class NewTabExternalLinkHandler(LinkHandler):
     identifier = 'external'
@@ -27,6 +31,14 @@ def header_with_name(props):
     if type_ == 'header-four':
         tag = 'h4'
     return DOM.create_element(tag, {}, DOM.create_element('a', {'id': slugify(text)}), props['children'])
+
+
+class ObjavaAdmin(ModelAdmin):
+    model = Objava
+    menu_label = 'Medijska pojavljanja'  # ditch this to use verbose_name_plural from model
+    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
+    add_to_settings_menu = False  # or True to add your model to the Settings sub-menu
+    exclude_from_explorer = False # or True to exclude pages of this type from Wagtail's explorer view
 
 
 # Run hook with order=1 so it runs after admin is loaded (default order=0) and overrides rules
@@ -60,3 +72,5 @@ def register_extra_rich_text_features(features):
             'block_map': {'header-four': header_with_name}
         }
     })
+
+modeladmin_register(ObjavaAdmin)

@@ -104,12 +104,13 @@ h2 .spaced {
   color: #fff;
 }
 
-.row-light-purple h3 {
+h3.archive-title {
   color: #17093a;
   font-family: "Alegreya", "serif";
   font-size: 27px;
   font-weight: 800;
   text-align: center;
+  letter-spacing: 2.13px;
 }
 
 p {
@@ -377,8 +378,11 @@ hr.short {
   text-transform: none;
 }
 
-.news-preview time {
-  display: block;
+.news-preview a.news-title:hover {
+  color: #3a1791;
+}
+
+.news-subtitle {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   font-size: 12px;

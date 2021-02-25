@@ -71,49 +71,41 @@
 
 <div class="row row-light-purple">
     <div class="container container-narrow">
-        {% for novica in novice %}
+        {% for objava in pojavljanja %}
         <hr class="short">
         <article class="row news-preview">
             <div class="col-12">
                 <div class="ml-lg-4">
-                    <a class="news-title" href="{{ novica.url }}"><h1>{{ novica.title }}</h1></a>
+                    <a class="news-title" href="{{ objava.url }}" target="_blank"><h1>{{ objava.title }}</h1></a>
                     <div class="news-subtitle">
-                        <time>{{ novica.date|date:'d. m. Y' }}</time>
+                        <span>{{ objava.source }}</span> / <time>{{ objava.date|date:'d. m. Y' }}</time>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="ml-lg-4">
-                    {{ novica.preview_text|safe }}
-                </div>
-            </div>
-            <div class="col-lg-3 d-flex align-items-center justify-content-center">
-                <a class="btn btn-outline-primary" href="{{ novica.url }}">Več &gt;&gt;&gt;</a>
             </div>
         </article>
         {% endfor %}
         <hr class="short">
-        {% if novice.paginator.num_pages > 1 %}
+        {% if pojavljanja.paginator.num_pages > 1 %}
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <div class="d-flex">
-                        {% if novice.has_previous %}
+                        {% if pojavljanja.has_previous %}
                         <div class="page-num">
-                            <a href="?page={{ novice.previous_page_number }}">
+                            <a href="?page={{ pojavljanja.previous_page_number }}">
                                 <span><<<</span>
                             </a>
                         </div>
                         {% endif %}
 
-                        {% for page_num in novice.paginator.page_range %}
-                        <div class="page-num {% if page_num == novice.number %} active{% endif %}">
+                        {% for page_num in pojavljanja.paginator.page_range %}
+                        <div class="page-num {% if page_num == pojavljanja.number %} active{% endif %}">
                             <a href="?page={{ page_num }}">
                                 {{ page_num }}
                             </a>
                         </div>
                         {% endfor %}
 
-                        {% if novice.has_next %}
+                        {% if pojavljanja.has_next %}
                         <div class="page-num">
                             <a href="?page={{ novice.next_page_number }}">
                                 <span>>>></span>

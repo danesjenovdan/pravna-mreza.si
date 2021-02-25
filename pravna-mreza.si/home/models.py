@@ -37,6 +37,23 @@ class OgSettings(BaseSetting):
     ]
 
 
+class Objava(models.Model):
+    title = models.TextField()
+    url = models.URLField()
+    source = models.TextField()
+    date = models.DateField()
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('url', classname="full"),
+        FieldPanel('source'),
+        FieldPanel('date'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+
 class HomePage(Page):
     intro_text = RichTextField(blank=True, null=True)
     description_text = RichTextField(blank=True, null=True)
@@ -52,7 +69,9 @@ class HomePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         novice = NovicaPage.objects.all().live().order_by('-first_published_at')[:3]
+        pojavljanja = Objava.objects.all().order_by('-date')[:3]
         context['novice'] = novice
+        context['pojavljanja'] = pojavljanja
         return context
 
 
