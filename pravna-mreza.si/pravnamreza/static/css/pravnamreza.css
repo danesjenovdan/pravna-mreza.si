@@ -104,12 +104,13 @@ h2 .spaced {
   color: #fff;
 }
 
-.row-light-purple h3 {
+h3.archive-title {
   color: #17093a;
   font-family: "Alegreya", "serif";
   font-size: 27px;
   font-weight: 800;
   text-align: center;
+  letter-spacing: 2.13px;
 }
 
 p {
@@ -377,8 +378,11 @@ hr.short {
   text-transform: none;
 }
 
-.news-preview time {
-  display: block;
+.news-preview a.news-title:hover {
+  color: #3a1791;
+}
+
+.news-subtitle {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   font-size: 12px;
@@ -391,22 +395,67 @@ hr.short {
   font-size: 16px;
 }
 
+.archive-link {
+  font-family: "Space Grotesk", "sans-serif";
+  font-weight: 700;
+  letter-spacing: 1.28px;
+  text-decoration: none;
+}
+
+.archive-link, .archive-link:hover {
+  color: #3a1791;
+}
+
+/* PAGINATION */
+.page-num {
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.25rem;
+}
+
+.page-num.active {
+  border: 1px solid #3a1791;
+}
+
+.page-num a {
+  color: #3a1791;
+  font-weight: 700;
+  font-family: "Space Grotesk", "sans-serif";
+  text-decoration: none;
+}
+
 /* FOOTER */
 footer .row-purple {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-footer nav {
-  padding-top: 35px;
-}
-
-footer nav a {
+footer nav a, footer .social-media {
   color: #d8d1e9;
   font-family: "Space Grotesk", "sans-serif";
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 1.28px;
+}
+
+.social-media a {
+  border: 1px solid #d8d1e9;
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.social-media a:hover {
+  background-color: #d8d1e9;
+}
+
+.social-media a:hover img {
+  filter: brightness(0%) invert(12%) sepia(89%) saturate(3353%)
+  hue-rotate(254deg) brightness(85%) contrast(105%);
+}
+
+.social-media img {
+  max-height: 1.25rem;
+  max-width: 1.25rem;
 }
 
 footer a,
