@@ -471,7 +471,6 @@ footer nav .separator {
 
 @media (max-width: 575.98px) {
   footer nav .separator {
-    flex: 1;
     border-left: none;
   }
 }
@@ -485,6 +484,14 @@ footer hr {
 footer .row-credits p {
   color: #938aa8;
   font-size: 12px;
+}
+
+footer .footer-logo {
+  font-family: "Space Grotesk", "sans-serif";
+}
+
+footer .footer-logo img {
+  width: 12rem;
 }
 
 /* HEADER */
