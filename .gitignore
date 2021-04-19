@@ -26,3 +26,9 @@ client/node_modules
 
 ### vscode
 .vscode
+
+### secrets
+secrets.yaml
+
+### pycache
+__pycache__/
