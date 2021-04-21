@@ -65,6 +65,30 @@ spec:
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
               value: pravnamreza.settings.production
+        - name: migrate
+          image: pravnamreza
+          volumeMounts:
+            - name: pravnamreza-persistent-storage
+              mountPath: /pvc
+          command:
+            - python
+            - manage.py
+            - migrate
+          env:
+            - name: APP_ENV
+              value: production
+            - name: STATIC_URL
+              value: https://files.pravnamreza.k8s.djnd.si/static/
+            - name: MEDIA_URL
+              value: https://files.pravnamreza.k8s.djnd.si/media/
+            - name: STATIC_ROOT
+              value: /pvc/static/
+            - name: MEDIA_ROOT
+              value: /pvc/media/
+            - name: PYTHONPATH
+              value: /code:$PYTHONPATH
+            - name: DJANGO_SETTINGS_MODULE
+              value: pravnamreza.settings.production
       containers:
         - name: pravnamreza
           image: pravnamreza # kustomize thing
