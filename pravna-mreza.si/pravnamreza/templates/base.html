@@ -21,8 +21,8 @@
         <meta name="twitter:description" content="{% if self.search_description %}{{ self.search_description }}{% else %}{{ settings.home.OgSettings.og_description }}{% endif %}">
 
         {% image settings.home.OgSettings.og_image max-1200x630 as og_image %}
-        <meta property="og:image" content="{{ page.get_site.root_url }}{{ og_image.url }}">
-        <meta name="twitter:image" content="{{ page.get_site.root_url }}{{ og_image.url }}">
+        <meta property="og:image" content="{{ og_image.url }}">
+        <meta name="twitter:image" content="{{ og_image.url }}">
 
         <meta name="author" content="Danes je nov dan">
         <meta property="og:type" content="website">
