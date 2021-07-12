@@ -290,12 +290,22 @@ hr.short {
   transition: opacity 0.15s ease-in-out;
   background: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
 }
+.row-light-purple .square-button {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+  background: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
+}
 
 .row-white .square-button > div {
   position: relative;
 }
 
-.row-white .square-button img {
+.row-white .square-button img,
+.row-light-purple .square-button img {
   height: 60px;
 }
 
@@ -303,9 +313,30 @@ hr.short {
 .row-white .square-button p {
   color: #17093a;
 }
+.row-light-purple .square-button h3,
+.row-light-purple .square-button p {
+  color: #17093a;
+  font-family: "Space Grotesk", "sans-serif";
+  font-style: normal;
+}
 
 .row-white .square-button p {
   font-size: 16px;
+}
+.row-light-purple .square-button p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.row-light-purple h1.serif {
+  font-family: "Alegreya", "serif";
+}
+.row-light-purple h1.spaced {
+  letter-spacing: 6.4px;
+}
+.row-light-purple h1 {
+  color: #160444;
 }
 
 @media (max-width: 575.98px) {
@@ -314,7 +345,8 @@ hr.short {
   }
 }
 
-.row-white .square-button:hover {
+.row-white .square-button:hover,
+.row-light-purple .square-button:hover{
   background: #3a1791;
 }
 
@@ -322,12 +354,16 @@ hr.short {
   opacity: 0;
 }
 
-.row-white .square-button:hover img {
+.row-white .square-button:hover img,
+.row-light-purple .square-button:hover img {
   filter: brightness(0%) invert(100%);
 }
 
 .row-white .square-button:hover h3,
-.row-white .square-button:hover p {
+.row-white .square-button:hover p,
+.row-light-purple .square-button:hover h1,
+.row-light-purple .square-button:hover h3,
+.row-light-purple .square-button:hover p {
   color: #fff;
 }
 

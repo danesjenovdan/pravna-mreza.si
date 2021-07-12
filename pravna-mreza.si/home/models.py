@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -83,9 +84,29 @@ class GenericPage(Page):
             ('intro_text', blocks.RichTextBlock(required=False)),
         ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
-        ('DonationEmbed', blocks.StaticBlock(admin_text='Donation embed'))
+        ('donation_section', blocks.StructBlock([
+            ('left_button_heading_part_one', blocks.CharBlock(required=False, label=_('Levi gumb - Prvi del naslova'))),
+            ('left_button_heading_part_two', blocks.CharBlock(required=False, label=_('Levi gumb - Drugi del naslova'))),
+            ('left_button_description', blocks.CharBlock(required=False, label=_('Levi gumb - Podnaslov'))),
+            ('left_button_donation_page', blocks.PageChooserBlock(
+                label=_('Levi gumb - Povezava do strani'),
+            )),
+            ('right_button_heading_part_one', blocks.CharBlock(required=False, label=_('Desni gumb - Prvi del naslova'))),
+            ('right_button_heading_part_two', blocks.CharBlock(required=False, label=_('Desni gumb - Drugi del naslova'))),
+            ('right_button_description', blocks.CharBlock(required=False, label=_('Desni gumb - Podnaslov'))),
+            ('right_button_donation_page', blocks.PageChooserBlock(
+                label=_('Desni gumb - Povezava do strani'),
+            )),
+        ]))
     ])
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+    ]
+
+class DonationEmbedPage(Page):
+    embed_url = models.URLField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('embed_url', classname="full"),
     ]

@@ -52,8 +52,53 @@
 </header>
 
 {% for block in page.body %}
-  {% if block.block_type == 'DonationEmbed' %}
-  <iframe id="DonationEmbed" src="https://danesjenovdan.si/doniraj_pmvd/placaj/mesecno" border="0"></iframe>
+  {% if block.block_type == 'donation_section' %}
+  <div class="row row-light-purple">
+    <div class="container container-narrow">
+      <div class="row">
+        <div class="col-12 col-lg-5 offset-lg-1 mb-3">
+          <a href="{% pageurl block.value.left_button_donation_page %}" class="square-button">
+            <div>
+              {% if block.value.left_button_heading_part_one %}
+              <h1 class="spaced serif text-capitalize">{{ block.value.left_button_heading_part_one }}</h1>
+              {% endif %}
+              {% if block.value.left_button_heading_part_two %}
+              <h1 class="spaced">{{ block.value.left_button_heading_part_two }}</h1>
+              {% endif %}
+              {% if block.value.left_button_description %}
+              <p>{{ block.value.left_button_description }}</p>
+              {% endif %}
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <h3> > > > </h3>
+              <img src="{% static 'img/piggy-bank.png' %}" />
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-lg-5 mb-3">
+          <a href="{% pageurl block.value.right_button_donation_page %}" class="square-button">
+            <div>
+              {% if block.value.right_button_heading_part_one %}
+              <h1 class="spaced serif text-capitalize">{{ block.value.right_button_heading_part_one }}</h1>
+              {% endif %}
+              {% if block.value.right_button_heading_part_two %}
+              <h1 class="spaced">{{ block.value.right_button_heading_part_two }}</h1>
+              {% endif %}
+              {% if block.value.right_button_description %}
+              <p>{{ block.value.right_button_description }}</p>
+              {% endif %}
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <h3> > > > </h3>
+              <img src="{% static 'img/love-balloon.png' %}" />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <iframe id="DonationEmbed" src="https://danesjenovdan.si/doniraj_pmvd/placaj/enkrat" border="0"></iframe> -->
+
   {% elif block.block_type == 'heading' %}
   <div class="row row-white row-block-{{ block.block_type }}">
     <div class="container container-narrow">
