@@ -65,6 +65,13 @@ spec:
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
               value: pravnamreza.settings.production
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 1Gi
+              cpu: 500m
         - name: migrate
           image: pravnamreza
           volumeMounts:
@@ -92,6 +99,13 @@ spec:
           envFrom:
             - secretRef:
                 name: pmvd-config
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 1Gi
+              cpu: 500m
       containers:
         - name: pravnamreza
           image: pravnamreza # kustomize thing
@@ -139,6 +153,13 @@ spec:
           envFrom:
             - secretRef:
                 name: pmvd-config
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 1000m
+            limits:
+              memory: 1Gi
+              cpu: 1000m
         - name: pravnamreza-nginx
           ports:
             - name: http
@@ -148,6 +169,13 @@ spec:
           volumeMounts:
             - name: pravnamreza-persistent-storage
               mountPath: /usr/share/nginx/html
+          resources:
+            requests:
+              memory: 500Mi
+              cpu: 200m
+            limits:
+              memory: 500Mi
+              cpu: 200m
 ---
 apiVersion: v1
 kind: Service
