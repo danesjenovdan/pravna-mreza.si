@@ -71,43 +71,51 @@
 
 <div class="row row-light-purple">
     <div class="container container-narrow">
-        {% for objava in pojavljanja %}
+        {% for blogpost in blogposts %}
         <hr class="short">
         <article class="row news-preview">
             <div class="col-12">
                 <div class="ml-lg-4">
-                    <a class="news-title" href="{{ objava.url }}" target="_blank"><h1>{{ objava.title }}</h1></a>
+                    <a class="news-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
                     <div class="news-subtitle">
-                        <span>{{ objava.source }}</span> / <time>{{ objava.date|date:'d. m. Y' }}</time>
+                        <time>{{ blogpost.date|date:'d. m. Y' }}</time>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="ml-lg-4">
+                    {{ blogpost.preview_text|safe }}
+                </div>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                <a class="btn btn-outline-primary" href="{{ blogpost.url }}">Več &gt;&gt;&gt;</a>
             </div>
         </article>
         {% endfor %}
         <hr class="short">
-        {% if pojavljanja.paginator.num_pages > 1 %}
+        {% if blogposts.paginator.num_pages > 1 %}
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <div class="d-flex">
-                        {% if pojavljanja.has_previous %}
+                        {% if blogposts.has_previous %}
                         <div class="page-num">
-                            <a href="?page={{ pojavljanja.previous_page_number }}">
+                            <a href="?page={{ blogposts.previous_page_number }}">
                                 <span><<<</span>
                             </a>
                         </div>
                         {% endif %}
 
-                        {% for page_num in pojavljanja.paginator.page_range %}
-                        <div class="page-num {% if page_num == pojavljanja.number %} active{% endif %}">
+                        {% for page_num in blogposts.paginator.page_range %}
+                        <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
                             <a href="?page={{ page_num }}">
                                 {{ page_num }}
                             </a>
                         </div>
                         {% endfor %}
 
-                        {% if pojavljanja.has_next %}
+                        {% if blogposts.has_next %}
                         <div class="page-num">
-                            <a href="?page={{ novice.next_page_number }}">
+                            <a href="?page={{ blogposts.next_page_number }}">
                                 <span>>>></span>
                             </a>
                         </div>
