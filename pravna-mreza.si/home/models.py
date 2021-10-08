@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
+from blog.models import BlogPage
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core import blocks
@@ -70,8 +71,10 @@ class HomePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         novice = NovicaPage.objects.all().live().order_by('-first_published_at')[:3]
+        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:3]
         pojavljanja = Objava.objects.all().order_by('-date')[:3]
         context['novice'] = novice
+        context['blogposts'] = blogposts
         context['pojavljanja'] = pojavljanja
         return context
 

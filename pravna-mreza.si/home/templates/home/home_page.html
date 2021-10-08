@@ -51,12 +51,12 @@
               <p>Pravna<br />mnenja</p>
             </div>
           </a>
-          <a href="/pisi-nam/" class="square-button ml-1 float-left">
+          <a href="/arhiv-blog/" class="square-button ml-1 float-left">
             <div>
               <img src="{% static 'img/vzorci.png' %}" />
             </div>
             <div>
-              <p>Piši<br />nam</p>
+              <p>Blog</p>
             </div>
           </a>
         </div>
@@ -106,6 +106,39 @@
   <div class="container container-narrow">
     <div class="row mb-5">
       <div class="col">
+        <h3 class="archive-title">Blog</h3>
+      </div>
+    </div>
+    {% for blogpost in blogposts %}
+    <hr class="short">
+    <article class="row news-preview">
+      <div class="col-12">
+        <div class="ml-lg-4">
+          <a class="news-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
+          <div class="news-subtitle">
+            <time>{{ blogpost.date|date:'d. m. Y' }}</time>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="ml-lg-4">
+          {{ blogpost.preview_text|safe }}
+        </div>
+      </div>
+      <div class="col-lg-3 d-flex align-items-center justify-content-center">
+        <a class="btn btn-outline-primary" href="{{ blogpost.url }}">Več &gt;&gt;&gt;</a>
+      </div>
+    </article>
+    {% endfor %}
+    <hr class="short">
+    <a href="/arhiv-blog/" class="archive-link">Arhiv blog prispevkov >>></a>
+  </div>
+</div>
+
+<div class="row row-white">
+  <div class="container container-narrow">
+    <div class="row mb-5">
+      <div class="col">
         <h3 class="archive-title">Zadnje novice</h3>
       </div>
     </div>
@@ -135,7 +168,7 @@
   </div>
 </div>
 
-<div class="row row-white">
+<div class="row row-light-purple">
   <div class="container container-narrow">
     <div class="row mb-5">
       <div class="col">
