@@ -1,55 +1,9 @@
-{% extends "base.html" %}
+{% extends "home/base_page.html" %}
 {% load i18n wagtailcore_tags static %}
 
 {% block body_class %}page page--generic{% endblock %}
 
-{% block content %}
-
-<header class="row row-purple">
-  <div class="container container-narrow">
-    <div class="row">
-      <div class="col-sm-3 d-flex align-items-center">
-        <a href="/" class="home-link">
-          <h2>
-            <div class="spaced serif">Pravna mreža</div>
-            <div class="spaced">
-              za varstvo<br>
-              demokracije
-            </div>
-          </h2>
-        </a>
-      </div>
-      <div class="col-sm-9">
-        <div class="float-right mt-3 mt-sm-0 d-flex">
-          <a href="/pogosta-vprasanja/" class="square-button ml-lg-3 float-left">
-            <div class="d-flex align-items-center mr-2">
-              <img src="{% static 'img/faq.png' %}" class="mr-1" />
-            </div>
-            <div>
-              <p>Pogosta vprašanja</p>
-            </div>
-          </a>
-          <a href="/pravna-mnenja/" class="square-button ml-1 ml-lg-3 float-left">
-            <div class="d-flex align-items-center mr-2">
-              <img src="{% static 'img/mnenja.png' %}" class="mr-1" />
-            </div>
-            <div>
-              <p>Pravna<br />mnenja</p>
-            </div>
-          </a>
-          <a href="/arhiv-blog/" class="square-button ml-1 ml-lg-3 float-left">
-            <div class="d-flex align-items-center mr-2">
-              <img src="{% static 'img/vzorci.png' %}" class="mr-1" />
-            </div>
-            <div class="d-flex align-items-center">
-              <p>Pravni blog</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+{% block page_body %}
 
 {% for block in page.body %}
   {% if block.block_type == 'heading' %}
@@ -84,4 +38,4 @@
   {% endif %}
 {% endfor %}
 
-{% endblock content %}
+{% endblock page_body %}
