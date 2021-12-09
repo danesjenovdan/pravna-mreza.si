@@ -1,13 +1,13 @@
 {% extends "home/base_page.html" %}
 {% load static wagtailcore_tags %}
 
-{% block body_class %}page page--content{% endblock %}
+{% block body_class %}page page--generic{% endblock %}
 
 {% block page_body %}
 
-<div class="container-fluid bg-primary content-page">
+<div class="container-fluid">
     <div class="container">
-        <div class="row hero text-light py-5">
+        <div class="row py-5">
             <div class="col-12 col-lg-10 offset-lg-1 text-center text-lg-start">
                 <h2>
                     {{ page.title }}
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div class="container-fluid bg-beige content-page extra-padding h-100">
+<div class="container-fluid h-100">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8">
@@ -37,57 +37,21 @@
                         <div class="footer-col">
                             <h5>Nisi prijavljen_a na e-novičnik. Če želiš, se nanj lahko prijaviš spodaj.</h5>
                             <div class="position-relative go-input mt-3 mb-2">
-                                <input type="email" name="email" required class="form-control border-primary" id="managed-email">
-                                <button id="submit-managed-email" class="input-btn btn-primary bg-black hover-animation">
-                                    <span class="animated"></span>
+                                <input type="email" name="email" required class="form-control" id="managed-email">
+                                <button id="submit-managed-email" class="input-btn btn-primary">
+                                    Prijavi me
                                 </button>
                                 <div class="checkbox d-flex align-items-center my-3">
                                     <label class="confirm-label" style="line-height: 1; padding-left: 25px; font-size: 0.88rem;">
                                         <input type="checkbox" id="confirm-managed-email" />
                                         <span class="custom-checkbox"></span>
                                         {{ settings.home.MetaSettings.newsletter_consent }}
+                                        Vsebina zraven checkboxa
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="d-none d-lg-block col-lg-4">
-                <div class="box socials">
-                    <h2>{{ settings.home.MetaSettings.social_label }}</h2>
-                    <div class="d-flex justify-content-center">
-                        <a href="{{ settings.home.MetaSettings.facebook }}" target="_blank" class="mt-4 mx-2">
-                            <div class="social-circle d-flex justify-content-center align-items-center">
-                                <span class="fb-icon"></span>
-                            </div>
-                        </a>
-                        <a href="{{ settings.home.MetaSettings.twitter }}" target="_blank" class="mt-4 mx-2">
-                            <div class="social-circle d-flex justify-content-center align-items-center">
-                                <span class="twitter-icon"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="box newsletter">
-                    <form>
-                        <h2>{{ settings.home.MetaSettings.newsletter_label }}</h2>
-                        <h5>{{ settings.home.MetaSettings.newsletter_sublabel }}</h5>
-                        <div class="position-relative search-input mt-4">
-                            <input type="email" name="email" required class="form-control border-dark" id="email">
-                            <button type="submit" class="input-btn btn-primary hover-animation">
-                                <span class="animated"></span>
-                            </button>
-                        </div>
-                        <div id="response"></div>
-                        <div class="checkbox d-flex align-items-center my-3">
-                            <label>
-                                <input type="checkbox" id="confirm-email" />
-                                <span class="custom-checkbox"></span>
-                                {{ settings.home.MetaSettings.newsletter_consent }}
-                            </label>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -102,7 +66,7 @@
     $(document).ready(function() {
         // delete subscription
         $('.subscription').on('click', function() {
-            const reqUrl = `https://podpri.djnd.si/api/segments/obljuba-dela-dolg/contact/?email=${urlParams.get('email')}&token=${urlParams.get('token')}`;
+            const reqUrl = `https://podpri.djnd.si/api/segments/pravna-mreza/contact/?email=${urlParams.get('email')}&token=${urlParams.get('token')}`;
             fetch(reqUrl, {
                 method: 'DELETE',
             }).then((response) => {
@@ -148,7 +112,7 @@
             fetch(endpoint).then((response) => {
                 return response.json();
             }).then((json) => {
-                if (json.segments.filter((segment) => segment.id === 18).length > 0) {
+                if (json.segments.filter((segment) => segment.id === 26).length > 0) {
                     $('.subscription').text('Odjavi se od prejemanja e-novičnika');
                     $('.subscription').removeAttr('disabled');
                 } else {
