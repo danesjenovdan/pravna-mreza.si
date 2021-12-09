@@ -1,6 +1,7 @@
-{% load wagtailcore_tags static %}
+{% load static wagtailcore_tags %}
+{% wagtail_site as current_site %}
 
-<header class="row row-purple">
+<!-- <header class="row row-purple">
     <div class="container container-narrow">
       <div class="row">
         <div class="col-sm-3 d-flex align-items-center">
@@ -43,4 +44,45 @@
           </div>
         </div>
     </div>
+</header> -->
+
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-md py-3">
+    <div class="container">
+      <a href="/" class="home-link">
+        <h2>
+          <div class="spaced serif">Pravna mreža</div>
+          <div class="spaced">
+            za varstvo<br>
+            demokracije
+          </div>
+        </h2>
+      </a>
+      <button class="navbar-toggler btn m-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+          </span>
+      </button>
+      <div class="collapse navbar-collapse mt-4 mt-md-0 justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+              {% for navigation_link in settings.home.NavigationSettings.navigation_links %}
+                  <li class="nav-item {% if navigation_link.value.has_border %}nav-item-border{% endif %}">
+                      <a class="nav-link px-3 {% if request.get_full_path == navigation_link.value.page.url %}active{% endif %}"
+                          href="{% if navigation_link.value.url %}{{ navigation_link.value.url }}{% elif navigation_link.value.page %}{% pageurl navigation_link.value.page %}{% endif %}">
+                          <span>
+                              {% if navigation_link.value.name %}
+                                  {{ navigation_link.value.name }}
+                              {% elif navigation_link.value.page %}
+                                  {{ navigation_link.value.page.title }}
+                              {% endif %}
+                          </span>
+                      </a>
+                  </li>
+              {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </nav>
 </header>

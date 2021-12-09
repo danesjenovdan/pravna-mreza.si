@@ -12,6 +12,26 @@ from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 
 
+class ExternalLinkBlock(blocks.StructBlock):
+    name = blocks.CharBlock(label=_('Ime'))
+    url = blocks.URLBlock(label=_('Povezava'))
+    has_border = blocks.BooleanBlock(label='Gumb ima obrobo?', required=False)
+
+    class Meta:
+        label = _('Zunanja povezava')
+        icon = 'link'
+
+
+class PageLinkBlock(blocks.StructBlock):
+    name = blocks.CharBlock(required=False, label=_('Ime'), help_text=_('Če je prazno se uporabi naslov strani.'))
+    page = blocks.PageChooserBlock(label=_('Stran'))
+    has_border = blocks.BooleanBlock(label='Gumb ima obrobo?', required=False)
+
+    class Meta:
+        label = _('Povezava do strani')
+        icon = 'link'
+
+
 @register_snippet
 class Infopush(models.Model):
     title = models.TextField(null=True, blank=True)
@@ -37,6 +57,33 @@ class OgSettings(BaseSetting):
         FieldPanel('og_description'),
         ImageChooserPanel('og_image'),
     ]
+
+
+@register_setting()
+class NavigationSettings(BaseSetting):
+    navigation_links = StreamField(
+        [
+            ('page_link', PageLinkBlock()),
+            ('external_link', ExternalLinkBlock()),
+        ],
+        verbose_name=_("Povezave v glavi"),
+    )
+    # footer_links = StreamField(
+    #     [
+    #         ("page_link", blocks.PageLinkBlock()),
+    #         ("external_link", blocks.ExternalLinkBlock()),
+    #     ],
+    #     verbose_name=_("Povezave v nogi"),
+    #     )
+
+    panels = [
+        StreamFieldPanel("navigation_links"),
+        # StreamFieldPanel("footer_links"),
+    ]
+
+    class Meta:
+        verbose_name = 'Navigacija'
+
 
 
 class Objava(models.Model):

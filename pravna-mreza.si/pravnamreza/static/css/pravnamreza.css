@@ -531,9 +531,10 @@ footer .footer-logo img {
 }
 
 /* HEADER */
-header.row-purple {
-  padding-top: 18px;
-  padding-bottom: 18px;
+header {
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  background-color: white;
 }
 
 header a.home-link {
@@ -545,55 +546,38 @@ header a.home-link:hover {
   text-decoration: none;
 }
 
-header.row-purple h2 {
+header h2 {
   font-size: 18px;
   margin: -0.25rem;
   padding: 0.25rem;
 }
 
-header.row-purple h2 .spaced {
+header h2 .spaced {
   letter-spacing: 3px;
 }
 
-header.row-purple .square-button {
-  background: none;
-  border: 1px solid #3a1791;
-  width: 125px;
-  height: auto;
-  flex-direction: row;
-  padding: 10px 15px;
-  justify-content: start;
+header .nav-item.nav-item-border {
+  border: 2px solid #160444;
 }
 
-@media (max-width: 575.98px) {
-  header.row-purple .square-button {
-    width: calc(33% - 4px);
-    padding: 10px;
-  }
-
-  header.row-purple .square-button:first-child {
-    width: 33%;
-    padding: 10px;
-  }
+header .nav-link {
+  font-family: "Space Grotesk", "sans-serif";
+  font-weight: 500;
+  color: #160444;
+  line-height: 20px;
 }
 
-header.row-purple .square-button img {
-  height: 20px;
+header .nav-link:hover {
+  text-decoration: underline;
 }
 
-header.row-purple .square-button p {
-  font-size: 12px;
-  letter-spacing: 0.96px;
+header .nav-item.nav-item-border:hover {
+  background-color: #160444;
 }
 
-@media (max-width: 575.98px) {
-  header.row-purple .square-button p {
-    margin-top: 0;
-  }
-}
-
-header.row-purple .square-button:hover {
-  background: #fff;
+header .nav-item.nav-item-border:hover .nav-link {
+  color: white;
+  text-decoration: none;
 }
 
 /* PARAGRAPH BLOCKS */
