@@ -1,27 +1,26 @@
 {% extends "home/base_page.html" %}
-{% load i18n wagtailcore_tags static infopush %}
+{% load i18n wagtailcore_tags wagtailimages_tags static infopush %}
 
 {% block body_class %}page page--home{% endblock %}
 
 {% block page_body %}
 
-<div class="row row-white">
-  <div class="container container-narrow">
+<div class="row row-purple headline">
+  <div class="container">
     <div class="row">
       <div class="col-lg-7 order-last order-lg-first">
-        <h1>
-          <div class="spaced serif">Pravna mreža</div>
-          <div class="spaced">za varstvo demokracije</div>
-        </h1>
-        <hr>
         {{ page.intro_text|safe }}
       </div>
       <div class="col-lg-5 order-first order-lg-last d-flex align-items-center">
-        <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" />
+        <!-- <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" /> -->
+        {% image page.intro_image width-1100 class="img-fluid mb-4 mb-lg-0 ml-lg-5" %}
       </div>
     </div>
-    {% infopush %}
   </div>
+</div>
+
+<div class="row row-white">
+  {% infopush %}
 </div>
 
 <div class="row row-purple">
