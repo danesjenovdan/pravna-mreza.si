@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pravnamreza-pvc
   labels:
-    app: pravnamreza
+    app: pravnamreza-staging
   annotations:
     pv.beta.kubernetes.io/gid: "1000"
 spec:
@@ -17,18 +17,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pravnamreza
+  name: pravnamreza-staging
   labels:
-    app: pravnamreza
+    app: pravnamreza-staging
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pravnamreza
+      app: pravnamreza-staging
   template:
     metadata:
       labels:
-        app: pravnamreza
+        app: pravnamreza-staging
     spec:
       securityContext:
         fsGroup: 1000
@@ -41,7 +41,7 @@ spec:
             name: pravnamreza-nginx-config
       initContainers:
         - name: collectstatic
-          image: pravnamreza
+          image: pravnamreza-staging
           volumeMounts:
             - name: pravnamreza-persistent-storage
               mountPath: /pvc
@@ -54,9 +54,9 @@ spec:
             - name: APP_ENV
               value: production
             - name: STATIC_URL
-              value: https://files.pravnamreza.k8s.djnd.si/static/
+              value: https://files.pravnamreza-staging.lb.djnd.si/static/
             - name: MEDIA_URL
-              value: https://files.pravnamreza.k8s.djnd.si/media/
+              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
             - name: MEDIA_ROOT
@@ -73,7 +73,7 @@ spec:
               memory: 200Mi
               cpu: 100m
         - name: migrate
-          image: pravnamreza
+          image: pravnamreza-staging
           volumeMounts:
             - name: pravnamreza-persistent-storage
               mountPath: /pvc
@@ -85,9 +85,9 @@ spec:
             - name: APP_ENV
               value: production
             - name: STATIC_URL
-              value: https://files.pravnamreza.k8s.djnd.si/static/
+              value: https://files.pravnamreza-staging.lb.djnd.si/static/
             - name: MEDIA_URL
-              value: https://files.pravnamreza.k8s.djnd.si/media/
+              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
             - name: MEDIA_ROOT
@@ -107,8 +107,8 @@ spec:
               memory: 200Mi
               cpu: 100m
       containers:
-        - name: pravnamreza
-          image: pravnamreza # kustomize thing
+        - name: pravnamreza-staging
+          image: pravnamreza-staging # kustomize thing
           volumeMounts:
             - name: pravnamreza-persistent-storage
               mountPath: /pvc
@@ -139,9 +139,9 @@ spec:
             - name: APP_ENV
               value: production
             - name: STATIC_URL
-              value: https://files.pravnamreza.k8s.djnd.si/static/
+              value: https://files.pravnamreza-staging.lb.djnd.si/static/
             - name: MEDIA_URL
-              value: https://files.pravnamreza.k8s.djnd.si/media/
+              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
             - name: MEDIA_ROOT
@@ -180,10 +180,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pravnamreza
+  name: pravnamreza-staging
 spec:
   selector:
-    app: pravnamreza
+    app: pravnamreza-staging
   ports:
     - protocol: TCP
       port: 8000
@@ -195,7 +195,7 @@ metadata:
   name: pravnamreza-nginx
 spec:
   selector:
-    app: pravnamreza
+    app: pravnamreza-staging
   ports:
     - protocol: TCP
       port: 80
@@ -204,46 +204,24 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pravnamreza
+  name: pravnamreza-staging
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/proxy-body-size: 10m
 spec:
   tls:
     - hosts:
-        - pravnamreza.k8s.djnd.si
-        - pravna-mreza.si
-        - www.pravna-mreza.si
+        - pravnamreza-staging.lb.djnd.si
       secretName: pravnamreza-tls
   rules:
-    - host: pravnamreza.k8s.djnd.si
+    - host: pravnamreza-staging.lb.djnd.si
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: pravnamreza
-                port:
-                  number: 8000
-    - host: pravna-mreza.si
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pravnamreza
-                port:
-                  number: 8000
-    - host: www.pravna-mreza.si
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pravnamreza
+                name: pravnamreza-staging
                 port:
                   number: 8000
 ---
@@ -261,10 +239,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - files.pravnamreza.k8s.djnd.si
+        - files.pravnamreza-staging.lb.djnd.si
       secretName: pravnamreza-nginx-tls
   rules:
-    - host: files.pravnamreza.k8s.djnd.si
+    - host: files.pravnamreza-staging.lb.djnd.si
       http:
         paths:
           - path: /
