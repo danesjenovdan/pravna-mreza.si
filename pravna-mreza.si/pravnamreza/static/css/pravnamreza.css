@@ -168,8 +168,10 @@ hr.short {
   padding: 1.5rem;
 }
 
-.infopush h3 .serif {
+.infopush h3 {
   color: #160444;
+  font-family: "Space Grotesk";
+  font-size: 24px;
 }
 
 .infopush p {
