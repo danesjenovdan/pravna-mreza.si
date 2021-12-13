@@ -222,6 +222,60 @@ hr.short {
   background-color: #3a1791;
 }
 
+/* SQUARE ELEMENTS */
+.square {
+  background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%);
+  padding: 2rem;
+  height: 100%;
+}
+
+.square h3 {
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.square h3:first-child {
+  text-transform: none;
+  font-family: "Alegreya", "serif";
+}
+
+.social-media {
+  border: 2px solid #d8d1e9;
+  height: 145px;
+  width: 145px;
+  margin: 30px;
+}
+
+.newsletter-form input[type=email] {
+  border-radius: 0;
+  color: #17093a;
+  line-height: 30px;
+  font-size: 24px;
+  font-family: "Space Grotesk";
+  padding: 0.5rem 1rem;
+}
+
+.newsletter-form label {
+  color: white;
+  font-family: "Space Grotesk";
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.newsletter-form .newsletter-btn {
+  background-color: #d2c8ee;
+  border: 2px solid #3a1791;
+  color: #3a1791;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 1.5rem;
+}
+
 /* SQUARE BUTTONS */
 .square-button {
   display: flex;
@@ -525,7 +579,8 @@ footer .row-purple {
   padding-bottom: 0;
 }
 
-footer nav a, footer .social-media {
+/* footer nav a, footer .social-media { */
+footer nav a {
   color: #d8d1e9;
   font-family: "Space Grotesk", "sans-serif";
   font-size: 16px;
@@ -533,7 +588,7 @@ footer nav a, footer .social-media {
   letter-spacing: 1.28px;
 }
 
-.social-media a {
+/* .social-media a {
   border: 1px solid #d8d1e9;
   padding: 0.5rem;
   width: 2.5rem;
@@ -552,7 +607,7 @@ footer nav a, footer .social-media {
 .social-media img {
   max-height: 1.25rem;
   max-width: 1.25rem;
-}
+} */
 
 footer a,
 footer a:hover {
