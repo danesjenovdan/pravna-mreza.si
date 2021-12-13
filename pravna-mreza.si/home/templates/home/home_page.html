@@ -31,7 +31,6 @@
           <h1>Novice</h3>
           <h5><a href="/arhiv-novic/" class="archive-link">Arhiv novic >>></a></h5>
         </div>
-        
       </div>
     </div>
     <div class="row">
@@ -94,6 +93,40 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row row-light-purple">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <div class="archive-title">
+          <h1>Pravni blog</h3>
+          <h5><a href="/arhiv-blog/" class="archive-link">Vsi zapisi >>></a></h5>
+        </div>
+      </div>
+    </div>
+    {% for blogpost in blogposts %}
+    <div class="row blog-preview mb-5">
+      <div class="col-4">
+        {% image blogpost.preview_image width-1100 class="img-fluid" %}
+      </div>
+      <div class="col-8">
+        <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
+        {% if blogpost.author %}
+        <div class="blog-author">
+          <span>{{ blogpost.author }}</time>
+        </div>
+        {% endif %}
+        <div class="blog-subtitle">
+          <time>{{ blogpost.date|date:'d. m. Y' }}</time>
+        </div>
+        <div>
+          {{ blogpost.preview_text|safe }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
@@ -174,39 +207,6 @@
     </div>
   </div>
 </div> -->
-
-<div class="row row-light-purple">
-  <div class="container container-narrow">
-    <div class="row mb-5">
-      <div class="col">
-        <h3 class="archive-title">Pravni blog</h3>
-      </div>
-    </div>
-    {% for blogpost in blogposts %}
-    <hr class="short">
-    <article class="row news-preview">
-      <div class="col-12">
-        <div class="ml-lg-4">
-          <a class="news-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
-          <div class="news-subtitle">
-            <time>{{ blogpost.date|date:'d. m. Y' }}</time>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-9">
-        <div class="ml-lg-4">
-          {{ blogpost.preview_text|safe }}
-        </div>
-      </div>
-      <div class="col-lg-3 d-flex align-items-center justify-content-center">
-        <a class="btn btn-outline-primary" href="{{ blogpost.url }}">Več &gt;&gt;&gt;</a>
-      </div>
-    </article>
-    {% endfor %}
-    <hr class="short">
-    <a href="/arhiv-blog/" class="archive-link">Arhiv blog prispevkov >>></a>
-  </div>
-</div>
 
 <div class="row row-light-purple">
   <div class="container container-narrow">

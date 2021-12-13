@@ -502,16 +502,25 @@ hr.short {
 }
 
 /* NEWS LISTING */
-.news-preview h1 {
+.news-preview h1,
+.blog-preview h1,
+.blog-preview a {
   color: #3a1791;
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 700;
   font-size: 36px;
   line-height: 40px;
   font-style: normal;
+  text-transform: none;
+}
+
+.blog-preview h1 {
+  margin-bottom: 1rem;
+}
+
+.news-preview h1 {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
-  text-transform: none;
 }
 
 .news-preview img {
@@ -523,13 +532,22 @@ hr.short {
   color: #3a1791;
 }
 
-.news-subtitle {
+.news-subtitle,
+.blog-subtitle {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   font-size: 18px;
   line-height: 33px;
   color: #17093a;
   margin-bottom: 0.85rem;
+}
+
+.blog-author {
+  color: #17093a;
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
 }
 
 .news-preview p {

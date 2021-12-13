@@ -10,6 +10,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
 from .models import Objava
 from novice.models import NovicaTag
+from blog.models import Author
 
 
 class NewTabExternalLinkHandler(LinkHandler):
@@ -42,10 +43,18 @@ class NovicaTagAdmin(ModelAdmin):
     exclude_from_explorer = False
 
 
+class AuthorsAdmin(ModelAdmin):
+    model = Author
+    menu_label = 'Blog avtorji' 
+    menu_order = 300  # will put in 3rd place (000 being 1st, 100 2nd)
+    add_to_settings_menu = False 
+    exclude_from_explorer = False
+
+
 class ObjavaAdmin(ModelAdmin):
     model = Objava
     menu_label = 'Medijska pojavljanja'
-    menu_order = 300  # will put in 3rd place (000 being 1st, 100 2nd)
+    menu_order = 400  # will put in 3rd place (000 being 1st, 100 2nd)
     add_to_settings_menu = False 
     exclude_from_explorer = False
 
@@ -84,4 +93,5 @@ def register_extra_rich_text_features(features):
 
 
 modeladmin_register(NovicaTagAdmin)
+modeladmin_register(AuthorsAdmin)
 modeladmin_register(ObjavaAdmin)
