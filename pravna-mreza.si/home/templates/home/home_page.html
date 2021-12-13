@@ -23,7 +23,40 @@
   {% infopush %}
 </div>
 
-<div class="row row-purple">
+<div class="row row-white">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <div class="archive-title">
+          <h1>Novice</h3>
+          <h5><a href="/arhiv-novic/" class="archive-link">Arhiv novic >>></a></h5>
+        </div>
+        
+      </div>
+    </div>
+    <div class="row">
+      {% for novica in novice %}
+      <div class="col-4 news-preview">
+        <div>
+          {% image novica.preview_image width-1100 class="img-fluid" %}
+        </div>
+        <div>
+          <h1 class="news-title">{{ novica.title }}</h1>
+          <div class="news-subtitle">
+            <span>{{ novica.tag }}</span> | <time>{{ novica.date|date:'d. m. Y' }}</time>
+          </div>
+        </div>
+        <div class="news-desc">
+          {{ novica.preview_text|safe }}
+          <a class="{{ novica.url }}" href="{{ novica.url }}">VEČ &gt;&gt;&gt;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row row-purple">
   <div class="container container-narrow">
     <div class="row">
       <div class="col-lg-4 d-flex align-items-center">
@@ -62,9 +95,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="row row-white">
+<!-- <div class="row row-white">
   <div class="container container-narrow">
     <div class="row">
       <div class="col-lg-8">
@@ -99,7 +132,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="row row-light-purple">
   <div class="container container-narrow">
@@ -131,39 +164,6 @@
     {% endfor %}
     <hr class="short">
     <a href="/arhiv-blog/" class="archive-link">Arhiv blog prispevkov >>></a>
-  </div>
-</div>
-
-<div class="row row-white">
-  <div class="container container-narrow">
-    <div class="row mb-5">
-      <div class="col">
-        <h3 class="archive-title">Zadnje novice</h3>
-      </div>
-    </div>
-    {% for novica in novice %}
-    <hr class="short">
-    <article class="row news-preview">
-      <div class="col-12">
-        <div class="ml-lg-4">
-          <a class="news-title" href="{{ novica.url }}"><h1>{{ novica.title }}</h1></a>
-          <div class="news-subtitle">
-            <time>{{ novica.date|date:'d. m. Y' }}</time>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-9">
-        <div class="ml-lg-4">
-          {{ novica.preview_text|safe }}
-        </div>
-      </div>
-      <div class="col-lg-3 d-flex align-items-center justify-content-center">
-        <a class="btn btn-outline-primary" href="{{ novica.url }}">Več &gt;&gt;&gt;</a>
-      </div>
-    </article>
-    {% endfor %}
-    <hr class="short">
-    <a href="/arhiv-novic/" class="archive-link">Arhiv novic >>></a>
   </div>
 </div>
 

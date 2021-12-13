@@ -103,13 +103,24 @@ h2 .spaced {
   color: #fff;
 }
 
-h3.archive-title {
+.archive-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 4px solid #d8d1e9;
+}
+
+.archive-title h1 {
   color: #17093a;
   font-family: "Alegreya", "serif";
-  font-size: 27px;
-  font-weight: 800;
-  text-align: center;
-  letter-spacing: 2.13px;
+  font-size: 80px;
+  font-weight: 400;
+  letter-spacing: 6.4px;
+  text-transform: none;
+}
+
+.archive-title h5 {
+  font-size: 24px;
 }
 
 p {
@@ -441,11 +452,17 @@ hr.short {
   color: #3a1791;
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 700;
-  font-size: 27px;
-  line-height: 1.2;
+  font-size: 36px;
+  line-height: 40px;
   font-style: normal;
-  margin-bottom: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   text-transform: none;
+}
+
+.news-preview img {
+  height: 240px;
+  object-fit: cover;
 }
 
 .news-preview a.news-title:hover {
@@ -455,14 +472,23 @@ hr.short {
 .news-subtitle {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
-  font-size: 12px;
-  line-height: 1.2;
-  color: #807b8b;
+  font-size: 18px;
+  line-height: 33px;
+  color: #17093a;
   margin-bottom: 0.85rem;
 }
 
 .news-preview p {
-  font-size: 16px;
+  font-size: 24px;
+  display: inline;
+}
+
+.news-desc a {
+  display: inline;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: "Space Grotesk", "sans-serif";
+  color: #3a1791;
 }
 
 .archive-link {
