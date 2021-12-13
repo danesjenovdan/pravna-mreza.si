@@ -2,7 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from blog.models import BlogPage
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -34,12 +34,16 @@ class PageLinkBlock(blocks.StructBlock):
 
 @register_snippet
 class Infopush(models.Model):
-    title = models.TextField(null=True, blank=True)
-    text = RichTextField()
+    title = models.TextField(null=True, blank=True, verbose_name='Naslov (neobvezno)')
+    text = RichTextField(verbose_name='Opis')
+    page = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do strani (neobvezno)')
+    page_text = models.TextField(null=True, blank=True, verbose_name='Besedilo na gumbu s povezavo (neobvezno)')
 
     panels = [
         FieldPanel('title'),
-        FieldPanel('text', classname="full")
+        FieldPanel('text', classname="full"),
+        FieldPanel('page_text'),
+        PageChooserPanel('page'),
     ]
 
     def __str__(self):

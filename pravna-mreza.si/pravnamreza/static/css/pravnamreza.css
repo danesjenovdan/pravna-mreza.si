@@ -163,19 +163,52 @@ hr.short {
   }
 }
 
-.infopush {
+@media (max-width: 991.98px) {
+  .infopush {
+    background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
+  }
+}
+
+.infopush-bg {
   background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
-  padding: 1.5rem;
+  position: absolute;
+  left: -2.5rem;
+  right: -2.5rem;
+  top: -2.5rem;
+  bottom: -2.5rem;
+}
+
+@media (max-width: 1240px) {
+  .infopush-bg {
+    left: -1.5rem;
+    right: -1.5rem;
+    top: -1.5rem;
+    bottom: -1.5rem;
+  }
 }
 
 .infopush h3 {
-  color: #160444;
-  font-family: "Space Grotesk";
-  font-size: 24px;
+  color: #3a1791;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: none;
 }
 
 .infopush p {
+  font-size: 22px;
+}
+
+.infopush .infopush-btn {
   font-size: 16px;
+  font-weight: 700;
+  color: #3a1791;
+  border: 2px solid #3a1791;
+  padding: 1rem 1.75rem;
+}
+
+.infopush .infopush-btn:hover {
+  color: white;
+  background-color: #3a1791;
 }
 
 /* SQUARE BUTTONS */
