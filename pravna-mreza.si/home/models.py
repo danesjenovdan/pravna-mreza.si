@@ -109,13 +109,55 @@ class Objava(models.Model):
 
 class HomePage(Page):
     intro_text = RichTextField(blank=True, null=True)
-    description_text = RichTextField(blank=True, null=True)
     intro_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    news_section_title = models.TextField(verbose_name='Naslov sekcije z novicami')
+    news_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama novic')
+    news_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama novic')
+    social_media_title_part_one = models.TextField(verbose_name='Škatla socialna omrežja - naslov 1. del')
+    social_media_title_part_two = models.TextField(verbose_name='Škatla socialna omrežja - naslov 2. del')
+    facebook_link = models.URLField(verbose_name='Facebook URL')
+    twitter_link = models.URLField(verbose_name='Twitter URL')
+    newsletter_title_part_one = models.TextField(verbose_name='Škatla novičnik - naslov 1. del')
+    newsletter_title_part_two = models.TextField(verbose_name='Škatla novičnik - naslov 2. del')
+    newsletter_terms = models.TextField(verbose_name='Škatla novičnik - pogoji')
+    newsletter_button = models.TextField(verbose_name='Škatla novičnik - gumb')
+    blog_section_title = models.TextField(verbose_name='Naslov blog sekcije')
+    blog_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama blog zapisov')
+    blog_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama blog zapisov')
+    support_title_part_one = models.TextField(verbose_name='Škatla podpri - naslov 1. del')
+    support_title_part_two = models.TextField(verbose_name='Škatla podpri - naslov 2. del')
+    support_text = models.TextField(verbose_name='Škatla podpri - opis')
+    support_button = models.TextField(verbose_name='Škatla podpri - gumb')
+    monitor_title_part_one = models.TextField(verbose_name='Škatla monitoring - naslov 1. del')
+    monitor_title_part_two = models.TextField(verbose_name='Škatla monitoring - naslov 2. del')
+    monitor_text = models.TextField(verbose_name='Škatla monitoring - opis')
+    monitor_button = models.TextField(verbose_name='Škatla monitoring - gumb')
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
-        FieldPanel('description_text', classname="full"),
         ImageChooserPanel('intro_image'),
+        FieldPanel('news_section_title'),
+        FieldPanel('news_section_archive_link_title'),
+        FieldPanel('news_section_archive_link'),
+        FieldPanel('social_media_title_part_one'),
+        FieldPanel('social_media_title_part_two'),
+        FieldPanel('facebook_link'),
+        FieldPanel('twitter_link'),
+        FieldPanel('newsletter_title_part_one'),
+        FieldPanel('newsletter_title_part_two'),
+        FieldPanel('newsletter_terms'),
+        FieldPanel('newsletter_button'),
+        FieldPanel('blog_section_title'),
+        FieldPanel('blog_section_archive_link'),
+        FieldPanel('blog_section_archive_link_title'),
+        FieldPanel('support_title_part_one'),
+        FieldPanel('support_title_part_two'),
+        FieldPanel('support_text'),
+        FieldPanel('support_button'),
+        FieldPanel('monitor_title_part_one'),
+        FieldPanel('monitor_title_part_two'),
+        FieldPanel('monitor_text'),
+        FieldPanel('monitor_button'),
     ]
 
     parent_page_types = []
@@ -124,11 +166,11 @@ class HomePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         novice = NovicaPage.objects.all().live().order_by('-first_published_at')[:3]
-        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:3]
+        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:1]
         pojavljanja = Objava.objects.all().order_by('-date')[:3]
         context['novice'] = novice
         context['blogposts'] = blogposts
-        context['pojavljanja'] = pojavljanja
+        # context['pojavljanja'] = pojavljanja
         return context
 
 
