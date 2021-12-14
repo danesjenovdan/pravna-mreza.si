@@ -224,12 +224,19 @@ hr.short {
 
 /* SQUARE ELEMENTS */
 .square {
-  background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%);
   padding: 2rem;
   height: 100%;
 }
 
-.square h3 {
+.square.square-dark-purple {
+  background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%);
+}
+
+.square.square-light-purple {
+  background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
+}
+
+.square.square-dark-purple h3 {
   color: white;
   text-align: center;
   font-size: 50px;
@@ -237,7 +244,7 @@ hr.short {
   margin: 0;
 }
 
-.square h3:first-child {
+.square.square-dark-purple h3:first-child {
   text-transform: none;
   font-family: "Alegreya", "serif";
 }
@@ -274,6 +281,44 @@ hr.short {
   font-weight: 700;
   letter-spacing: 2px;
   padding: 1rem 1.5rem;
+}
+
+.square.square-light-purple {
+  padding: 3rem;
+}
+
+.square.square-light-purple h3 {
+  font-size: 50px;
+  font-weight: 800;
+  color: #160444;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.square.square-light-purple h3:first-of-type {
+  font-family: "Alegreya", "serif";
+  text-transform: none;
+  font-style: italic;
+}
+
+.square.square-light-purple h3:last-of-type {
+  font-family: "Space Grotesk";
+}
+
+.square.square-light-purple .support-btn {
+  border: 2px solid #3a1791;
+  color: #3a1791;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+.square.square-light-purple .support-btn:hover {
+  background-color: #3a1791;
+  color: white;
 }
 
 /* SQUARE BUTTONS */
