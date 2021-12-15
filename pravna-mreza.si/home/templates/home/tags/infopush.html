@@ -2,10 +2,10 @@
 
 {% for infopush in infopushes %}
 <div class="container-fluid infopush">
-    <div class="row my-4 my-lg-5">
+    <div class="row">
         <div class="container">
-            <div class="row position-relative">
-                <div class="infopush-bg d-none d-lg-block"></div>
+            <div class="row position-relative py-4 py-xl-5 my-4">
+                <div class="infopush-bg"></div>
                 <div class="col-lg-9">
                     {% if infopush.title %}
                         <h3>{{ infopush.title }}</h3>
