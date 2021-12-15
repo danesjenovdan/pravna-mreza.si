@@ -20,83 +20,78 @@
 </div>
 
 <div class="row row-white">
-  <div class="container">
-    {% infopush %}
-  </div>
+  {% infopush %}
 </div>
 
-<div class="row row-purple">
-  <div class="container container-narrow">
-    <div class="row">
-      <div class="col-lg-4 d-flex align-items-center">
-        <h2>
-          <div class="spaced serif">Poišči</div>
-          <div class="spaced">pomoč</div>
-        </h2>
-      </div>
-      <div class="col-lg-8">
-        <div class="float-right">
-          <a href="/pogosta-vprasanja/" class="square-button ml-1 float-left">
-            <div>
-              <img src="{% static 'img/faq.png' %}" />
-            </div>
-            <div>
-              <p>Pogosta vprašanja</p>
-            </div>
-          </a>
-          <a href="/pravna-mnenja/" class="square-button ml-1 float-left">
-            <div>
-              <img src="{% static 'img/mnenja.png' %}" />
-            </div>
-            <div>
-              <p>Pravna<br />mnenja</p>
-            </div>
-          </a>
-          <a href="/arhiv-blog/" class="square-button ml-1 float-left">
-            <div>
-              <img src="{% static 'img/vzorci.png' %}" />
-            </div>
-            <div>
-              <p>Pravni blog</p>
-            </div>
-          </a>
+<div class="row row-white">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <div class="archive-title">
+          <h1>{{ page.news_section_title }}</h3>
+          {% if page.news_section_archive_link %}
+          <h5><a href="{% pageurl page.news_section_archive_link %}" class="archive-link">{{ page.news_section_archive_link_title }} >>></a></h5>
+          {% endif %}
         </div>
       </div>
+    </div>
+    <div class="row">
+      {% for novica in novice %}
+      <div class="col-4 news-preview">
+        <div>
+          {% image novica.preview_image width-1100 class="img-fluid" %}
+        </div>
+        <div>
+          <h1 class="news-title">{{ novica.title }}</h1>
+          <div class="news-subtitle">
+            <span>{{ novica.tag }}</span> | <time>{{ novica.date|date:'d. m. Y' }}</time>
+          </div>
+        </div>
+        <div class="news-desc">
+          {{ novica.preview_text|safe }}
+          <a class="{{ novica.url }}" href="{{ novica.url }}">VEČ &gt;&gt;&gt;</a>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
 
 <div class="row row-white">
-  <div class="container container-narrow">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-8">
-        <div class="mr-lg-5">
-          {{ page.description_text|safe }}
+      <div class="col-md-6">
+        <div class="square square-dark-purple">
+          <div class="my-4">
+            <h3>{{ page.social_media_title_part_one }}</h3>
+            <h3>{{ page.social_media_title_part_two }}</h3>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a href="{{ page.facebook_link }}" target="_blank" class="social-media d-flex justify-content-center align-items-center">
+                <img src="{% static 'img/social-facebook.png' %}" />
+            </a>
+            <a href="{{ page.twitter_link }}" target="_blank" class="social-media d-flex justify-content-center align-items-center">
+                <img src="{% static 'img/social-twitter.png' %}" />
+            </a>
         </div>
-        <div class="mr-lg-5">
-          <a class="btn btn-lg btn-outline-primary mt-4 mb-5 mb-lg-0" href="/o-mrezi/">Več o mreži &gt;&gt;&gt;</a>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="float-right">
-          <a href="/doniraj/" class="square-button mb-3">
-            <div>
-              <img src="{% static 'img/srce.png' %}" />
+      <div class="col-md-6">
+        <div class="square square-dark-purple">
+          <div class="my-4">
+            <h3>{{ page.newsletter_title_part_one }}</h3>
+            <h3>{{ page.newsletter_title_part_two }}</h3>
+          </div>
+          <form class="m-5 newsletter-form">
+            <div class="form-group">
+              <input type="email" class="form-control" id="newsletter-email">
             </div>
-            <div>
-              <h3>Doniraj</h3>
-              <p>Prispevaj za pravno mrežo.</p>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="newsletter-terms">
+              <label class="form-check-label" for="newsletter-terms">{{ page.newsletter_terms }}</label>
             </div>
-          </a>
-          <a href="/pomagaj/" class="square-button mb-3">
-            <div>
-              <img src="{% static 'img/pomoc.png' %}" />
-            </div>
-            <div>
-              <h3>Pomagaj</h3>
-              <p>Prispevaj pravniško znanje.</p>
-            </div>
-          </a>
+            <button type="submit" class="btn newsletter-btn mt-2">{{ page.newsletter_button }} &gt;&gt;&gt;</button>
+          </form>
         </div>
       </div>
     </div>
@@ -104,72 +99,91 @@
 </div>
 
 <div class="row row-light-purple">
-  <div class="container container-narrow">
+  <div class="container">
     <div class="row mb-5">
       <div class="col">
-        <h3 class="archive-title">Pravni blog</h3>
+        <div class="archive-title">
+          <h1>{{ page.blog_section_title }}</h3>
+          {% if page.blog_section_archive_link %}
+          <h5><a href="{% pageurl page.blog_section_archive_link %}" class="archive-link">{{ page.blog_section_archive_link_title }} >>></a></h5>
+          {% endif %}
+        </div>
       </div>
     </div>
     {% for blogpost in blogposts %}
-    <hr class="short">
-    <article class="row news-preview">
-      <div class="col-12">
-        <div class="ml-lg-4">
-          <a class="news-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
-          <div class="news-subtitle">
-            <time>{{ blogpost.date|date:'d. m. Y' }}</time>
-          </div>
-        </div>
+    <div class="row blog-preview mb-5">
+      <div class="col-4">
+        {% image blogpost.preview_image width-1100 class="img-fluid" %}
       </div>
-      <div class="col-lg-9">
-        <div class="ml-lg-4">
+      <div class="col-8">
+        <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
+        {% if blogpost.author %}
+        <div class="blog-author">
+          <span>{{ blogpost.author }}</time>
+        </div>
+        {% endif %}
+        <div class="blog-subtitle">
+          <time>{{ blogpost.date|date:'d. m. Y' }}</time>
+        </div>
+        <div>
           {{ blogpost.preview_text|safe }}
         </div>
       </div>
-      <div class="col-lg-3 d-flex align-items-center justify-content-center">
-        <a class="btn btn-outline-primary" href="{{ blogpost.url }}">Več &gt;&gt;&gt;</a>
-      </div>
-    </article>
+    </div>
     {% endfor %}
-    <hr class="short">
-    <a href="/arhiv-blog/" class="archive-link">Arhiv blog prispevkov >>></a>
   </div>
 </div>
 
 <div class="row row-white">
-  <div class="container container-narrow">
-    <div class="row mb-5">
-      <div class="col">
-        <h3 class="archive-title">Zadnje novice</h3>
-      </div>
-    </div>
-    {% for novica in novice %}
-    <hr class="short">
-    <article class="row news-preview">
-      <div class="col-12">
-        <div class="ml-lg-4">
-          <a class="news-title" href="{{ novica.url }}"><h1>{{ novica.title }}</h1></a>
-          <div class="news-subtitle">
-            <time>{{ novica.date|date:'d. m. Y' }}</time>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="square square-light-purple">
+          <div class="row">
+            <div class="col-8">
+              <div class="mt-5 mb-4">
+                <h3>{{ page.support_title_part_one }}</h3>
+                <h3>{{ page.support_title_part_two }}</h3>
+              </div>
+              <div class="mb-4">
+                <p>{{ page.support_text }}</p>
+              </div>
+              <div>
+                <button type="submit" class="btn support-btn mt-2">{{ page.support_button }} &gt;&gt;&gt;</button>
+              </div>
+            </div>
+            <div class="col-4 text-right">
+              <img src="{% static 'img/srce.png' %}" />
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-9">
-        <div class="ml-lg-4">
-          {{ novica.preview_text|safe }}
+      <div class="col-md-6">
+        <div class="square square-light-purple">
+          <div class="row">
+            <div class="col-8">
+              <div class="mt-5 mb-4">
+                <h3>{{ page.monitor_title_part_one }}</h3>
+                <h3>{{ page.monitor_title_part_two }}</h3>
+              </div>
+              <div class="mb-4">
+                <p>{{ page.monitor_text }}</p>
+              </div>
+              <div>
+                <button type="submit" class="btn support-btn mt-2">{{ page.monitor_button }} &gt;&gt;&gt;</button>
+              </div>
+            </div>
+            <div class="col-4 text-right">
+              <img src="{% static 'img/lupa.png' %}" />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-lg-3 d-flex align-items-center justify-content-center">
-        <a class="btn btn-outline-primary" href="{{ novica.url }}">Več &gt;&gt;&gt;</a>
-      </div>
-    </article>
-    {% endfor %}
-    <hr class="short">
-    <a href="/arhiv-novic/" class="archive-link">Arhiv novic >>></a>
+    </div>
   </div>
 </div>
 
-<div class="row row-light-purple">
+<!-- <div class="row row-light-purple">
   <div class="container container-narrow">
     <div class="row mb-5">
       <div class="col">
@@ -192,6 +206,6 @@
     <hr class="short">
     <a href="/medijska-pojavljanja/" class="archive-link">Medijska pojavljanja >>></a>
   </div>
-</div>
+</div> -->
 
 {% endblock page_body %}

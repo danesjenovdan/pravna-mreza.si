@@ -2,7 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from blog.models import BlogPage
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -34,12 +34,16 @@ class PageLinkBlock(blocks.StructBlock):
 
 @register_snippet
 class Infopush(models.Model):
-    title = models.TextField(null=True, blank=True)
-    text = RichTextField()
+    title = models.TextField(null=True, blank=True, verbose_name='Naslov (neobvezno)')
+    text = RichTextField(verbose_name='Opis')
+    page = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do strani (neobvezno)')
+    page_text = models.TextField(null=True, blank=True, verbose_name='Besedilo na gumbu s povezavo (neobvezno)')
 
     panels = [
         FieldPanel('title'),
-        FieldPanel('text', classname="full")
+        FieldPanel('text', classname="full"),
+        FieldPanel('page_text'),
+        PageChooserPanel('page'),
     ]
 
     def __str__(self):
@@ -105,13 +109,55 @@ class Objava(models.Model):
 
 class HomePage(Page):
     intro_text = RichTextField(blank=True, null=True)
-    description_text = RichTextField(blank=True, null=True)
     intro_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    news_section_title = models.TextField(verbose_name='Naslov sekcije z novicami', default='')
+    news_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama novic', default='')
+    news_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama novic')
+    social_media_title_part_one = models.TextField(verbose_name='Škatla socialna omrežja - naslov 1. del', default='')
+    social_media_title_part_two = models.TextField(verbose_name='Škatla socialna omrežja - naslov 2. del', default='')
+    facebook_link = models.URLField(verbose_name='Facebook URL', default='')
+    twitter_link = models.URLField(verbose_name='Twitter URL', default='')
+    newsletter_title_part_one = models.TextField(verbose_name='Škatla novičnik - naslov 1. del', default='')
+    newsletter_title_part_two = models.TextField(verbose_name='Škatla novičnik - naslov 2. del', default='')
+    newsletter_terms = models.TextField(verbose_name='Škatla novičnik - pogoji', default='')
+    newsletter_button = models.TextField(verbose_name='Škatla novičnik - gumb', default='')
+    blog_section_title = models.TextField(verbose_name='Naslov blog sekcije', default='')
+    blog_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama blog zapisov')
+    blog_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama blog zapisov', default='')
+    support_title_part_one = models.TextField(verbose_name='Škatla podpri - naslov 1. del', default='')
+    support_title_part_two = models.TextField(verbose_name='Škatla podpri - naslov 2. del', default='')
+    support_text = models.TextField(verbose_name='Škatla podpri - opis', default='')
+    support_button = models.TextField(verbose_name='Škatla podpri - gumb', default='')
+    monitor_title_part_one = models.TextField(verbose_name='Škatla monitoring - naslov 1. del', default='')
+    monitor_title_part_two = models.TextField(verbose_name='Škatla monitoring - naslov 2. del', default='')
+    monitor_text = models.TextField(verbose_name='Škatla monitoring - opis', default='')
+    monitor_button = models.TextField(verbose_name='Škatla monitoring - gumb', default='')
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
-        FieldPanel('description_text', classname="full"),
         ImageChooserPanel('intro_image'),
+        FieldPanel('news_section_title'),
+        FieldPanel('news_section_archive_link_title'),
+        FieldPanel('news_section_archive_link'),
+        FieldPanel('social_media_title_part_one'),
+        FieldPanel('social_media_title_part_two'),
+        FieldPanel('facebook_link'),
+        FieldPanel('twitter_link'),
+        FieldPanel('newsletter_title_part_one'),
+        FieldPanel('newsletter_title_part_two'),
+        FieldPanel('newsletter_terms'),
+        FieldPanel('newsletter_button'),
+        FieldPanel('blog_section_title'),
+        FieldPanel('blog_section_archive_link'),
+        FieldPanel('blog_section_archive_link_title'),
+        FieldPanel('support_title_part_one'),
+        FieldPanel('support_title_part_two'),
+        FieldPanel('support_text'),
+        FieldPanel('support_button'),
+        FieldPanel('monitor_title_part_one'),
+        FieldPanel('monitor_title_part_two'),
+        FieldPanel('monitor_text'),
+        FieldPanel('monitor_button'),
     ]
 
     parent_page_types = []
@@ -120,11 +166,11 @@ class HomePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         novice = NovicaPage.objects.all().live().order_by('-first_published_at')[:3]
-        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:3]
+        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:1]
         pojavljanja = Objava.objects.all().order_by('-date')[:3]
         context['novice'] = novice
         context['blogposts'] = blogposts
-        context['pojavljanja'] = pojavljanja
+        # context['pojavljanja'] = pojavljanja
         return context
 
 
