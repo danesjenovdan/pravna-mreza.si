@@ -113,21 +113,31 @@ h2 .spaced {
 .archive-title h1 {
   color: #17093a;
   font-family: "Alegreya", "serif";
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 400;
-  letter-spacing: 6.4px;
+  letter-spacing: 4px;
   text-transform: none;
 }
 
 .archive-title h5 {
-  font-size: 24px;
+  font-size: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .archive-title h1 {
+    font-size: 42px;
+  }
+
+  .archive-title h5 {
+    font-size: 12px;
+  }
 }
 
 p {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   color: #17093a;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -174,39 +184,48 @@ hr.short {
   }
 }
 
-@media (max-width: 991.98px) {
-  .infopush {
-    background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
-  }
-}
-
 .infopush-bg {
   background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
   position: absolute;
   left: -2.5rem;
   right: -2.5rem;
-  top: -2.5rem;
-  bottom: -2.5rem;
+  top: 0;
+  bottom: 0;
 }
 
 @media (max-width: 1240px) {
   .infopush-bg {
     left: -1.5rem;
     right: -1.5rem;
-    top: -1.5rem;
-    bottom: -1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .infopush-bg {
+    left: 0;
+    right: 0;
   }
 }
 
 .infopush h3 {
   color: #3a1791;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   text-transform: none;
 }
 
 .infopush p {
-  font-size: 22px;
+  font-size: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .infopush h3 {
+    font-size: 24px;
+  }
+
+  .infopush p {
+    font-size: 16px;
+  }
 }
 
 .infopush .infopush-btn {
@@ -239,7 +258,7 @@ hr.short {
 .square.square-dark-purple h3 {
   color: white;
   text-align: center;
-  font-size: 50px;
+  font-size: 42px;
   letter-spacing: 4px;
   margin: 0;
 }
@@ -251,8 +270,8 @@ hr.short {
 
 .social-media {
   border: 2px solid #d8d1e9;
-  height: 145px;
-  width: 145px;
+  height: 130px;
+  width: 130px;
   margin: 30px;
 }
 
@@ -276,7 +295,7 @@ hr.short {
   background-color: #d2c8ee;
   border: 2px solid #3a1791;
   color: #3a1791;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 30px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -288,12 +307,39 @@ hr.short {
 }
 
 .square.square-light-purple h3 {
-  font-size: 50px;
+  font-size: 42px;
   font-weight: 800;
   color: #160444;
   letter-spacing: 4px;
   line-height: 1;
   margin-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+  .square {
+    padding: 1rem;
+  }
+
+  .square.square-dark-purple h3,
+  .square.square-light-purple h3 {
+    font-size: 28px;
+  }
+
+  .social-media {
+    height: 70px;
+    width: 70px;
+    margin: 10px;
+  }
+
+  .social-media img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .square.square-light-purple {
+    padding: 1rem;
+  }
+
 }
 
 .square.square-light-purple h3:first-of-type {
@@ -313,7 +359,6 @@ hr.short {
   font-weight: 700;
   padding: 1rem 1.5rem;
   width: 100%;
-  text-align: left;
 }
 
 .square.square-light-purple .support-btn:hover {
@@ -553,8 +598,8 @@ hr.short {
   color: #3a1791;
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 700;
-  font-size: 36px;
-  line-height: 40px;
+  font-size: 32px;
+  line-height: 36px;
   font-style: normal;
   text-transform: none;
 }
@@ -581,8 +626,8 @@ hr.short {
 .blog-subtitle {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
-  font-size: 18px;
-  line-height: 33px;
+  font-size: 16px;
+  line-height: 30px;
   color: #17093a;
   margin-bottom: 0.85rem;
 }
@@ -591,19 +636,19 @@ hr.short {
   color: #17093a;
   font-family: "Space Grotesk";
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
 }
 
 .news-preview p {
-  font-size: 24px;
+  font-size: 20px;
   display: inline;
 }
 
 .news-desc a {
   display: inline;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Space Grotesk", "sans-serif";
   color: #3a1791;
 }
@@ -617,6 +662,20 @@ hr.short {
 
 .archive-link, .archive-link:hover {
   color: #3a1791;
+}
+
+@media (max-width: 991.98px) {
+  .news-preview h1,
+  .blog-preview h1,
+  .blog-preview a {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .news-preview p,
+  .news-desc a {
+    font-size: 16px;
+  }
 }
 
 /* PAGINATION */
@@ -769,6 +828,13 @@ header .nav-item.nav-item-border:hover .nav-link {
   font-style: italic;
   font-size: 50px;
   line-height: 60px;
+}
+
+@media (max-width: 991.98px) {
+  .headline p {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 
 /* PARAGRAPH BLOCKS */

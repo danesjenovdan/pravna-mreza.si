@@ -5,13 +5,13 @@
 
 {% block page_body %}
 
-<div class="row row-purple headline">
+<div class="row row-purple headline px-4 px-lg-0">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7 order-last order-lg-first">
+      <div class="col-lg-7">
         {{ page.intro_text|safe }}
       </div>
-      <div class="col-lg-5 order-first order-lg-last d-flex align-items-center">
+      <div class="col-lg-5 d-flex align-items-center">
         <!-- <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" /> -->
         {% image page.intro_image width-1100 class="img-fluid mb-4 mb-lg-0 ml-lg-5" %}
       </div>
@@ -19,13 +19,13 @@
   </div>
 </div>
 
-<div class="row row-white">
+<div class="row row-white px-4 px-lg-0">
   {% infopush %}
 </div>
 
-<div class="row row-white">
+<div class="row row-white px-4 px-lg-0">
   <div class="container">
-    <div class="row mb-5">
+    <div class="row mb-lg-5">
       <div class="col">
         <div class="archive-title">
           <h1>{{ page.news_section_title }}</h3>
@@ -37,7 +37,7 @@
     </div>
     <div class="row">
       {% for novica in novice %}
-      <div class="col-4 news-preview">
+      <div class="col-12 col-lg-4 news-preview my-4 my-lg-0">
         <div>
           {% image novica.preview_image width-1100 class="img-fluid" %}
         </div>
@@ -60,7 +60,7 @@
 <div class="row row-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-4 mb-lg-0">
         <div class="square square-dark-purple">
           <div class="my-4">
             <h3>{{ page.social_media_title_part_one }}</h3>
@@ -82,7 +82,7 @@
             <h3>{{ page.newsletter_title_part_one }}</h3>
             <h3>{{ page.newsletter_title_part_two }}</h3>
           </div>
-          <form class="m-5 newsletter-form">
+          <form class="m-lg-5 newsletter-form">
             <div class="form-group">
               <input type="email" class="form-control" id="newsletter-email">
             </div>
@@ -98,9 +98,9 @@
   </div>
 </div>
 
-<div class="row row-light-purple">
+<div class="row row-light-purple px-4 px-lg-0">
   <div class="container">
-    <div class="row mb-5">
+    <div class="row mb-4 mb-lg-5">
       <div class="col">
         <div class="archive-title">
           <h1>{{ page.blog_section_title }}</h3>
@@ -111,11 +111,11 @@
       </div>
     </div>
     {% for blogpost in blogposts %}
-    <div class="row blog-preview mb-5">
-      <div class="col-4">
+    <div class="row blog-preview mb-lg-5">
+      <div class="col-lg-4 mb-2">
         {% image blogpost.preview_image width-1100 class="img-fluid" %}
       </div>
-      <div class="col-8">
+      <div class="col-lg-8">
         <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
         {% if blogpost.author %}
         <div class="blog-author">
@@ -137,11 +137,11 @@
 <div class="row row-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 my-4 my-lg-0">
         <div class="square square-light-purple">
-          <div class="row">
-            <div class="col-8">
-              <div class="mt-5 mb-4">
+          <div class="row text-center text-lg-left">
+            <div class="col-lg-8 order-last order-lg-first">
+              <div class="mt-4 mt-lg-5 mb-4">
                 <h3>{{ page.support_title_part_one }}</h3>
                 <h3>{{ page.support_title_part_two }}</h3>
               </div>
@@ -149,20 +149,20 @@
                 <p>{{ page.support_text }}</p>
               </div>
               <div>
-                <button type="submit" class="btn support-btn mt-2">{{ page.support_button }} &gt;&gt;&gt;</button>
+                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.support_button }} &gt;&gt;&gt;</button>
               </div>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/srce.png' %}" />
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 my-4 my-lg-0">
         <div class="square square-light-purple">
-          <div class="row">
-            <div class="col-8">
-              <div class="mt-5 mb-4">
+          <div class="row text-center text-lg-left">
+            <div class="col-lg-8">
+              <div class="mt-4 mt-lg-5 mb-4">
                 <h3>{{ page.monitor_title_part_one }}</h3>
                 <h3>{{ page.monitor_title_part_two }}</h3>
               </div>
@@ -170,10 +170,10 @@
                 <p>{{ page.monitor_text }}</p>
               </div>
               <div>
-                <button type="submit" class="btn support-btn mt-2">{{ page.monitor_button }} &gt;&gt;&gt;</button>
+                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.monitor_button }} &gt;&gt;&gt;</button>
               </div>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/lupa.png' %}" />
             </div>
           </div>
