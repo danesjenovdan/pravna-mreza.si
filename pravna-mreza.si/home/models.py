@@ -120,7 +120,8 @@ class HomePage(Page):
     newsletter_title_part_one = models.TextField(verbose_name='Škatla novičnik - naslov 1. del', default='', blank=True)
     newsletter_title_part_two = models.TextField(verbose_name='Škatla novičnik - naslov 2. del', default='', blank=True)
     newsletter_terms = models.TextField(verbose_name='Škatla novičnik - pogoji', default='', blank=True)
-    newsletter_button = models.TextField(verbose_name='Škatla novičnik - gumb', default='', blank=True)
+    newsletter_success = models.TextField(verbose_name='Škatla novičnik - sporočilo ob uspešni prijavi', default='', blank=True)
+    newsletter_failure = models.TextField(verbose_name='Škatla novičnik - sporočilo ob neuspešni prijavi', default='', blank=True)
     blog_section_title = models.TextField(verbose_name='Naslov blog sekcije', default='', blank=True)
     blog_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama blog zapisov')
     blog_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama blog zapisov', default='', blank=True)
@@ -128,10 +129,12 @@ class HomePage(Page):
     support_title_part_two = models.TextField(verbose_name='Škatla podpri - naslov 2. del', default='', blank=True)
     support_text = models.TextField(verbose_name='Škatla podpri - opis', default='', blank=True)
     support_button = models.TextField(verbose_name='Škatla podpri - gumb', default='', blank=True)
+    support_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Škatla podpri - gumb povezava')
     monitor_title_part_one = models.TextField(verbose_name='Škatla monitoring - naslov 1. del', default='', blank=True)
     monitor_title_part_two = models.TextField(verbose_name='Škatla monitoring - naslov 2. del', default='', blank=True)
     monitor_text = models.TextField(verbose_name='Škatla monitoring - opis', default='', blank=True)
     monitor_button = models.TextField(verbose_name='Škatla monitoring - gumb', default='', blank=True)
+    monitor_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Škatla monitoring - gumb povezava')
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
@@ -146,7 +149,8 @@ class HomePage(Page):
         FieldPanel('newsletter_title_part_one'),
         FieldPanel('newsletter_title_part_two'),
         FieldPanel('newsletter_terms'),
-        FieldPanel('newsletter_button'),
+        FieldPanel('newsletter_success'),
+        FieldPanel('newsletter_failure'),
         FieldPanel('blog_section_title'),
         FieldPanel('blog_section_archive_link'),
         FieldPanel('blog_section_archive_link_title'),
@@ -154,10 +158,12 @@ class HomePage(Page):
         FieldPanel('support_title_part_two'),
         FieldPanel('support_text'),
         FieldPanel('support_button'),
+        FieldPanel('support_link'),
         FieldPanel('monitor_title_part_one'),
         FieldPanel('monitor_title_part_two'),
         FieldPanel('monitor_text'),
         FieldPanel('monitor_button'),
+        FieldPanel('monitor_link'),
     ]
 
     parent_page_types = []

@@ -5,15 +5,17 @@
 
 {% block page_body %}
 
-<div class="row row-purple headline px-4 px-lg-0">
+<div class="row row-purple headline px-4 px-lg-0 position-relative">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-7 headline-text">
         {{ page.intro_text|safe }}
       </div>
-      <div class="col-lg-5 d-flex align-items-center">
+      <div class="col-lg-5 d-flex align-items-center position-static">
         <!-- <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" /> -->
-        {% image page.intro_image width-1100 class="img-fluid mb-4 mb-lg-0 ml-lg-5" %}
+        <div class="heading-image">
+          {% image page.intro_image width-1100 class="img-fluid" %}
+        </div>
       </div>
     </div>
   </div>
@@ -82,15 +84,17 @@
             <h3>{{ page.newsletter_title_part_one }}</h3>
             <h3>{{ page.newsletter_title_part_two }}</h3>
           </div>
-          <form class="m-lg-5 newsletter-form">
+          <form id="newsletter-form" class="m-lg-5">
             <div class="form-group">
-              <input type="email" class="form-control" id="newsletter-email">
+              <input type="email" class="form-control" id="newsletter-email" required>
             </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="newsletter-terms">
-              <label class="form-check-label" for="newsletter-terms">{{ page.newsletter_terms }}</label>
+            <div class="form-group form-check p-0">
+              <input type="checkbox" class="form-check-input newsletter-checkbox" id="newsletter-terms" required>
+              <label class="form-check-label newsletter-checkbox-label" for="newsletter-terms">{{ page.newsletter_terms }}</label>
             </div>
-            <button type="submit" class="btn newsletter-btn mt-2">{{ page.newsletter_button }} &gt;&gt;&gt;</button>
+            <button type="submit" id="newsletter-btn" class="btn mt-2">Prijavi se >>></button>
+            <div id="newsletter-success-message" class="pt-2">{{ page.newsletter_success }}</div>
+            <div id="newsletter-error-message" class="pt-2">{{ page.newsletter_failure }}</div>
           </form>
         </div>
       </div>
@@ -148,9 +152,11 @@
               <div class="mb-4">
                 <p>{{ page.support_text }}</p>
               </div>
+              {% if page.support_link %}
               <div>
-                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.support_button }} &gt;&gt;&gt;</button>
+                <a href="{% pageurl page.support_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.support_button }} &gt;&gt;&gt;</a>
               </div>
+              {% endif %}
             </div>
             <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/srce.png' %}" />
@@ -169,9 +175,11 @@
               <div class="mb-4">
                 <p>{{ page.monitor_text }}</p>
               </div>
+              {% if page.monitor_link %}
               <div>
-                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.monitor_button }} &gt;&gt;&gt;</button>
+                <a href="{% pageurl page.monitor_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.monitor_button }} &gt;&gt;&gt;</a>
               </div>
+              {% endif %}
             </div>
             <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/lupa.png' %}" />
