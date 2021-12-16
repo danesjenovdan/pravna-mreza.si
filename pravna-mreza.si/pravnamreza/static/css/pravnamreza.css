@@ -284,7 +284,7 @@ hr.short {
     hue-rotate(254deg) brightness(85%) contrast(105%);
 }
 
-.newsletter-form input[type=email] {
+#newsletter-form input[type=email] {
   border-radius: 0;
   color: #17093a;
   line-height: 30px;
@@ -293,7 +293,7 @@ hr.short {
   padding: 0.5rem 1rem;
 }
 
-.newsletter-form label {
+#newsletter-form label {
   color: white;
   font-family: "Space Grotesk";
   font-size: 16px;
@@ -331,7 +331,7 @@ hr.short {
   content: "\2713";
 }
 
-.newsletter-form .newsletter-btn {
+#newsletter-btn {
   background-color: #d2c8ee;
   border: 2px solid #3a1791;
   color: #3a1791;
@@ -342,11 +342,17 @@ hr.short {
   padding: 1rem 1.5rem;
 }
 
-.newsletter-form .newsletter-btn:hover {
+#newsletter-btn:hover {
   /* background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%); */
   background-color: #3a1791;
   border: 2px solid #d2c8ee;
   color: #d2c8ee;
+}
+
+#newsletter-error-message,
+#newsletter-success-message {
+  color: white;
+  display: none;
 }
 
 .square.square-light-purple {

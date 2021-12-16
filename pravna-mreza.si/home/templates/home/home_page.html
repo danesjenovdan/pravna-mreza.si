@@ -84,7 +84,7 @@
             <h3>{{ page.newsletter_title_part_one }}</h3>
             <h3>{{ page.newsletter_title_part_two }}</h3>
           </div>
-          <form class="m-lg-5 newsletter-form">
+          <form id="newsletter-form" class="m-lg-5">
             <div class="form-group">
               <input type="email" class="form-control" id="newsletter-email" required>
             </div>
@@ -92,7 +92,9 @@
               <input type="checkbox" class="form-check-input newsletter-checkbox" id="newsletter-terms" required>
               <label class="form-check-label newsletter-checkbox-label" for="newsletter-terms">{{ page.newsletter_terms }}</label>
             </div>
-            <button type="submit" class="btn newsletter-btn mt-2">{{ page.newsletter_button }} &gt;&gt;&gt;</button>
+            <button type="submit" id="newsletter-btn" class="btn mt-2">Prijavi se >>></button>
+            <div id="newsletter-success-message" class="pt-2">{{ page.newsletter_success }}</div>
+            <div id="newsletter-error-message" class="pt-2">{{ page.newsletter_failure }}</div>
           </form>
         </div>
       </div>
