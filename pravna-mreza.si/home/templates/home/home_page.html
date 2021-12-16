@@ -152,9 +152,11 @@
               <div class="mb-4">
                 <p>{{ page.support_text }}</p>
               </div>
+              {% if page.support_link %}
               <div>
-                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.support_button }} &gt;&gt;&gt;</button>
+                <a href="{% pageurl page.support_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.support_button }} &gt;&gt;&gt;</a>
               </div>
+              {% endif %}
             </div>
             <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/srce.png' %}" />
@@ -173,9 +175,11 @@
               <div class="mb-4">
                 <p>{{ page.monitor_text }}</p>
               </div>
+              {% if page.monitor_link %}
               <div>
-                <button type="submit" class="btn support-btn mt-2 text-center text-lg-left">{{ page.monitor_button }} &gt;&gt;&gt;</button>
+                <a href="{% pageurl page.monitor_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.monitor_button }} &gt;&gt;&gt;</a>
               </div>
+              {% endif %}
             </div>
             <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
               <img src="{% static 'img/lupa.png' %}" />
