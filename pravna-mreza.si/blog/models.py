@@ -9,6 +9,12 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 class Author(models.Model):
     name = models.TextField()
+    image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
+
+    content_panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('image'),
+    ]
 
     def __str__(self):
         return self.name

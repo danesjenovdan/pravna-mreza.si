@@ -685,6 +685,16 @@ hr.short {
   /* margin-bottom: 0.85rem; */
 }
 
+.blog-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.blog-image img {
+  border-radius: 50%;
+}
+
 .blog-author {
   color: #17093a;
   font-family: "Space Grotesk";
