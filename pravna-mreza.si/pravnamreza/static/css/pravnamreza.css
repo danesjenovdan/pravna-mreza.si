@@ -8,22 +8,11 @@
   height: 100vh;
 }
 
-.container-narrow {
-  max-width: 912px;
-}
-
-@media (max-width: 575.98px) {
-  .container-narrow {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
 .row-white,
 .row-purple,
 .row-light-purple {
-  padding-top: 75px;
-  padding-bottom: 75px;
+  margin-top: 75px;
+  margin-bottom: 75px;
 }
 
 @media (max-width: 575.98px) {
@@ -680,14 +669,24 @@ hr.short {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   font-size: 16px;
-  line-height: 30px;
+  /* line-height: 30px; */
   color: #17093a;
   /* margin-bottom: 0.85rem; */
 }
 
-.blog-image {
+.blog-preview-image {
   width: 32px;
   height: 32px;
+  margin-right: 10px;
+}
+
+.blog-preview-image img {
+  border-radius: 50%;
+}
+
+.blog-image {
+  width: 48px;
+  height: 48px;
   margin-right: 10px;
 }
 
@@ -701,6 +700,42 @@ hr.short {
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
+}
+
+.blog-sidebar {
+  background-color: #f7f6fb;
+  padding: 30px;
+}
+
+.blog-sidebar h4 {
+  margin-bottom: 0;
+  text-transform: none;
+  font-size: 32px;
+  font-weight: 800;
+  color: #160444;
+}
+
+.blog-sidebar h6 {
+  font-size: 18px;
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  color: #3a1791;
+  line-height: 1.25;
+}
+
+
+.blog-sidebar h4.spaced {
+  letter-spacing: 3px;
+}
+
+.blog-sidebar h4.serif {
+  font-family: "Alegreya", "serif";
+  font-style: italic;
+}
+
+.blog-sidebar .blog-author,
+.blog-sidebar .blog-subtitle {
+  font-size: 14px;
 }
 
 .news-preview p {
@@ -739,6 +774,15 @@ hr.short {
   .news-desc a {
     font-size: 16px;
   }
+}
+
+.blog-body h1, h2, h3, h4 {
+  margin-bottom: 1.5rem;
+}
+
+.blog-body p {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 /* PAGINATION */
@@ -883,6 +927,18 @@ header .nav-item.nav-item-border:hover .nav-link {
 .headline,
 .headline-blog {
   margin-top: 86px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.headline-blog h2 {
+  text-transform: none;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.headline-blog p {
+  font-weight: 700;
 }
 
 .headline p {

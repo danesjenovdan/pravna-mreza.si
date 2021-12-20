@@ -25,21 +25,27 @@ class BlogPage(Page):
     preview_text = RichTextField(blank=False, null=False, default='')
     preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True)
+    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
+    related_blog_posts = StreamField(
+        [('blog_post', blocks.PageChooserBlock(label="Povezava do blog zapisa")),],
+        blank=True,
+        null=True,
+        # min_num=0,
+        # max_num=3,
+        verbose_name="Povezani blog zapisi"
+    )
     body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-            ('intro_text', blocks.RichTextBlock(required=False)),
-        ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
     ])
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('author'),
-        FieldPanel('preview_text', classname="full"),
+        FieldPanel('preview_text'),
         ImageChooserPanel('preview_image'),
+        FieldPanel('intro_text'),
         StreamFieldPanel('body'),
+        StreamFieldPanel('related_blog_posts'),
     ]
 
 
