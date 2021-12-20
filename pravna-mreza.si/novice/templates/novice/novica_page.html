@@ -1,41 +1,80 @@
 {% extends "home/base_page.html" %}
-{% load i18n wagtailcore_tags static %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}page page--generic{% endblock %}
 
 {% block page_body %}
 
-{% for block in page.body %}
-  {% if block.block_type == 'heading' %}
-  <div class="row row-white row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
-      <div class="row">
-        <div class="col-lg-7">
-          <h1>
-            <div class="spaced serif">{{ block.value.part_one }}</div>
-            <div class="spaced">{{ block.value.part_two }}</div>
-          </h1>
-          <hr>
+<div class="row row-white headline-blog mb-0 pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>
+          {{ page.title }}
+        </h2>
+        <div class="d-flex align-items-center my-2">
+          <div>
+            <span class="blog-author d-block">{{ page.tag }}</span>
+            <time class="blog-subtitle d-block">{{ page.date|date:'d. m. Y' }}</time>
+          </div>
+        </div>
+        <div>
+          {{ page.intro_text|safe }}
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          {{ block.value.intro_text|safe }}
-        </div>
-      </div>
-    </div>
-  </div>
-  {% elif block.block_type == 'paragraph' %}
-  <div class="row row-light-purple row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
-      <div class="row">
-        <div class="col">
-          {{ block.value|safe }}
-        </div>
+      <div class="col-lg-6 d-flex align-items-center justify-content-end">
+        {% image page.preview_image width-1100 class="img-fluid" %}
       </div>
     </div>
   </div>
-  {% endif %}
-{% endfor %}
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <hr class="my-4" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        {% for block in page.body %}
+          <div class="row">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  {{ block.value|safe }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col">
+        <a href="{{ novice_archive }}" class="back-link"><<< Nazaj na seznam objav</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-white">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              {% include "home/includes/social-media-box.html" %}
+          </div>
+          <div class="col-md-6 my-4 my-lg-0">
+              {% include "home/includes/support-box.html" %}
+          </div>
+      </div>
+  </div>
+</div>
 
 {% endblock page_body %}

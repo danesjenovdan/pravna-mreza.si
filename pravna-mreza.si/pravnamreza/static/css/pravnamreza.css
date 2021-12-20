@@ -161,7 +161,7 @@ hr {
 }
 
 hr.short {
-  width: 115px;
+  width: 30%;
   margin-left: 0;
 }
 
@@ -781,8 +781,21 @@ hr.short {
 }
 
 .blog-body p {
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.5;
+}
+
+.back-link {
+  color: #3a1791;
+  font-size: 20px;
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 2px;
+}
+
+.back-link:hover {
+  color: #3a1791;
 }
 
 /* PAGINATION */

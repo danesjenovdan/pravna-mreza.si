@@ -44,7 +44,6 @@
   </div>
 </div>
 
-
 <div class="row">
   <div class="container">
     <div class="row">
@@ -79,9 +78,25 @@
       </div>
       {% endif %}
     </div>
+    <div class="row my-4">
+      <div class="col">
+        <a href="{{ blogpost_archive }}" class="back-link"><<< Nazaj na seznam objav</a>
+      </div>
+    </div>
   </div>
 </div>
 
-
+<div class="row row-white">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              {% include "home/includes/social-media-box.html" %}
+          </div>
+          <div class="col-md-6 my-4 my-lg-0">
+              {% include "home/includes/support-box.html" %}
+          </div>
+      </div>
+  </div>
+</div>
 
 {% endblock page_body %}

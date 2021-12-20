@@ -19,12 +19,8 @@ class NovicaPage(Page):
     preview_text = RichTextField(blank=False, null=False, default='')
     tag = models.ForeignKey(NovicaTag, on_delete=models.SET_NULL, null=True, blank=True)
     preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
     body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-            ('intro_text', blocks.RichTextBlock(required=False)),
-        ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
     ])
 
@@ -33,8 +29,19 @@ class NovicaPage(Page):
         FieldPanel('tag'),
         FieldPanel('preview_text', classname="full"),
         ImageChooserPanel('preview_image'),
+        FieldPanel('intro_text'),
         StreamFieldPanel('body'),
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        if self.get_parent().specific.news_section_archive_link:
+            novice_archive = self.get_parent().specific.news_section_archive_link.url
+        else:
+            novice_archive = '/'
+        context['novice_archive'] = novice_archive
+        return context
+
 
 class NovicaArchivePage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)

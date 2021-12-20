@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div>
+        <hr class="short">
         {% endfor %}
     </div>
 </div>
@@ -77,5 +78,18 @@
         {% endif %}
     </div>
 </div>
+
+<div class="row row-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
+        </div>
+    </div>
+  </div>
 
 {% endblock page_body %}

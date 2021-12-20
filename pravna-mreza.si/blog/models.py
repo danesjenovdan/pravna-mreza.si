@@ -48,6 +48,15 @@ class BlogPage(Page):
         StreamFieldPanel('related_blog_posts'),
     ]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        if self.get_parent().specific.blog_section_archive_link:
+            blogpost_archive = self.get_parent().specific.blog_section_archive_link.url
+        else:
+            blogpost_archive = '/'
+        context['blogpost_archive'] = blogpost_archive
+        return context
+
 
 class BlogArchivePage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
