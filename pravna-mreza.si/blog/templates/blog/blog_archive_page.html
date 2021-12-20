@@ -23,79 +23,81 @@
 
 <div class="row row-white px-4 px-lg-0">
     <div class="container">
-      {% for blogpost in blogposts %}
-      <div class="row blog-preview mb-lg-5">
-        <div class="col-lg-4 mb-2">
-          {% image blogpost.preview_image width-1100 class="img-fluid" %}
+        {% for blogpost in blogposts %}
+        <div class="row blog-preview mb-lg-5">
+            <div class="col-lg-4 mb-2">
+                {% image blogpost.preview_image width-1100 class="img-fluid" %}
+            </div>
+            <div class="col-lg-8">
+                <a class="blog-title" href="{{ blogpost.url }}">
+                    <h1>{{ blogpost.title }}</h1>
+                </a>
+                {% if blogpost.author %}
+                <div class="d-flex align-items-center">
+                    {% if blogpost.author.image %}
+                    <div class="blog-preview-image">{% image blogpost.author.image width-1100 class="img-fluid" %}</div>
+                    {% endif %}
+                    <span class="blog-author">{{ blogpost.author }}</span>
+                    <span class="px-2">|</span>
+                    <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
+                </div>
+                {% endif %}
+                <div>
+                    {{ blogpost.preview_text|safe }}
+                </div>
+            </div>
         </div>
-        <div class="col-lg-8">
-          <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
-          {% if blogpost.author %}
-          <div class="d-flex align-items-center">
-            {% if blogpost.author.image %}
-            <div class="blog-preview-image">{% image blogpost.author.image width-1100 class="img-fluid" %}</div>
-            {% endif %}
-            <span class="blog-author">{{ blogpost.author }}</span>
-            <span class="px-2">|</span>
-            <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
-          </div>
-          {% endif %}
-          <div>
-            {{ blogpost.preview_text|safe }}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
     </div>
-  </div>
+</div>
 
 <div class="row">
     <div class="container">
         {% if blogposts.paginator.num_pages > 1 %}
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="d-flex">
-                        {% if blogposts.has_previous %}
-                        <div class="page-num">
-                            <a href="?page={{ blogposts.previous_page_number }}">
-                                <span><<<</span>
-                            </a>
-                        </div>
-                        {% endif %}
-
-                        {% for page_num in blogposts.paginator.page_range %}
-                        <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
-                            <a href="?page={{ page_num }}">
-                                {{ page_num }}
-                            </a>
-                        </div>
-                        {% endfor %}
-
-                        {% if blogposts.has_next %}
-                        <div class="page-num">
-                            <a href="?page={{ blogposts.next_page_number }}">
-                                <span>>>></span>
-                            </a>
-                        </div>
-                        {% endif %}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="d-flex">
+                    {% if blogposts.has_previous %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.previous_page_number }}">
+                            <span><<<</span>
+                        </a>
                     </div>
+                    {% endif %}
+
+                    {% for page_num in blogposts.paginator.page_range %}
+                    <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
+                        <a href="?page={{ page_num }}">
+                            {{ page_num }}
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                    {% if blogposts.has_next %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.next_page_number }}">
+                            <span>&gt;&gt;&gt;</span>
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
+        </div>
         {% endif %}
     </div>
 </div>
 
 <div class="row row-white">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          {% include "home/includes/newsletter-box.html" %}
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
         </div>
-        <div class="col-md-6 my-4 my-lg-0">
-          {% include "home/includes/support-box.html" %}
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 {% endblock page_body %}

@@ -37,15 +37,14 @@ class NovicaPage(Page):
     ]
 
 class NovicaArchivePage(Page):
-    body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-        ], icon='title'))
-        ])
+    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
+    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
+    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('headline_first'),
+        FieldPanel('headline_second'),
+        ImageChooserPanel('headline_image'),
     ]
 
     def get_context(self, request):
