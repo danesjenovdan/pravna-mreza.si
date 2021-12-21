@@ -1,0 +1,91 @@
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}page page--generic{% endblock %}
+
+{% block page_body %}
+
+<div class="row row-white headline-blog mb-0 pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="mb-3">
+          {{ page.title }}
+        </h2>
+        <div class="mb-5">
+          <time class="blog-subtitle d-block">{{ page.date|date:'d. m. Y' }}</time>
+        </div>
+        <div>
+          {{ page.intro_text|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <hr class="my-5" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        {% for block in page.body %}
+        <div class="row my-3 blog-body">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                {{ block.value|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+      {% if page.related_blog_posts %}
+      <div class="col-4 pl-5">
+        <div class="blog-sidebar">
+          <h4 class="spaced serif">Povezane</h4>
+          <h4 class="spaced">OBJAVE</h4>
+          <hr>
+          {% for blogpost in page.related_blog_posts %}
+          <div>
+            <h6>{{ blogpost.value.title }}</h6>
+            <span class="blog-author d-block">{{ blogpost.value.specific.author }}</span>
+            <time class="blog-subtitle d-block">{{ blogpost.value.specific.date|date:'d. m. Y' }}</time>
+          </div>
+          <hr>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="row my-4">
+      <div class="col">
+        <a href="{{ blogpost_archive }}" class="back-link"><<< Nazaj na seznam objav</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-white">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              {% include "home/includes/social-media-box.html" %}
+          </div>
+          <div class="col-md-6 my-4 my-lg-0">
+              {% include "home/includes/support-box.html" %}
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock page_body %}

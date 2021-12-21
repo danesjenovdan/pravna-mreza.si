@@ -798,6 +798,10 @@ hr.short {
   color: #3a1791;
 }
 
+.monitoring-intro p {
+  font-size: 24px;
+}
+
 /* PAGINATION */
 .page-num {
   padding: 0.25rem 0.75rem;

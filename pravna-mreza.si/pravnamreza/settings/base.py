@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'mediji',
     'search',
     'blog',
+    'monitoring',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

@@ -193,6 +193,7 @@ class HomePage(Page):
     blog_section_title = models.TextField(verbose_name='Naslov blog sekcije', blank=True)
     blog_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama blog zapisov')
     blog_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama blog zapisov', blank=True)
+    monitor_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama monitoring zapisov')
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
@@ -203,6 +204,7 @@ class HomePage(Page):
         FieldPanel('blog_section_title'),
         FieldPanel('blog_section_archive_link'),
         FieldPanel('blog_section_archive_link_title'),
+        FieldPanel('monitor_archive_link'),
     ]
 
     parent_page_types = []
