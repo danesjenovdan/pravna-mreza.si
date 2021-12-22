@@ -359,7 +359,7 @@ hr.short {
 
 @media (max-width: 991.98px) {
   .square {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .square.square-dark-purple h3,
@@ -379,7 +379,7 @@ hr.short {
   }
 
   .square.square-light-purple {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
 }
@@ -804,7 +804,13 @@ hr.short {
 }
 
 .monitoring-intro p {
-  font-size: 24px;
+  font-size: 20px;
+}
+
+@media (min-width: 992px) {
+  .monitoring-intro p {
+    font-size: 24px;
+  }
 }
 
 .monitoring-btn {
