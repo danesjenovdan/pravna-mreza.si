@@ -1,0 +1,81 @@
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}page page--generic{% endblock %}
+
+{% block page_body %}
+
+<div class="row row-light-purple headline-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex align-items-center">
+                <h1>
+                    <div class="spaced serif">{{ page.headline_first }}</div>
+                    <div class="spaced">{{ page.headline_second }}</div>
+                </h1>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-end">
+                {% image page.headline_image width-1100 class="img-fluid" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% for year, achievements in achievements_by_year.items %}
+<div class="row row-white px-4 px-lg-0 py-5">
+    <div class="container">
+        <div class="row mb-lg-5">
+            <div class="col">
+              <div class="archive-title">
+                <h1>{{ year }}</h1>
+              </div>
+            </div>
+        </div>
+        <div class="row blog-preview">
+            {% for achievement in achievements %}
+            <div class="col-lg-6">
+                <div class="achievement-box square d-flex flex-column justify-content-between">
+                    <div>
+                        <h3 class="mb-0">{{ achievement.title }}</h3>
+                        <div class="mt-2 mb-3">
+                            <span>{{ achievement.tag }}</span>
+                            <span>|</span>
+                            {% language 'sl' %}
+                            <time class="blog-subtitle">{{ achievement.date|date:'F Y' }}</time>
+                            {% endlanguage %}
+                        </div>
+                        <div>
+                            <p>{{ achievement.description }}</p>
+                        </div>
+                    </div>
+                    {% if achievement.link %}
+                    <div>
+                        <hr>
+                        <div>
+                            <a href="{{ achievement.link }}" target="_blank" class="achievement-btn">{{ achievement.link_text }} >>></a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="row row-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_body %}

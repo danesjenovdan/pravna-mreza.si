@@ -646,6 +646,11 @@ hr.short {
   text-transform: none;
 }
 
+.blog-preview a.achievement-btn {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
 .blog-preview h1 {
   margin-bottom: 1rem;
 }
@@ -800,6 +805,18 @@ hr.short {
 
 .monitoring-intro p {
   font-size: 24px;
+}
+
+.achievement-box {
+  background-color: #f7f6fb;
+  font-family: "Space Grotesk";
+  height: 450px;
+}
+
+.achievement-box h3 {
+  font-family: "Alegreya", "serif";
+  text-transform: none;
+  color: #17093a;
 }
 
 /* PAGINATION */
