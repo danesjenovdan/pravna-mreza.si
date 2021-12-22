@@ -30,7 +30,7 @@
             </div>
             <div class="col-lg-8">
                 <a class="blog-title" href="{{ blogpost.url }}">
-                    <h1>{{ blogpost.title }}</h1>
+                    <h1 class="mb-1">{{ blogpost.title }}</h1>
                 </a>
                 {% if blogpost.author %}
                 <div class="d-flex align-items-center">
@@ -42,7 +42,7 @@
                     <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
                 </div>
                 {% endif %}
-                <div>
+                <div class="mt-3">
                     {{ blogpost.preview_text|safe }}
                 </div>
             </div>

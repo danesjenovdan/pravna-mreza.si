@@ -35,7 +35,7 @@
 }
 
 .row-light-purple {
-  background-image: linear-gradient(-218deg, #f3f1f9 0%, #f7f6fb 100%);
+  background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
 }
 
 h1,
@@ -807,6 +807,19 @@ hr.short {
   font-size: 24px;
 }
 
+.monitoring-btn {
+  border: 2px solid #3a1791;
+  color: #3a1791;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+}
+
+.monitoring-btn:hover {
+  background-color: #3a1791;
+  color: white;
+}
+
 .achievement-box {
   background-color: #f7f6fb;
   font-family: "Space Grotesk";
@@ -882,6 +895,10 @@ footer nav .separator {
   height: 14px;
 }
 
+footer nav .separator:last-child {
+  display: none;
+}
+
 @media (max-width: 575.98px) {
   footer nav .separator {
     border-left: none;
@@ -938,15 +955,15 @@ header .nav-item.nav-item-border {
   border: 2px solid #160444;
 }
 
+header .nav-item:hover {
+  background-color: #d8d1e9;
+}
+
 header .nav-link {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 500;
   color: #160444;
   line-height: 20px;
-}
-
-header .nav-link:hover {
-  text-decoration: underline;
 }
 
 header .nav-item.nav-item-border:hover {

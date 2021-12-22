@@ -21,11 +21,11 @@ class Author(models.Model):
 
 
 class BlogPage(Page):
-    date = models.DateField()
-    preview_text = RichTextField(blank=False, null=False, default='')
-    preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True)
-    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
+    date = models.DateField(verbose_name='Datum')
+    preview_text = RichTextField(verbose_name='Opis na seznamu', blank=False, null=False, default='')
+    preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Avtor')
+    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis pod naslovom')
     related_blog_posts = StreamField(
         [('blog_post', blocks.PageChooserBlock(label="Povezava do blog zapisa")),],
         blank=True,
@@ -36,7 +36,7 @@ class BlogPage(Page):
     )
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], verbose_name='Besedilo')
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),

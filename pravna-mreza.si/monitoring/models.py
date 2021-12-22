@@ -38,6 +38,7 @@ class MonitoringArchivePage(Page):
     headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
     get_in_touch = models.URLField(verbose_name='Povezava v opisu', blank=True, null=True)
+    get_in_touch_text = models.TextField(verbose_name='Ime povezave', blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
@@ -45,14 +46,15 @@ class MonitoringArchivePage(Page):
         ImageChooserPanel('headline_image'),
         FieldPanel('intro_text'),
         FieldPanel('get_in_touch'),
+        FieldPanel('get_in_touch_text'),
     ]
 
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        # Get all blogposts
+        # Get all monitoring pages
         all_monitoring = MonitoringPage.objects.all().live().order_by('-first_published_at')
-        # Paginate all novice by 2 per page
+        # Paginate all monitoring pages
         paginator = Paginator(all_monitoring, 10)
         # Try to get the ?page=x value
         page = request.GET.get("page")

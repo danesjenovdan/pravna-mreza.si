@@ -8,7 +8,6 @@ from wagtail.core.rich_text import LinkHandler
 from django.utils.text import slugify
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
-from .models import Objava
 from novice.models import NovicaTag
 from blog.models import Author
 from achievements.models import AchievementTag, Achievement
@@ -51,13 +50,6 @@ class AuthorsAdmin(ModelAdmin):
     add_to_settings_menu = False 
     exclude_from_explorer = False
 
-
-# class ObjavaAdmin(ModelAdmin):
-#     model = Objava
-#     menu_label = 'Medijska pojavljanja'
-#     menu_order = 400  # will put in 3rd place (000 being 1st, 100 2nd)
-#     add_to_settings_menu = False 
-#     exclude_from_explorer = False
 
 class AchievementTagsAdmin(ModelAdmin):
     model = AchievementTag
