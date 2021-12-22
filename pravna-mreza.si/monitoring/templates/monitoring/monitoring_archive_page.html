@@ -23,30 +23,39 @@
 
 <div class="row row-white px-4 px-lg-0">
     <div class="container">
-        {% for blogpost in blogposts %}
-        <div class="row blog-preview mb-lg-5">
-            <div class="col-lg-4 mb-2">
-                {% image blogpost.preview_image width-1100 class="img-fluid" %}
+        <div class="row">
+            <div class="col monitoring-intro">
+                {{ page.intro_text|safe }}
+                <a href="{{ page.get_in_touch }}" class="btn monitoring-btn mt-4">{{ page.get_in_touch_text }} &gt;&gt;&gt;</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-light-purple px-4 px-lg-0 py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col">
+              <div class="archive-title">
+                <h1>Poročila</h3>
+              </div>
+            </div>
+        </div>
+        {% for monitoring_page in monitoring_pages %}
+        <div class="row blog-preview">
             <div class="col-lg-8">
-                <a class="blog-title" href="{{ blogpost.url }}">
-                    <h1 class="mb-1">{{ blogpost.title }}</h1>
+                <a class="blog-title" href="{{ monitoring_page.url }}">
+                    <h1 class="mb-0">{{ monitoring_page.title }}</h1>
                 </a>
-                {% if blogpost.author %}
-                <div class="d-flex align-items-center">
-                    {% if blogpost.author.image %}
-                    <div class="blog-preview-image">{% image blogpost.author.image width-1100 class="img-fluid" %}</div>
-                    {% endif %}
-                    <span class="blog-author">{{ blogpost.author }}</span>
-                    <span class="px-2">|</span>
-                    <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
+                <div class="mb-3">
+                    <time class="blog-subtitle">{{ monitoring_page.date|date:'d. m. Y' }}</time>
                 </div>
-                {% endif %}
-                <div class="mt-3">
-                    {{ blogpost.preview_text|safe }}
+                <div>
+                    {{ monitoring_page.preview_text|safe }}
                 </div>
             </div>
         </div>
+        <hr class="short mb-5">
         {% endfor %}
     </div>
 </div>

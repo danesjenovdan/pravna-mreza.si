@@ -9,44 +9,64 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 class Author(models.Model):
     name = models.TextField()
+    image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
+
+    content_panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('image'),
+    ]
 
     def __str__(self):
         return self.name
 
 
 class BlogPage(Page):
-    date = models.DateField()
-    preview_text = RichTextField(blank=False, null=False, default='')
-    preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True)
+    date = models.DateField(verbose_name='Datum')
+    preview_text = RichTextField(verbose_name='Opis na seznamu', blank=False, null=False, default='')
+    preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Avtor')
+    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis pod naslovom')
+    related_blog_posts = StreamField(
+        [('blog_post', blocks.PageChooserBlock(label="Povezava do blog zapisa")),],
+        blank=True,
+        null=True,
+        # min_num=0,
+        # max_num=3,
+        verbose_name="Povezani blog zapisi"
+    )
     body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-            ('intro_text', blocks.RichTextBlock(required=False)),
-        ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], verbose_name='Besedilo')
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('author'),
-        FieldPanel('preview_text', classname="full"),
+        FieldPanel('preview_text'),
         ImageChooserPanel('preview_image'),
+        FieldPanel('intro_text'),
         StreamFieldPanel('body'),
+        StreamFieldPanel('related_blog_posts'),
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        if self.get_parent().specific.blog_section_archive_link:
+            blogpost_archive = self.get_parent().specific.blog_section_archive_link.url
+        else:
+            blogpost_archive = '/'
+        context['blogpost_archive'] = blogpost_archive
+        return context
 
 
 class BlogArchivePage(Page):
-    body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-        ], icon='title'))
-        ])
+    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
+    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
+    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('headline_first'),
+        FieldPanel('headline_second'),
+        ImageChooserPanel('headline_image'),
     ]
 
     def get_context(self, request):

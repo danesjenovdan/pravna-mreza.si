@@ -8,9 +8,9 @@ from wagtail.core.rich_text import LinkHandler
 from django.utils.text import slugify
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
-from .models import Objava
 from novice.models import NovicaTag
 from blog.models import Author
+from achievements.models import AchievementTag, Achievement
 
 
 class NewTabExternalLinkHandler(LinkHandler):
@@ -51,11 +51,19 @@ class AuthorsAdmin(ModelAdmin):
     exclude_from_explorer = False
 
 
-class ObjavaAdmin(ModelAdmin):
-    model = Objava
-    menu_label = 'Medijska pojavljanja'
-    menu_order = 400  # will put in 3rd place (000 being 1st, 100 2nd)
-    add_to_settings_menu = False 
+class AchievementTagsAdmin(ModelAdmin):
+    model = AchievementTag
+    menu_label = 'Oznake dosežkov'
+    menu_order = 400
+    add_to_settings_menu = False
+    exclude_from_explorer = False
+
+
+class AchievementsAdmin(ModelAdmin):
+    model = Achievement
+    menu_label = 'Dosežki'
+    menu_order = 500
+    add_to_settings_menu = False
     exclude_from_explorer = False
 
 
@@ -94,4 +102,5 @@ def register_extra_rich_text_features(features):
 
 modeladmin_register(NovicaTagAdmin)
 modeladmin_register(AuthorsAdmin)
-modeladmin_register(ObjavaAdmin)
+modeladmin_register(AchievementTagsAdmin)
+modeladmin_register(AchievementsAdmin)

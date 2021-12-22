@@ -1,50 +1,52 @@
 {% load wagtailcore_tags static %}
 
 <footer class="container-fluid">
-    <div class="row row-purple">
+    <div class="row row-purple mb-0">
         <div class="container">
             <div class="row pt-4">
                 <nav class="col-12 col-lg-6 social-media-footer mb-4 mb-lg-0 d-lg-flex align-items-center">
                     <div class="text-center text-lg-left mb-2 mb-lg-0">
-                        Sledi nam na družbenih omrežjih!
+                        {{ settings.home.FooterSettings.footer_text }}
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="https://www.facebook.com/pravnamreza/" target="_blank" class="share-button d-flex justify-content-center align-items-center ml-lg-4">
+                        <a href="{{ settings.home.FooterSettings.facebook_link }}" target="_blank" class="share-button d-flex justify-content-center align-items-center ml-lg-4">
                             <img src="{% static 'img/social-facebook.png' %}" />
                         </a>
-                        <a href="https://twitter.com/PravnaMreza/" target="_blank" class="share-button d-flex justify-content-center align-items-center ml-3">
+                        <a href="{{ settings.home.FooterSettings.twitter_link }}" target="_blank" class="share-button d-flex justify-content-center align-items-center ml-3">
                             <img src="{% static 'img/social-twitter.png' %}" />
                         </a>
                     </div>
                 </nav>
-                <nav class="col-12 col-lg-6 mb-2 mb-lg-0 d-flex align-items-center justify-content-center justify-content-lg-end">
-                    <a href="/doniraj/">Doniraj &gt;&gt;&gt;</a>
-                    <span class="separator"></span>
-                    <a href="/pomagaj/">Pomagaj &gt;&gt;&gt;</a>
-                </nav>
             </div>
             <hr class="d-none d-lg-block">
-            <div class="row py-2">
+            <div class="row py-4">
                 <nav class="col-12 col-lg-6 mb-2 mb-lg-0 d-flex justify-content-center justify-content-lg-start align-items-center">
-                    <a href="/o-mrezi/">O mreži &gt;&gt;&gt;</a>
+                    {% for link in settings.home.FooterSettings.footer_links_left %}
+                    <a href="{% if link.value.url %}{{ link.value.url }}{% elif link.value.page %}{% pageurl link.value.page %}{% elif link.value.email %}mailto:{{ link.value.email }}{% endif %}">{{ link.value.name }} &gt;&gt;&gt;</a>
                     <span class="separator"></span>
-                    <a href="mailto:pomoc@pravna-mreza.si" target="_blank">Piši nam &gt;&gt;&gt;</a>
+                    {% endfor %}
                 </nav>
-                <div class="col-12 col-lg-6 row-credits mb-2 mb-lg-0 d-flex align-items-center justify-content-center justify-content-lg-end">
+                <nav class="col-12 col-lg-6 mb-2 mb-lg-0 d-flex align-items-center justify-content-center justify-content-lg-end">
+                    {% for link in settings.home.FooterSettings.footer_links_right %}
+                    <a href="{% if link.value.url %}{{ link.value.url }}{% elif link.value.page %}{% pageurl link.value.page %}{% elif link.value.email %}mailto:{{ link.value.email }}{% endif %}">{{ link.value.name }} &gt;&gt;&gt;</a>
+                    <span class="separator"></span>
+                    {% endfor %}
+                </nav>
+                <!-- <div class="col-12 col-lg-6 row-credits mb-2 mb-lg-0 d-flex align-items-center justify-content-center justify-content-lg-end">
                     <div class="my-2">
                         <p class="my-2 d-inline d-lg-block">Z 💜 pripravil  <a href="https://danesjenovdan.si" target="_blank">Danes je nov dan</a></p>
                         <p class="my-2 d-inline d-lg-block">Ilustracija: <a href="https://absurd.design" target="_blank">absurd design</a></p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
-    <div class="row row-white py-4">
+    <!-- <div class="row row-white my-0 py-4">
         <div class="container container-narrow">
             <div class="col-12 d-flex justify-content-center align-items-center footer-logo">
                 <div class="mr-md-4 d-lg-inline">Projekt je nastal s podporo</div>
                 <img src="{% static 'img/active-citizens-fund.png' %}" alt="ACF logo" class="ml-md-4" />
             </div>
         </div>
-    </div>
+    </div> -->
 </footer>

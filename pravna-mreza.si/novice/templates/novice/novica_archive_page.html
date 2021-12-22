@@ -1,52 +1,50 @@
 {% extends "home/base_page.html" %}
-{% load i18n wagtailcore_tags static %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}page page--generic{% endblock %}
 
 {% block page_body %}
 
-{% for block in page.body %}
-{% if block.block_type == 'heading' %}
-<div class="row row-white row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
+<div class="row row-light-purple headline-blog">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
                 <h1>
-                    <div class="spaced serif">{{ block.value.part_one }}</div>
-                    <div class="spaced">{{ block.value.part_two }}</div>
+                    <div class="spaced serif">{{ page.headline_first }}</div>
+                    <div class="spaced">{{ page.headline_second }}</div>
                 </h1>
-                <hr>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-end">
+                {% image page.headline_image width-1100 class="img-fluid" %}
             </div>
         </div>
     </div>
 </div>
-{% endif %}
-{% endfor %}
 
-<div class="row row-light-purple">
-    <div class="container container-narrow">
+<div class="row row-white px-4 px-lg-0">
+    <div class="container">
         {% for novica in novice %}
-        <hr class="short">
-        <article class="row news-preview">
-            <div class="col-12">
-                <div class="ml-lg-4">
+        <div class="row news-preview mb-lg-5">
+            <div class="col-lg-8">
+                <div>
                     <a class="news-title" href="{{ novica.url }}"><h1>{{ novica.title }}</h1></a>
-                    <div class="news-subtitle">
-                        <time>{{ novica.date|date:'d. m. Y' }}</time>
-                    </div>
+                    <div class="news-subtitle my-2">
+                        <span>{{ novica.tag }}</span> | <time>{{ novica.date|date:'d. m. Y' }}</time>
+                      </div>
                 </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="ml-lg-4">
+                <div class="mt-3 news-desc">
                     {{ novica.preview_text|safe }}
+                    <a class="{{ novica.url }}" href="{{ novica.url }}">VEČ &gt;&gt;&gt;</a>
                 </div>
             </div>
-            <div class="col-lg-3 d-flex align-items-center justify-content-center">
-                <a class="btn btn-outline-primary" href="{{ novica.url }}">Več &gt;&gt;&gt;</a>
-            </div>
-        </article>
-        {% endfor %}
+        </div>
         <hr class="short">
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
         {% if novice.paginator.num_pages > 1 %}
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
@@ -70,7 +68,7 @@
                         {% if novice.has_next %}
                         <div class="page-num">
                             <a href="?page={{ novice.next_page_number }}">
-                                <span>>>></span>
+                                <span>&gt;&gt;&gt;</span>
                             </a>
                         </div>
                         {% endif %}
@@ -80,5 +78,18 @@
         {% endif %}
     </div>
 </div>
+
+<div class="row row-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
+        </div>
+    </div>
+  </div>
 
 {% endblock page_body %}
