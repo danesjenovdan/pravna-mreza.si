@@ -37,6 +37,14 @@ class BlogPage(Page):
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ], verbose_name='Besedilo')
+    meta_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='OG slika'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
@@ -46,6 +54,10 @@ class BlogPage(Page):
         FieldPanel('intro_text'),
         StreamFieldPanel('body'),
         StreamFieldPanel('related_blog_posts'),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        ImageChooserPanel("meta_image"),
     ]
 
     def get_context(self, request):
