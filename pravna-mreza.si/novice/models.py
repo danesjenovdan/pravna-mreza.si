@@ -23,6 +23,14 @@ class NovicaPage(Page):
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
+    meta_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='OG slika'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
@@ -31,6 +39,10 @@ class NovicaPage(Page):
         ImageChooserPanel('preview_image'),
         FieldPanel('intro_text'),
         StreamFieldPanel('body'),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        ImageChooserPanel("meta_image"),
     ]
 
     def get_context(self, request):
