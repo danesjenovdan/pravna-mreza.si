@@ -69,6 +69,10 @@ class BlogPage(Page):
         context['blogpost_archive'] = blogpost_archive
         return context
 
+    class Meta:
+        verbose_name = "Blog"
+        verbose_name_plural = "Blog"
+
 
 class BlogArchivePage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
@@ -102,3 +106,7 @@ class BlogArchivePage(Page):
             blogposts = paginator.page(paginator.num_pages)
         context['blogposts'] = blogposts
         return context
+
+    class Meta:
+        verbose_name = "Seznam blog zapisov"
+        verbose_name_plural = "Seznam blog zapisov"

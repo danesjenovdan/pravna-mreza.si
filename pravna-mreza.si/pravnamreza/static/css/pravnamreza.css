@@ -1,7 +1,3 @@
-/* body {
-  overflow: hidden;
-} */
-
 .flex-page-height {
   display: flex;
   flex-direction: column;
@@ -10,6 +6,7 @@
 
 .row-white,
 .row-purple,
+.row-light,
 .row-light-purple {
   margin-top: 75px;
   margin-bottom: 75px;
@@ -18,6 +15,7 @@
 @media (max-width: 575.98px) {
   .row-white,
   .row-purple,
+  .row-light,
   .row-light-purple {
     padding-top: 35px;
     padding-bottom: 35px;
@@ -36,6 +34,10 @@
 
 .row-light-purple {
   background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
+}
+
+.row-light {
+  background-image: linear-gradient(-218deg, #f3f1f9 0%, #f7f6fb 100%);
 }
 
 h1,
@@ -165,14 +167,6 @@ hr.short {
   margin-left: 0;
 }
 
-@media (max-width: 575.98px) {
-  .main-logo {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .infopush-bg {
   background-image: linear-gradient(-218deg, #ece6f8 0%, #d3c8ee 100%);
   position: absolute;
@@ -273,6 +267,7 @@ hr.short {
     hue-rotate(254deg) brightness(85%) contrast(105%);
 }
 
+#managed-email,
 #newsletter-form input[type=email] {
   border-radius: 0;
   color: #17093a;
@@ -280,6 +275,10 @@ hr.short {
   font-size: 24px;
   font-family: "Space Grotesk";
   padding: 0.5rem 1rem;
+}
+
+#managed-email {
+  border: 2px solid #3a1791;
 }
 
 #newsletter-form label {
@@ -293,6 +292,7 @@ hr.short {
   position: relative;
   padding-left: 30px;
   margin-left: 0;
+  cursor: pointer;
 }
 
 .newsletter-checkbox-label::before {
@@ -320,7 +320,9 @@ hr.short {
   content: "\2713";
 }
 
-#newsletter-btn {
+.unsubscribe .subscription,
+#newsletter-btn,
+#submit-managed-email {
   background-color: #d2c8ee;
   border: 2px solid #3a1791;
   color: #3a1791;
@@ -331,17 +333,36 @@ hr.short {
   padding: 1rem 1.5rem;
 }
 
-#newsletter-btn:hover {
-  /* background-image: linear-gradient(-241deg, #3a1791 0%, #230a63 51%, #160444 100%); */
+#submit-managed-email {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-left: none;
+}
+
+.unsubscribe .subscription:hover,
+#newsletter-btn:hover,
+#submit-managed-email:hover {
   background-color: #3a1791;
-  border: 2px solid #d2c8ee;
   color: #d2c8ee;
+}
+
+#newsletter-btn:hover {
+  border: 2px solid #d2c8ee;
 }
 
 #newsletter-error-message,
 #newsletter-success-message {
   color: white;
   display: none;
+}
+
+.manage {
+  font-family: "Space Grotesk";
+}
+
+.manage #newsletter-error-message, 
+.manage #newsletter-success-message {
+  color: #3a1791;
 }
 
 .square.square-light-purple {

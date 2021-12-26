@@ -51,3 +51,7 @@ class AchievementArchivePage(Page):
 
         context['achievements_by_year'] = achievements_by_year
         return context
+
+    class Meta:
+        verbose_name = "Stran z dosežki"
+        verbose_name_plural = "Strani z dosežki"

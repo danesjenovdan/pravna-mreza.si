@@ -12,9 +12,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='Objava',
-        ),
         migrations.AlterField(
             model_name='monitor',
             name='monitor_button',

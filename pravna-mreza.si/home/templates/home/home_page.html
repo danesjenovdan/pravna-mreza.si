@@ -12,7 +12,6 @@
         {{ page.intro_text|safe }}
       </div>
       <div class="col-lg-5 d-flex align-items-center position-static">
-        <!-- <img class="main-logo img-fluid mb-4 mb-lg-0 ml-lg-5" src="{% static 'img/pmvd-ilustracija.png' %}" /> -->
         <div class="heading-image">
           {% image page.intro_image width-1100 class="img-fluid" %}
         </div>
@@ -21,11 +20,7 @@
   </div>
 </div>
 
-{% if infopush %}
-<div class="row row-white px-4 px-lg-0">
-  {% infopush %}
-</div>
-{% endif %}
+{% infopush %}
 
 <div class="row row-white px-4 px-lg-0">
   <div class="container">
@@ -74,7 +69,7 @@
   </div>
 </div>
 
-<div class="row row-light-purple px-4 px-lg-0">
+<div class="row row-light px-4 px-lg-0">
   <div class="container">
     <div class="row my-4 my-lg-5">
       <div class="col">
@@ -122,30 +117,5 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="row row-light-purple">
-  <div class="container container-narrow">
-    <div class="row mb-5">
-      <div class="col">
-        <h3 class="archive-title">Mediji o pravni mreži</h3>
-      </div>
-    </div>
-    {% for objava in pojavljanja %}
-    <hr class="short">
-    <article class="row news-preview">
-      <div class="col-12">
-        <div class="ml-lg-4">
-          <a class="news-title" href="{{ objava.url }}" target="_blank"><h1>{{ objava.title }}</h1></a>
-          <div class="news-subtitle">
-            <span>{{ objava.source }}</span> / <time>{{ objava.date|date:'d. m. Y' }}</time>
-          </div>
-        </div>
-      </div>
-    </article>
-    {% endfor %}
-    <hr class="short">
-    <a href="/medijska-pojavljanja/" class="archive-link">Medijska pojavljanja >>></a>
-  </div>
-</div> -->
 
 {% endblock page_body %}

@@ -202,6 +202,23 @@ class Monitor(BaseSetting):
         verbose_name = 'Prispevaj'
 
 
+class Objava(models.Model):
+    title = models.TextField()
+    url = models.URLField()
+    source = models.TextField()
+    date = models.DateField()
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('url', classname="full"),
+        FieldPanel('source'),
+        FieldPanel('date'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+
 class HomePage(Page):
     intro_text = RichTextField(blank=True, null=True)
     intro_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
@@ -237,6 +254,10 @@ class HomePage(Page):
         # context['pojavljanja'] = pojavljanja
         return context
 
+    class Meta:
+        verbose_name = "Domača stran"
+        verbose_name_plural = "Domače strani"
+
 
 class GenericPage(Page):
     body = StreamField([
@@ -266,6 +287,10 @@ class GenericPage(Page):
         StreamFieldPanel('body'),
     ]
 
+    class Meta:
+        verbose_name = "Generična stran"
+        verbose_name_plural = "Generične strani"
+
 
 class DonationEmbedPage(Page):
     embed_url = models.URLField()
@@ -274,23 +299,26 @@ class DonationEmbedPage(Page):
         FieldPanel('embed_url', classname="full"),
     ]
 
+    class Meta:
+        verbose_name = "Stran za donacijo"
+        verbose_name_plural = "Strani za donacijo"
+
 
 class NewsletterPage(Page):
+    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
+    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
+    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     description = models.TextField(
         null=True,
         blank=True,
         verbose_name=_("Opis"),
     )
-    # body = StreamField(
-    #     [("rich_text", RichTextBlock())],
-    #     null=True,
-    #     blank=True,
-    #     verbose_name=_("Vsebina"),
-    # )
 
     content_panels = Page.content_panels + [
+        FieldPanel('headline_first'),
+        FieldPanel('headline_second'),
+        ImageChooserPanel('headline_image'),
         FieldPanel("description"),
-        # StreamFieldPanel("body"),
     ]
 
     class Meta:

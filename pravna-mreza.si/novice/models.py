@@ -54,6 +54,10 @@ class NovicaPage(Page):
         context['novice_archive'] = novice_archive
         return context
 
+    class Meta:
+        verbose_name = "Novica"
+        verbose_name_plural = "Novice"
+
 
 class NovicaArchivePage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
@@ -87,3 +91,7 @@ class NovicaArchivePage(Page):
             novice = paginator.page(paginator.num_pages)
         context['novice'] = novice
         return context
+
+    class Meta:
+        verbose_name = "Seznam novic"
+        verbose_name_plural = "Seznami novic"

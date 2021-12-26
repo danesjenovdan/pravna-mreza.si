@@ -8,6 +8,7 @@ from wagtail.core.rich_text import LinkHandler
 from django.utils.text import slugify
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
+from .models import Objava
 from novice.models import NovicaTag
 from blog.models import Author
 from achievements.models import AchievementTag, Achievement
@@ -38,7 +39,7 @@ def header_with_name(props):
 class NovicaTagAdmin(ModelAdmin):
     model = NovicaTag
     menu_label = 'Oznake novic' 
-    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
+    menu_order = 200
     add_to_settings_menu = False 
     exclude_from_explorer = False
 
@@ -46,7 +47,7 @@ class NovicaTagAdmin(ModelAdmin):
 class AuthorsAdmin(ModelAdmin):
     model = Author
     menu_label = 'Blog avtorji' 
-    menu_order = 300  # will put in 3rd place (000 being 1st, 100 2nd)
+    menu_order = 300
     add_to_settings_menu = False 
     exclude_from_explorer = False
 
@@ -64,6 +65,14 @@ class AchievementsAdmin(ModelAdmin):
     menu_label = 'Dosežki'
     menu_order = 500
     add_to_settings_menu = False
+    exclude_from_explorer = False
+
+
+class ObjavaAdmin(ModelAdmin):
+    model = Objava
+    menu_label = 'Medijska pojavljanja'
+    menu_order = 600
+    add_to_settings_menu = False 
     exclude_from_explorer = False
 
 
@@ -104,3 +113,4 @@ modeladmin_register(NovicaTagAdmin)
 modeladmin_register(AuthorsAdmin)
 modeladmin_register(AchievementTagsAdmin)
 modeladmin_register(AchievementsAdmin)
+modeladmin_register(ObjavaAdmin)

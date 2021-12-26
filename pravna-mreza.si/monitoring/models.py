@@ -31,6 +31,10 @@ class MonitoringPage(Page):
         context['monitoring_archive'] = monitoring_archive
         return context
 
+    class Meta:
+        verbose_name = "Poročilo"
+        verbose_name_plural = "Poročilo"
+
 
 class MonitoringArchivePage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
@@ -70,3 +74,7 @@ class MonitoringArchivePage(Page):
             monitoring_pages = paginator.page(paginator.num_pages)
         context['monitoring_pages'] = monitoring_pages
         return context
+
+    class Meta:
+        verbose_name = "Seznam poročil"
+        verbose_name_plural = "Seznam poročil"
