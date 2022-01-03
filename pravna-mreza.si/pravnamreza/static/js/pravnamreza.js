@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     // submit email and subscribe
     $('#submit-managed-email').on('click', function() {
-        if ($('#confirm-managed-email').is(':checked')) {
+        if ($('#newsletter-terms').is(':checked')) {
             fetch("https://podpri.djnd.si/api/subscribe/", {
                 method: "POST",
                 headers: {
@@ -31,13 +31,21 @@ $(document).ready(function() {
                 throw new Error("Response not ok");
             })
             .then((res) => {
-                alert("Na mailu te čakajo navodila za urejanje!");
+                $('#newsletter-btn').html('Prijavi se >>>');
+                $('#newsletter-email').val('');
+                $('#newsletter-terms').prop('checked', false);
+                $('#newsletter-btn').prop('disabled', false);
+                $('#newsletter-success-message').css('display', 'block');
             })
             .catch((error) => {
-                alert('Ups, nekaj je šlo narobe. Poskusi ponovno.');
+                $('#newsletter-btn').html('Prijavi se >>>');
+                $('#newsletter-email').val('');
+                $('#newsletter-terms').prop('checked', false);
+                $('#newsletter-btn').prop('disabled', false);
+                $('#newsletter-error-message').css('display', 'block');
             });
         } else {
-            $('.confirm-label').css({'color': 'red'});
+            $('.newsletter-checkbox-label').css({'color': 'red'});
         }
     });
 
@@ -95,6 +103,8 @@ $(document).ready(function() {
             }
         });
     } else {
+        //$('.unsubscribe').hide();
         $('.unsubscribe').hide();
+        $('#managed-email').focus();
     }
 });

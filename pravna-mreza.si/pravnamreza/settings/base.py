@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'blog',
     'monitoring',
     'achievements',
+    'mediapublications',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

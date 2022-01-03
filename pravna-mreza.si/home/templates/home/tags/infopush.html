@@ -1,5 +1,7 @@
 {% load wagtailcore_tags %}
 
+{% if infopushes %}
+<div class="row row-white px-4 px-lg-0">
 {% for infopush in infopushes %}
 <div class="container-fluid infopush">
     <div class="row">
@@ -22,3 +24,5 @@
     </div>
 </div>
 {% endfor %}
+</div>
+{% endif %}
