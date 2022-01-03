@@ -65,6 +65,9 @@ spec:
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
               value: pravnamreza.settings.production
+          envFrom:
+            - secretRef:
+                name: pmvd-config
           resources:
             requests:
               memory: 200Mi
