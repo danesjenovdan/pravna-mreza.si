@@ -47,7 +47,7 @@
 </header> -->
 
 <header class="fixed-top">
-  <nav class="navbar navbar-expand-md py-3">
+  <nav class="navbar navbar-expand-md py-2">
     <div class="container">
       <a href="/" class="home-link">
         <h2>
@@ -57,6 +57,7 @@
             demokracije
           </div>
         </h2>
+        <img src="{% static 'img/pmvd-ilustracija.png' %}" />
       </a>
       <button class="navbar-toggler btn m-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon">
@@ -68,7 +69,7 @@
       <div class="collapse navbar-collapse mt-4 mt-md-0 justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
               {% for navigation_link in settings.home.NavigationSettings.navigation_links %}
-                  <li class="nav-item {% if navigation_link.value.has_border %}nav-item-border{% endif %}">
+                  <li class="nav-item mx-1 {% if navigation_link.value.has_border %}nav-item-border{% endif %}">
                       <a class="nav-link px-3 {% if request.get_full_path == navigation_link.value.page.url %}active{% endif %}"
                           href="{% if navigation_link.value.url %}{{ navigation_link.value.url }}{% elif navigation_link.value.page %}{% pageurl navigation_link.value.page %}{% endif %}">
                           <span>
