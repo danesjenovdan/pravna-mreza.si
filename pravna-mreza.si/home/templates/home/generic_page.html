@@ -5,84 +5,66 @@
 
 {% block page_body %}
 
-{% for block in page.body %}
-  {% if block.block_type == 'donation_section' %}
-  <div class="row row-light-purple">
-    <div class="container container-narrow">
+<div class="row row-light-purple headline-blog">
+  <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-5 offset-lg-1 mb-3">
-          <a href="{% pageurl block.value.left_button_donation_page %}" class="square-button">
-            <div>
-              {% if block.value.left_button_heading_part_one %}
-              <h1 class="spaced serif text-capitalize">{{ block.value.left_button_heading_part_one }}</h1>
-              {% endif %}
-              {% if block.value.left_button_heading_part_two %}
-              <h1 class="spaced">{{ block.value.left_button_heading_part_two }}</h1>
-              {% endif %}
-              {% if block.value.left_button_description %}
-              <p>{{ block.value.left_button_description }}</p>
-              {% endif %}
-            </div>
-            <div class="d-flex justify-content-between align-items-end">
-              <h3> > > > </h3>
-              <img src="{% static 'img/piggy-bank.png' %}" />
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-lg-5 mb-3">
-          <a href="{% pageurl block.value.right_button_donation_page %}" class="square-button">
-            <div>
-              {% if block.value.right_button_heading_part_one %}
-              <h1 class="spaced serif text-capitalize">{{ block.value.right_button_heading_part_one }}</h1>
-              {% endif %}
-              {% if block.value.right_button_heading_part_two %}
-              <h1 class="spaced">{{ block.value.right_button_heading_part_two }}</h1>
-              {% endif %}
-              {% if block.value.right_button_description %}
-              <p>{{ block.value.right_button_description }}</p>
-              {% endif %}
-            </div>
-            <div class="d-flex justify-content-between align-items-end">
-              <h3> > > > </h3>
-              <img src="{% static 'img/love-balloon.png' %}" />
-            </div>
-          </a>
-        </div>
+          <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
+              <h1>
+                  <div class="spaced serif">{{ page.headline_first }}</div>
+                  <div class="spaced">{{ page.headline_second }}</div>
+              </h1>
+          </div>
       </div>
-    </div>
   </div>
-  <!-- <iframe id="DonationEmbed" src="https://danesjenovdan.si/doniraj_pmvd/placaj/enkrat" border="0"></iframe> -->
+</div>
 
-  {% elif block.block_type == 'heading' %}
-  <div class="row row-white row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
-      <div class="row">
-        <div class="col-lg-7">
-          <h1>
-            <div class="spaced serif">{{ block.value.part_one }}</div>
-            <div class="spaced">{{ block.value.part_two }}</div>
-          </h1>
-          <hr>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          {{ block.value.intro_text|safe }}
-        </div>
-      </div>
-    </div>
-  </div>
-  {% elif block.block_type == 'paragraph' %}
-  <div class="row row-light-purple row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
-      <div class="row">
-        <div class="col">
-          {{ block.value|safe }}
-        </div>
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        {% for block in page.body %}
+          {% if block.block_type == 'paragraph' %}
+            <div class="row my-3 blog-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    {{ block.value|safe }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
-  {% endif %}
-{% endfor %}
+</div>
+
+<div class="row row-white">
+  <div class="container">
+      <div class="row">
+          {% if page.social_media_box %}
+          <div class="col-md-6 mb-4">
+              {% include "home/includes/social-media-box.html" %}
+          </div>
+          {% endif %}
+          {% if page.newsletter_box %}
+          <div class="col-md-6 mb-4">
+              {% include "home/includes/newsletter-box.html" %}
+          </div>
+          {% endif %}
+          {% if page.support_box %}
+          <div class="col-md-6 mb-4">
+              {% include "home/includes/support-box.html" %}
+          </div>
+          {% endif %}
+          {% if page.monitor_box %}
+          <div class="col-md-6 mb-4">
+              {% include "home/includes/monitor-box.html" %}
+          </div>
+          {% endif %}
+      </div>
+  </div>
+</div>
 
 {% endblock page_body %}

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'monitoring',
     'achievements',
     'mediapublications',
+    'aboutus',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
