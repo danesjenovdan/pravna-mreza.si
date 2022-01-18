@@ -7,7 +7,7 @@
 
 <div class="row row-light-purple headline-blog">
     <div class="container">
-        <div class="row">
+        <div class="row px-2 px-lg-0">
             <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
                 <h1>
                     <div class="spaced serif">{{ page.headline_first }}</div>
@@ -25,8 +25,8 @@
 
 <div class="row">
   <div class="container">
-    <div class="row">
-      <div class="col-8">
+    <div class="row px-2 px-lg-0">
+      <div class="col-lg-8">
         {% for block in page.body %}
           {% if block.block_type == 'paragraph' %}
             <div class="row my-3 blog-body">
@@ -47,7 +47,7 @@
 
 {% endfor %}
 
-<div class="row row-light px-4 px-lg-0 py-5">
+<div class="row row-light px-2 px-lg-0 py-5">
     <div class="container my-lg-5">
         <div class="row mb-5">
             <div class="col">
