@@ -1014,6 +1014,10 @@ header .nav-link {
   line-height: 20px;
 }
 
+header .nav-link.active {
+  text-decoration: underline;
+}
+
 header .nav-item.nav-item-border:hover {
   background-color: #160444;
 }
