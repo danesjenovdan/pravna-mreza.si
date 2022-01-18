@@ -260,31 +260,24 @@ class HomePage(Page):
 
 
 class GenericPage(Page):
+    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
+    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
     body = StreamField([
-        ('heading', blocks.StructBlock([
-            ('part_one', blocks.CharBlock(required=False)),
-            ('part_two', blocks.CharBlock(required=False)),
-            ('intro_text', blocks.RichTextBlock(required=False)),
-        ], icon='title')),
         ('paragraph', blocks.RichTextBlock()),
-        ('donation_section', blocks.StructBlock([
-            ('left_button_heading_part_one', blocks.CharBlock(required=False, label=_('Levi gumb - Prvi del naslova'))),
-            ('left_button_heading_part_two', blocks.CharBlock(required=False, label=_('Levi gumb - Drugi del naslova'))),
-            ('left_button_description', blocks.CharBlock(required=False, label=_('Levi gumb - Podnaslov'))),
-            ('left_button_donation_page', blocks.PageChooserBlock(
-                label=_('Levi gumb - Povezava do strani'),
-            )),
-            ('right_button_heading_part_one', blocks.CharBlock(required=False, label=_('Desni gumb - Prvi del naslova'))),
-            ('right_button_heading_part_two', blocks.CharBlock(required=False, label=_('Desni gumb - Drugi del naslova'))),
-            ('right_button_description', blocks.CharBlock(required=False, label=_('Desni gumb - Podnaslov'))),
-            ('right_button_donation_page', blocks.PageChooserBlock(
-                label=_('Desni gumb - Povezava do strani'),
-            )),
-        ]))
     ])
+    social_media_box = models.BooleanField(default=False, verbose_name='Škatla družbena omrežja')
+    newsletter_box = models.BooleanField(default=False, verbose_name='Škatla novičnik')
+    support_box = models.BooleanField(default=False, verbose_name='Škatla podpri')
+    monitor_box = models.BooleanField(default=False, verbose_name='Škatla prispevaj')
 
     content_panels = Page.content_panels + [
+        FieldPanel('headline_first'),
+        FieldPanel('headline_second'),
         StreamFieldPanel('body'),
+        FieldPanel('monitor_box'),
+        FieldPanel('newsletter_box'),
+        FieldPanel('social_media_box'),
+        FieldPanel('support_box'),
     ]
 
     class Meta:
