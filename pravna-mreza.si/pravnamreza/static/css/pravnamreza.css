@@ -4,6 +4,12 @@
   height: 100vh;
 }
 
+.page-top-margin {
+  margin-top: 86px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
 .row-white,
 .row-purple,
 .row-light,
@@ -365,9 +371,14 @@ hr.short {
   font-family: "Space Grotesk";
 }
 
+.manage h5 {
+  margin-bottom: 28px;
+}
+
 .manage #newsletter-error-message, 
 .manage #newsletter-success-message {
   color: #3a1791;
+  font-size: 24px;
 }
 
 .square.square-light-purple {
@@ -381,6 +392,7 @@ hr.short {
   letter-spacing: 4px;
   line-height: 1;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 @media (max-width: 991.98px) {
@@ -1204,6 +1216,16 @@ header .nav-item.nav-item-border:hover .nav-link {
 .row-block-paragraph .richtext-image.right {
   float: right;
   margin-left: 1.5rem;
+}
+
+.donation-page p {
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  .donation-page p {
+    font-size: 30px;
+  }
 }
 
 #DonationEmbed {
