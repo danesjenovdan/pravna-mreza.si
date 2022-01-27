@@ -1,0 +1,106 @@
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}page page--generic{% endblock %}
+
+{% block page_body %}
+
+<div class="row row-light-purple headline-blog">
+    <div class="container">
+        <div class="row px-2 px-lg-0">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
+                <h1>
+                    <div class="spaced serif">{{ page.headline_first }}</div>
+                    <div class="spaced">{{ page.headline_second }}</div>
+                </h1>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-end">
+                {% image page.headline_image width-1100 class="img-fluid" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for block in page.body %}
+
+<div class="row">
+  <div class="container">
+    <div class="row px-2 px-lg-0">
+      <div class="col-lg-8">
+        {% for block in page.body %}
+          {% if block.block_type == 'paragraph' %}
+            <div class="row my-3 blog-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    {{ block.value|safe }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+<div class="row row-light px-2 px-lg-0 py-5">
+    <div class="container my-lg-5">
+        <div class="row mb-5">
+            <div class="col">
+              <div class="archive-title">
+                <h1>Mediji o nas</h3>
+              </div>
+            </div>
+        </div>
+        {% for mp in publications %}
+        <article class="row news-preview">
+            <div class="col-12">
+                <div>
+                    <a class="news-title" href="{{ mp.url }}" target="_blank"><h1>{{ mp.title }}</h1></a>
+                    <div class="news-subtitle">
+                        <span>{{ mp.source }}</span> / <time>{{ mp.date|date:'d. m. Y' }}</time>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <hr class="short">
+        {% endfor %}
+        {% if publications.paginator.num_pages > 1 %}
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="d-flex">
+                        {% if publications.has_previous %}
+                        <div class="page-num">
+                            <a href="?page={{ publications.previous_page_number }}">
+                                <span><<<</span>
+                            </a>
+                        </div>
+                        {% endif %}
+
+                        {% for page_num in publications.paginator.page_range %}
+                        <div class="page-num {% if page_num == publications.number %} active{% endif %}">
+                            <a href="?page={{ page_num }}">
+                                {{ page_num }}
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                        {% if publications.has_next %}
+                        <div class="page-num">
+                            <a href="?page={{ publications.next_page_number }}">
+                                <span>>>></span>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock page_body %}

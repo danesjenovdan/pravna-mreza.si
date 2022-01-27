@@ -1,0 +1,83 @@
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags static %}
+
+{% block body_class %}page page--donation{% endblock %}
+
+{% block page_body %}
+
+<div class="row page-top-margin donation-page">
+  <div class="container">
+    <div class="row px-4 px-lg-0">
+      <div class="col">
+        {% for block in page.body %}
+          {% if block.block_type == 'paragraph' %}
+            <div class="row my-3 blog-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    {{ block.value|safe }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="square square-light-purple">
+          <div class="row text-center text-lg-left">
+            <div class="col-lg-8 order-last order-lg-first">
+              <div class="mt-4 mt-lg-5 mb-4">
+                <h3>{{ page.left_box_heading_part_one }}</h3>
+                <h3>{{ page.left_box_heading_part_two }}</h3>
+              </div>
+              <div class="mb-4">
+                <p>{{ page.left_box_description }}</p>
+              </div>
+              {% if page.left_box_button_link %}
+              <div>
+                <a href="/{{ page.left_box_button_link }}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.left_box_button_text }} &gt;&gt;&gt;</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
+              <img src="{% static 'img/mesecna-donacija.png' %}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="square square-light-purple">
+          <div class="row text-center text-lg-left">
+            <div class="col-lg-8 order-last order-lg-first">
+              <div class="mt-4 mt-lg-5 mb-4">
+                <h3>{{ page.right_box_heading_part_two }}</h3>
+                <h3>{{ page.right_box_heading_part_one }}</h3>
+              </div>
+              <div class="mb-4">
+                <p>{{ page.right_box_description }}</p>
+              </div>
+              {% if page.right_box_button_link %}
+              <div>
+                <a href="/{{ page.right_box_button_link }}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.right_box_button_text }} &gt;&gt;&gt;</a>
+              </div>
+              {% endif %}
+            </div>
+            <div class="col-lg-4 text-center text-lg-right order-first order-lg-last">
+              <img src="{% static 'img/enkratna-donacija.png' %}" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock page_body %}

@@ -1,0 +1,112 @@
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}page page--generic{% endblock %}
+
+{% block page_body %}
+
+<div class="row row-light-purple headline-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
+                <h1>
+                    <div class="spaced serif">{{ page.headline_first }}</div>
+                    <div class="spaced">{{ page.headline_second }}</div>
+                </h1>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-end">
+                {% image page.headline_image width-1100 class="img-fluid" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-white px-4 px-lg-0">
+    <div class="container">
+        <div class="row">
+            <div class="col monitoring-intro">
+                {{ page.intro_text|safe }}
+                <a href="{{ page.get_in_touch }}" class="btn monitoring-btn mt-4">{{ page.get_in_touch_text }} &gt;&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-light px-4 px-lg-0 py-5">
+    <div class="container my-lg-5">
+        <div class="row mb-5">
+            <div class="col">
+              <div class="archive-title">
+                <h1>Poročila</h3>
+              </div>
+            </div>
+        </div>
+        {% for monitoring_page in monitoring_pages %}
+        <div class="row blog-preview">
+            <div class="col-lg-8">
+                <a class="blog-title" href="{{ monitoring_page.url }}">
+                    <h1 class="mb-0">{{ monitoring_page.title }}</h1>
+                </a>
+                <div class="mb-3">
+                    <time class="blog-subtitle">{{ monitoring_page.date|date:'d. m. Y' }}</time>
+                </div>
+                <div>
+                    {{ monitoring_page.preview_text|safe }}
+                </div>
+            </div>
+        </div>
+        <hr class="short mb-5">
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
+        {% if blogposts.paginator.num_pages > 1 %}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="d-flex">
+                    {% if blogposts.has_previous %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.previous_page_number }}">
+                            <span><<<</span>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% for page_num in blogposts.paginator.page_range %}
+                    <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
+                        <a href="?page={{ page_num }}">
+                            {{ page_num }}
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                    {% if blogposts.has_next %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.next_page_number }}">
+                            <span>&gt;&gt;&gt;</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row row-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_body %}
