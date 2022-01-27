@@ -902,7 +902,8 @@ footer .row-purple {
   padding-bottom: 0;
 }
 
-footer nav a, .social-media-footer {
+
+footer nav a, .social-media-footer, .footer-text {
   color: #d8d1e9;
   font-family: "Space Grotesk", "sans-serif";
   font-size: 16px;
@@ -1043,6 +1044,9 @@ header .nav-item.nav-item-border:hover .nav-link {
   margin-top: 86px;
   padding-top: 100px;
   padding-bottom: 100px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
 }
 
 .headline-blog {
