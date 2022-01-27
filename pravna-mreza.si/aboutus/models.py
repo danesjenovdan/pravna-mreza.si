@@ -27,16 +27,16 @@ class AboutUsPage(Page):
     # seznam medijskih objav
     def get_context(self, request):
         context = super().get_context(request)
-        # all_publications = Objava.objects.all().order_by('-date')
-        # paginator = Paginator(all_publications, 10)
-        # page = request.GET.get("page")
-        # try:
-        #     publications = paginator.page(page)
-        # except PageNotAnInteger:
-        #     publications = paginator.page(1)
-        # except EmptyPage:
-        #     publications = paginator.page(paginator.num_pages)
-        # context['publications'] = publications
+        all_publications = Objava.objects.all().order_by('-date')
+        paginator = Paginator(all_publications, 10)
+        page = request.GET.get("page")
+        try:
+            publications = paginator.page(page)
+        except PageNotAnInteger:
+            publications = paginator.page(1)
+        except EmptyPage:
+            publications = paginator.page(paginator.num_pages)
+        context['publications'] = publications
         return context
 
     class Meta:
