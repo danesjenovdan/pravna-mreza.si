@@ -1,130 +1,104 @@
-{% extends "base.html" %}
-{% load i18n wagtailcore_tags static %}
+{% extends "home/base_page.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}page page--generic{% endblock %}
 
-{% block content %}
+{% block page_body %}
 
-<header class="row row-purple">
-    <div class="container container-narrow">
+<div class="row row-light-purple headline-blog">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-3 d-flex align-items-center">
-                <a href="/" class="home-link">
-                    <h2>
-                        <div class="spaced serif">Pravna mreža</div>
-                        <div class="spaced">
-                            za varstvo<br>
-                            demokracije
-                        </div>
-                    </h2>
-                </a>
-            </div>
-            <div class="col-sm-9">
-                <div class="float-right mt-3 mt-sm-0 d-flex">
-                    <a href="/pogosta-vprasanja/" class="square-button ml-lg-3 float-left">
-                        <div class="d-flex align-items-center mr-2">
-                            <img src="{% static 'img/faq.png' %}" class="mr-1" />
-                        </div>
-                        <div>
-                            <p>Pogosta vprašanja</p>
-                        </div>
-                    </a>
-                    <a href="/pravna-mnenja/" class="square-button ml-1 ml-lg-3 float-left">
-                        <div class="d-flex align-items-center mr-2">
-                            <img src="{% static 'img/mnenja.png' %}" class="mr-1" />
-                        </div>
-                        <div>
-                            <p>Pravna<br />mnenja</p>
-                        </div>
-                    </a>
-                    <a href="/arhiv-blog/" class="square-button ml-1 ml-lg-3 float-left">
-                        <div class="d-flex align-items-center mr-2">
-                            <img src="{% static 'img/vzorci.png' %}" class="mr-1" />
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <p>Pravni blog</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-{% for block in page.body %}
-{% if block.block_type == 'heading' %}
-<div class="row row-white row-block-{{ block.block_type }}">
-    <div class="container container-narrow">
-        <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
                 <h1>
-                    <div class="spaced serif">{{ block.value.part_one }}</div>
-                    <div class="spaced">{{ block.value.part_two }}</div>
+                    <div class="spaced serif">{{ page.headline_first }}</div>
+                    <div class="spaced">{{ page.headline_second }}</div>
                 </h1>
-                <hr>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-end">
+                {% image page.headline_image width-1100 class="img-fluid" %}
             </div>
         </div>
     </div>
 </div>
-{% endif %}
-{% endfor %}
 
-<div class="row row-light-purple">
-    <div class="container container-narrow">
+<div class="row row-white px-4 px-lg-0">
+    <div class="container">
         {% for blogpost in blogposts %}
-        <hr class="short">
-        <article class="row news-preview">
-            <div class="col-12">
-                <div class="ml-lg-4">
-                    <a class="news-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
-                    <div class="news-subtitle">
-                        <time>{{ blogpost.date|date:'d. m. Y' }}</time>
-                    </div>
-                </div>
+        <div class="row blog-preview mb-lg-5">
+            <div class="col-lg-4 mb-2">
+                {% image blogpost.preview_image width-1100 class="img-fluid" %}
             </div>
-            <div class="col-lg-9">
-                <div class="ml-lg-4">
+            <div class="col-lg-8">
+                <a class="blog-title" href="{{ blogpost.url }}">
+                    <h1 class="mb-1">{{ blogpost.title }}</h1>
+                </a>
+                {% if blogpost.author %}
+                <div class="d-flex align-items-center">
+                    {% if blogpost.author.image %}
+                    <div class="blog-preview-image">{% image blogpost.author.image width-1100 class="img-fluid" %}</div>
+                    {% endif %}
+                    <span class="blog-author">{{ blogpost.author }}</span>
+                    <span class="vertical-line px-1"> | </span>
+                    <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
+                </div>
+                {% endif %}
+                <div class="mt-3">
                     {{ blogpost.preview_text|safe }}
                 </div>
             </div>
-            <div class="col-lg-3 d-flex align-items-center justify-content-center">
-                <a class="btn btn-outline-primary" href="{{ blogpost.url }}">Več &gt;&gt;&gt;</a>
-            </div>
-        </article>
+        </div>
+        <hr class="my-5 d-lg-none" />
         {% endfor %}
-        <hr class="short">
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
         {% if blogposts.paginator.num_pages > 1 %}
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="d-flex">
-                        {% if blogposts.has_previous %}
-                        <div class="page-num">
-                            <a href="?page={{ blogposts.previous_page_number }}">
-                                <span><<<</span>
-                            </a>
-                        </div>
-                        {% endif %}
-
-                        {% for page_num in blogposts.paginator.page_range %}
-                        <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
-                            <a href="?page={{ page_num }}">
-                                {{ page_num }}
-                            </a>
-                        </div>
-                        {% endfor %}
-
-                        {% if blogposts.has_next %}
-                        <div class="page-num">
-                            <a href="?page={{ blogposts.next_page_number }}">
-                                <span>>>></span>
-                            </a>
-                        </div>
-                        {% endif %}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="d-flex">
+                    {% if blogposts.has_previous %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.previous_page_number }}">
+                            <span><<<</span>
+                        </a>
                     </div>
+                    {% endif %}
+
+                    {% for page_num in blogposts.paginator.page_range %}
+                    <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
+                        <a href="?page={{ page_num }}">
+                            {{ page_num }}
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                    {% if blogposts.has_next %}
+                    <div class="page-num">
+                        <a href="?page={{ blogposts.next_page_number }}">
+                            <span>&gt;&gt;&gt;</span>
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
+        </div>
         {% endif %}
     </div>
 </div>
 
-{% endblock content %}
+<div class="row row-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% include "home/includes/newsletter-box.html" %}
+            </div>
+            <div class="col-md-6 my-4 my-lg-0">
+                {% include "home/includes/support-box.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_body %}

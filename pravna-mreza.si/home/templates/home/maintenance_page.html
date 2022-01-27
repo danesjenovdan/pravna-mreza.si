@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="flex-page-height justify-content-center align-items-center">
+
+    <div>
+        {{ page.text }}
+    </div>
+    
+</div>
+
+{% endblock content %}

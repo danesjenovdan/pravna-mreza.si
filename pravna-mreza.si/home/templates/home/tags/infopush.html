@@ -1,12 +1,28 @@
+{% load wagtailcore_tags %}
+
+{% if infopushes %}
+<div class="row row-white px-4 px-lg-0">
 {% for infopush in infopushes %}
-<div class="row mt-4 mt-lg-5">
-    <div class="col">
-        <div class="infopush">
-            {% if infopush.title %}
-                <h3><div class="serif text-uppercase">{{ infopush.title }}</div></h3>
-            {% endif %}
-            {{ infopush.text|safe }}
+<div class="container-fluid infopush">
+    <div class="row">
+        <div class="container">
+            <div class="row position-relative py-4 py-xl-5 my-4">
+                <div class="infopush-bg"></div>
+                <div class="col-lg-9">
+                    {% if infopush.title %}
+                        <h3>{{ infopush.title }}</h3>
+                    {% endif %}
+                    {{ infopush.text|safe }}
+                </div>
+                {% if infopush.page %}
+                <div class="col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-end my-4 my-lg-0">
+                    <a href="{% pageurl infopush.page %}" class="btn infopush-btn">{{ infopush.page_text }} &gt;&gt;&gt;</a>
+                </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
 {% endfor %}
+</div>
+{% endif %}

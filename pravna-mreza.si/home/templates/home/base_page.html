@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="flex-page-height">
+
+    {% include "home/includes/header.html" %}
+
+    <div class="container-fluid flex-grow-1">
+        {% block page_body %}{% endblock page_body %}
+    </div>
+
+    {% include "home/includes/footer.html" %}
+    
+</div>
+
+{% endblock content %}
