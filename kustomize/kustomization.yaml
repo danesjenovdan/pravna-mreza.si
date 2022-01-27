@@ -8,4 +8,4 @@ resources:
 images:
   - name: pravnamreza-staging
     newName: rg.fr-par.scw.cloud/djnd/pravna-mreza-staging.si
-    newTag: 'b1a2e279517331e4dbab8b2df580466b06db653c'
+    newTag: '9d95a08314da31da4f95013d8687633f69621a72'
