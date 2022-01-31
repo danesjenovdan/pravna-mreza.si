@@ -62,29 +62,29 @@
 
 <div class="row">
     <div class="container">
-        {% if blogposts.paginator.num_pages > 1 %}
+        {% if monitoring_pages.paginator.num_pages > 1 %}
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <div class="d-flex">
-                    {% if blogposts.has_previous %}
+                    {% if monitoring_pages.has_previous %}
                     <div class="page-num">
-                        <a href="?page={{ blogposts.previous_page_number }}">
+                        <a href="?page={{ monitoring_pages.previous_page_number }}">
                             <span><<<</span>
                         </a>
                     </div>
                     {% endif %}
 
-                    {% for page_num in blogposts.paginator.page_range %}
-                    <div class="page-num {% if page_num == blogposts.number %} active{% endif %}">
+                    {% for page_num in monitoring_pages.paginator.page_range %}
+                    <div class="page-num {% if page_num == monitoring_pages.number %} active{% endif %}">
                         <a href="?page={{ page_num }}">
                             {{ page_num }}
                         </a>
                     </div>
                     {% endfor %}
 
-                    {% if blogposts.has_next %}
+                    {% if monitoring_pages.has_next %}
                     <div class="page-num">
-                        <a href="?page={{ blogposts.next_page_number }}">
+                        <a href="?page={{ monitoring_pages.next_page_number }}">
                             <span>&gt;&gt;&gt;</span>
                         </a>
                     </div>
