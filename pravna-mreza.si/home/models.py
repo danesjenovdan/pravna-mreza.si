@@ -296,8 +296,8 @@ class DonationPage(Page):
     left_box_description = models.TextField(blank=True, verbose_name='Leva škatla - opis')    
     left_box_button_text = models.TextField(blank=True, verbose_name='Leva škatla - gumb besedilo')
     left_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Leva škatla - gumb povezava')
-    right_box_heading_part_two = models.TextField(blank=True, verbose_name='Desna škatla - naslov drugi del')
     right_box_heading_part_one = models.TextField(blank=True, verbose_name='Desna škatla - naslov prvi del')
+    right_box_heading_part_two = models.TextField(blank=True, verbose_name='Desna škatla - naslov drugi del')
     right_box_description = models.TextField(blank=True, verbose_name='Desna škatla - opis')    
     right_box_button_text = models.TextField(blank=True, verbose_name='Desna škatla - gumb besedilo')
     right_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Desna škatla - gumb povezava')
@@ -309,8 +309,8 @@ class DonationPage(Page):
         FieldPanel('left_box_description'),
         FieldPanel('left_box_button_text'),
         FieldPanel('left_box_button_link'),
-        FieldPanel('right_box_heading_part_two'),
         FieldPanel('right_box_heading_part_one'),
+        FieldPanel('right_box_heading_part_two'),
         FieldPanel('right_box_description'),
         FieldPanel('right_box_button_text'),
         FieldPanel('right_box_button_link'),

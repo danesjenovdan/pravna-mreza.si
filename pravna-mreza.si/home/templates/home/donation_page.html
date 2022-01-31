@@ -43,7 +43,7 @@
               </div>
               {% if page.left_box_button_link %}
               <div>
-                <a href="/{{ page.left_box_button_link }}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.left_box_button_text }} &gt;&gt;&gt;</a>
+                <a href="{% pageurl page.left_box_button_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.left_box_button_text }} &gt;&gt;&gt;</a>
               </div>
               {% endif %}
             </div>
@@ -58,15 +58,15 @@
           <div class="row text-center text-lg-left">
             <div class="col-lg-8 order-last order-lg-first">
               <div class="mt-4 mt-lg-5 mb-4">
-                <h3>{{ page.right_box_heading_part_two }}</h3>
                 <h3>{{ page.right_box_heading_part_one }}</h3>
+                <h3>{{ page.right_box_heading_part_two }}</h3>
               </div>
               <div class="mb-4">
                 <p>{{ page.right_box_description }}</p>
               </div>
               {% if page.right_box_button_link %}
               <div>
-                <a href="/{{ page.right_box_button_link }}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.right_box_button_text }} &gt;&gt;&gt;</a>
+                <a href="{% pageurl page.right_box_button_link %}" class="btn support-btn mt-2 text-center text-lg-left">{{ page.right_box_button_text }} &gt;&gt;&gt;</a>
               </div>
               {% endif %}
             </div>
