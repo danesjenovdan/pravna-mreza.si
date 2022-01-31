@@ -870,7 +870,16 @@ hr.short {
 .achievement-box {
   background-color: #f7f6fb;
   font-family: "Space Grotesk";
-  height: 450px;
+}
+
+.achievement-box-col {
+  padding-bottom: 30px;
+}
+
+@media (min-width: 992px) {
+  .achievement-box {
+    min-height: 450px;
+  }
 }
 
 .achievement-box h3 {
