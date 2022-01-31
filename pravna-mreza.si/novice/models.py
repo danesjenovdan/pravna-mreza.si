@@ -74,7 +74,7 @@ class NovicaArchivePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         # Get all novice
-        vse_novice = NovicaPage.objects.all().live().order_by('-first_published_at')
+        vse_novice = NovicaPage.objects.all().live().order_by('-date')
         # Paginate all novice by 2 per page
         paginator = Paginator(vse_novice, 10)
         # Try to get the ?page=x value
