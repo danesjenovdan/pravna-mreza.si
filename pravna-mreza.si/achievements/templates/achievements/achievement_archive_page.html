@@ -53,7 +53,7 @@
                     <div>
                         <hr>
                         {% for achievement_link in achievement.link %}
-                        <div class="">
+                        <div>
                             <a class="achievement-btn"
                                 href="{% if achievement_link.value.url %}{{ achievement_link.value.url }}{% elif achievement_link.value.page %}{% pageurl achievement_link.value.page %}{% elif achievement_link.value.email %}mailto:{{ achievement_link.value.email }}{% endif %}">
                                 {{ achievement_link.value.name }}
