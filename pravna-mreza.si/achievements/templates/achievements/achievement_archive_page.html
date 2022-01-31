@@ -23,7 +23,7 @@
 
 
 {% for year, achievements in achievements_by_year.items %}
-<div class="row row-white px-4 px-lg-0 py-5">
+<div class="row px-4 px-lg-0 pt-4">
     <div class="container">
         <div class="row mb-5">
             <div class="col">
@@ -34,7 +34,7 @@
         </div>
         <div class="row blog-preview">
             {% for achievement in achievements %}
-            <div class="col-lg-6">
+            <div class="col-lg-6 achievement-box-col">
                 <div class="achievement-box square d-flex flex-column justify-content-between">
                     <div>
                         <h3 class="mb-0">{{ achievement.title }}</h3>
@@ -52,9 +52,15 @@
                     {% if achievement.link %}
                     <div>
                         <hr>
-                        <div>
-                            <a href="{{ achievement.link }}" target="_blank" class="achievement-btn">{{ achievement.link_text }} >>></a>
+                        {% for achievement_link in achievement.link %}
+                        <div class="">
+                            <a class="achievement-btn"
+                                href="{% if achievement_link.value.url %}{{ achievement_link.value.url }}{% elif achievement_link.value.page %}{% pageurl achievement_link.value.page %}{% elif achievement_link.value.email %}mailto:{{ achievement_link.value.email }}{% endif %}">
+                                {{ achievement_link.value.name }}
+                                &gt;&gt;&gt;
+                            </a>
                         </div>
+                        {% endfor %}
                     </div>
                     {% endif %}
                 </div>

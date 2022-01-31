@@ -1,5 +1,5 @@
 {% extends "home/base_page.html" %}
-{% load i18n wagtailcore_tags static %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}page page--generic{% endblock %}
 
@@ -8,12 +8,17 @@
 <div class="row row-light-purple headline-blog">
   <div class="container">
       <div class="row">
-          <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
-              <h1>
-                  <div class="spaced serif">{{ page.headline_first }}</div>
-                  <div class="spaced">{{ page.headline_second }}</div>
-              </h1>
-          </div>
+        <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start">
+            <h1>
+                <div class="spaced serif">{{ page.headline_first }}</div>
+                <div class="spaced">{{ page.headline_second }}</div>
+            </h1>
+        </div>
+        {% if page.headline_image %}
+        <div class="col-lg-6 d-flex align-items-center justify-content-end">
+          {% image page.headline_image width-1100 class="img-fluid" %}
+        </div>
+        {% endif %}
       </div>
   </div>
 </div>

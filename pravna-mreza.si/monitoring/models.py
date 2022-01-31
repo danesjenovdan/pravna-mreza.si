@@ -57,7 +57,7 @@ class MonitoringArchivePage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         # Get all monitoring pages
-        all_monitoring = MonitoringPage.objects.all().live().order_by('-first_published_at')
+        all_monitoring = MonitoringPage.objects.all().live().order_by('-date')
         # Paginate all monitoring pages
         paginator = Paginator(all_monitoring, 10)
         # Try to get the ?page=x value

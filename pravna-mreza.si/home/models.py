@@ -262,6 +262,7 @@ class HomePage(Page):
 class GenericPage(Page):
     headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
     headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
+    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
@@ -273,6 +274,7 @@ class GenericPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
+        ImageChooserPanel('headline_image'),
         StreamFieldPanel('body'),
         FieldPanel('monitor_box'),
         FieldPanel('newsletter_box'),
@@ -294,8 +296,8 @@ class DonationPage(Page):
     left_box_description = models.TextField(blank=True, verbose_name='Leva škatla - opis')    
     left_box_button_text = models.TextField(blank=True, verbose_name='Leva škatla - gumb besedilo')
     left_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Leva škatla - gumb povezava')
-    right_box_heading_part_two = models.TextField(blank=True, verbose_name='Desna škatla - naslov drugi del')
     right_box_heading_part_one = models.TextField(blank=True, verbose_name='Desna škatla - naslov prvi del')
+    right_box_heading_part_two = models.TextField(blank=True, verbose_name='Desna škatla - naslov drugi del')
     right_box_description = models.TextField(blank=True, verbose_name='Desna škatla - opis')    
     right_box_button_text = models.TextField(blank=True, verbose_name='Desna škatla - gumb besedilo')
     right_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Desna škatla - gumb povezava')
@@ -307,8 +309,8 @@ class DonationPage(Page):
         FieldPanel('left_box_description'),
         FieldPanel('left_box_button_text'),
         FieldPanel('left_box_button_link'),
-        FieldPanel('right_box_heading_part_two'),
         FieldPanel('right_box_heading_part_one'),
+        FieldPanel('right_box_heading_part_two'),
         FieldPanel('right_box_description'),
         FieldPanel('right_box_button_text'),
         FieldPanel('right_box_button_link'),

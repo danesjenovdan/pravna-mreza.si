@@ -6,6 +6,8 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
+from home.models import PageLinkBlock, ExternalLinkBlock, EmailLinkBlock
+
 
 class AchievementTag(models.Model):
     name = models.TextField(verbose_name='Oznaka dosežka', blank=True)
@@ -19,8 +21,24 @@ class Achievement(models.Model):
     tag = models.ForeignKey(AchievementTag, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     description = models.TextField(verbose_name='Opis', blank=True)
-    link = models.URLField(verbose_name='Povezava do predloga zakona', null=True, blank=True)
-    link_text = models.TextField(verbose_name='Besedilo na gumbu', blank=True)
+    link = StreamField(
+        [
+            ("page_link", PageLinkBlock()),
+            ("external_link", ExternalLinkBlock()),
+            ("email_link", EmailLinkBlock()),
+        ],
+        null=True,
+        blank=True,
+        verbose_name="Povezava",
+    )
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('tag'),
+        FieldPanel('date'),
+        FieldPanel('description'),
+        StreamFieldPanel("link"),
+    ]
 
     def __str__(self):
         return self.title

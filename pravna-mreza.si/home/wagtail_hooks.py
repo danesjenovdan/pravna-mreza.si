@@ -33,7 +33,7 @@ def header_with_name(props):
         tag = 'h3'
     if type_ == 'header-four':
         tag = 'h4'
-    return DOM.create_element(tag, {}, DOM.create_element('a', {'id': slugify(text)}), props['children'])
+    return DOM.create_element(tag, {}, DOM.create_element('a', {'id': slugify(text), 'class': 'anchor'}), props['children'])
 
 
 class NovicaTagAdmin(ModelAdmin):
