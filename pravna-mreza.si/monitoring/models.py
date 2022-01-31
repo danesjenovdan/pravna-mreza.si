@@ -6,6 +6,8 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
+from home.models import PageLinkBlock, ExternalLinkBlock, EmailLinkBlock
+
 
 class MonitoringPage(Page):
     date = models.DateField()
@@ -41,16 +43,23 @@ class MonitoringArchivePage(Page):
     headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
     headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
-    get_in_touch = models.URLField(verbose_name='Povezava v opisu', blank=True, null=True)
-    get_in_touch_text = models.TextField(verbose_name='Ime povezave', blank=True)
+    link = StreamField(
+        [
+            ("page_link", PageLinkBlock()),
+            ("external_link", ExternalLinkBlock()),
+            ("email_link", EmailLinkBlock()),
+        ],
+        null=True,
+        blank=True,
+        verbose_name="Povezava v opisu",
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
         ImageChooserPanel('headline_image'),
         FieldPanel('intro_text'),
-        FieldPanel('get_in_touch'),
-        FieldPanel('get_in_touch_text'),
+        StreamFieldPanel('link'),
     ]
 
     def get_context(self, request):

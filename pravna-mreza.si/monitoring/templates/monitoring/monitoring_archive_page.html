@@ -26,7 +26,14 @@
         <div class="row">
             <div class="col monitoring-intro">
                 {{ page.intro_text|safe }}
-                <a href="{{ page.get_in_touch }}" class="btn monitoring-btn mt-4">{{ page.get_in_touch_text }} &gt;&gt;&gt;</a>
+                {% for link in page.link %}
+                <div>
+                    <a class="btn monitoring-btn mt-4"
+                        href="{% if link.value.url %}{{ link.value.url }}{% elif link.value.page %}{% pageurl link.value.page %}{% elif link.value.email %}mailto:{{ link.value.email }}{% endif %}">
+                        {{ link.value.name }} &gt;&gt;&gt;
+                    </a>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
