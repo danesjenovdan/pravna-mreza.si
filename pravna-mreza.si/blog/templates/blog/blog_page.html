@@ -68,7 +68,7 @@
           <hr>
           {% for blogpost in page.related_blog_posts %}
           <div>
-            <h6>{{ blogpost.value.title }}</h6>
+            <a href="{{ blogpost.value.specific.url }}"><h6>{{ blogpost.value.title }}</h6></a>
             <span class="blog-author d-block">{{ blogpost.value.specific.author }}</span>
             <time class="blog-subtitle d-block">{{ blogpost.value.specific.date|date:'d. m. Y' }}</time>
           </div>

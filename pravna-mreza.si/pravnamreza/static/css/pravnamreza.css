@@ -95,6 +95,12 @@ h2 .spaced {
   letter-spacing: 4.27px;
 }
 
+.anchor {
+  top: -100px;
+  display: block;
+  position: relative;
+}
+
 .row-purple h2,
 .row-purple h2 .serif {
   color: #fff;
@@ -130,7 +136,7 @@ h2 .spaced {
   }
 }
 
-p {
+p, .blog-body li {
   font-family: "Space Grotesk", "sans-serif";
   font-weight: 300;
   color: #17093a;
@@ -139,20 +145,24 @@ p {
 }
 
 @media (max-width: 575.98px) {
-  p {
+  p, .blog-body li {
     font-size: 18px;
   }
 }
 
 p a,
 p a:hover,
-p a:active {
+p a:active,
+.blog-body li a,
+.blog-body li a:hover,
+.blog-body li a:active {
   font-weight: 400;
   color: #3a1791;
   text-decoration: underline;
 }
 
-p a:hover {
+p a:hover,
+.blog-body li a:hover {
   text-decoration: none;
 }
 
@@ -754,6 +764,7 @@ hr.short {
 
 .blog-sidebar h4 {
   margin-bottom: 0;
+  margin-top: 0;
   text-transform: none;
   font-size: 32px;
   font-weight: 800;
@@ -826,7 +837,8 @@ hr.short {
   margin-top: 1.5rem;
 }
 
-.blog-body p {
+.blog-body p, 
+.blog-body li {
   font-size: 18px;
   line-height: 1.5;
 }
