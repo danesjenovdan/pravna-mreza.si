@@ -5,7 +5,7 @@
 }
 
 .page-top-margin {
-  margin-top: 86px;
+  margin-top: 98px;
   padding-top: 60px;
   padding-bottom: 60px;
 }
@@ -1075,6 +1075,10 @@ header .nav-item.nav-item-border:hover .nav-link {
   margin-top: 98px;
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+.donation-blog {
+  margin-top: 98px;
 }
 
 .headline-blog h2 {
