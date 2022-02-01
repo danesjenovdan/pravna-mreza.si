@@ -37,10 +37,10 @@ spec:
           resources:
             requests:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
             limits:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
         - name: migrate
           image: pravnamreza
           command:
@@ -60,10 +60,10 @@ spec:
           resources:
             requests:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
             limits:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
       containers:
         - name: pravnamreza
           image: pravnamreza # kustomize thing
@@ -103,7 +103,7 @@ spec:
           resources:
             requests:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
             limits:
               memory: 200Mi
-              cpu: 100m
+              cpu: 200m
