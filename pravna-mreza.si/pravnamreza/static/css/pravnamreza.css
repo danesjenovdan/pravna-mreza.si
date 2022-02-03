@@ -1249,12 +1249,12 @@ header .nav-item.nav-item-border:hover .nav-link {
 }
 
 .donation-page p {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 @media (min-width: 768px) {
   .donation-page p {
-    font-size: 30px;
+    font-size: 20px;
   }
 }
 
