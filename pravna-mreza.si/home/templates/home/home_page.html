@@ -8,10 +8,10 @@
 <div class="row row-purple headline px-4 px-lg-0 position-relative">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7 headline-text">
+      <div class="col-lg-6 headline-text">
         {{ page.intro_text|safe }}
       </div>
-      <div class="col-lg-5 d-flex align-items-center position-static">
+      <div class="col-lg-6 d-flex align-items-center">
         <div class="heading-image">
           {% image page.intro_image width-1100 class="img-fluid" %}
         </div>
@@ -27,7 +27,7 @@
     <div class="row mb-lg-5">
       <div class="col">
         <div class="archive-title">
-          <h1>{{ page.news_section_title }}</h3>
+          <h1>{{ page.news_section_title }}</h1>
           {% if page.news_section_archive_link %}
           <h5><a href="{% pageurl page.news_section_archive_link %}" class="archive-link">{{ page.news_section_archive_link_title }} >>></a></h5>
           {% endif %}
@@ -38,10 +38,12 @@
       {% for novica in novice %}
       <div class="col-12 col-lg-4 news-preview my-4 my-lg-0">
         <div>
-          {% image novica.preview_image width-1100 class="img-fluid" %}
+          <a class="{{ novica.url }}" href="{{ novica.url }}">
+            {% image novica.preview_image width-1100 class="img-fluid" %}
+          </a>
         </div>
         <div>
-          <h1 class="news-title">{{ novica.title }}</h1>
+          <a class="{{ novica.url }}" href="{{ novica.url }}"><h1 class="news-title">{{ novica.title }}</h1></a>
           <div class="news-subtitle">
             <span>{{ novica.tag }}</span><span class="vertical-line"> | </span><time>{{ novica.date|date:'d. m. Y' }}</time>
           </div>
@@ -74,7 +76,7 @@
     <div class="row my-4 my-lg-5">
       <div class="col">
         <div class="archive-title">
-          <h1>{{ page.blog_section_title }}</h3>
+          <h1>{{ page.blog_section_title }}</h1>
           {% if page.blog_section_archive_link %}
           <h5><a href="{% pageurl page.blog_section_archive_link %}" class="archive-link">{{ page.blog_section_archive_link_title }} >>></a></h5>
           {% endif %}
@@ -84,7 +86,9 @@
     {% for blogpost in blogposts %}
     <div class="row blog-preview mb-lg-5">
       <div class="col-lg-4 mb-2">
-        {% image blogpost.preview_image width-1100 class="img-fluid" %}
+        <a class="blog-title" href="{{ blogpost.url }}">
+          {% image blogpost.preview_image width-1100 class="img-fluid" %}
+        </a>
       </div>
       <div class="col-lg-8">
         <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>

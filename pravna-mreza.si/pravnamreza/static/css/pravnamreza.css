@@ -5,7 +5,7 @@
 }
 
 .page-top-margin {
-  margin-top: 86px;
+  margin-top: 98px;
   padding-top: 60px;
   padding-bottom: 60px;
 }
@@ -713,7 +713,8 @@ hr.short {
   object-fit: cover;
 }
 
-.news-preview a.news-title:hover {
+.news-preview a,
+.news-preview a:hover {
   color: #3a1791;
 }
 
@@ -1062,7 +1063,7 @@ header .nav-item.nav-item-border:hover .nav-link {
 }
 
 .headline {
-  margin-top: 86px;
+  margin-top: 98px;
   padding-top: 100px;
   padding-bottom: 100px;
   min-height: 400px;
@@ -1071,9 +1072,13 @@ header .nav-item.nav-item-border:hover .nav-link {
 }
 
 .headline-blog {
-  margin-top: 86px;
+  margin-top: 98px;
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+.donation-blog {
+  margin-top: 98px;
 }
 
 .headline-blog h2 {
@@ -1108,10 +1113,8 @@ header .nav-item.nav-item-border:hover .nav-link {
   }
   .heading-image {
     position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 50%;
+    top: -100px;
+    bottom: -100px;
     display: flex;
     align-items: center;
   }
@@ -1246,12 +1249,12 @@ header .nav-item.nav-item-border:hover .nav-link {
 }
 
 .donation-page p {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 @media (min-width: 768px) {
   .donation-page p {
-    font-size: 30px;
+    font-size: 20px;
   }
 }
 
