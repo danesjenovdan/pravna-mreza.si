@@ -28,8 +28,6 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.getenv('STATIC_ROOT', '/static/')
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', '/media/')
-MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
 
 LOGGING = {
     'version': 1,

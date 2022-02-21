@@ -55,12 +55,8 @@ spec:
               value: production
             - name: STATIC_URL
               value: https://files.pravnamreza-staging.lb.djnd.si/static/
-            - name: MEDIA_URL
-              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
-            - name: MEDIA_ROOT
-              value: /pvc/media/
             - name: PYTHONPATH
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
@@ -89,12 +85,8 @@ spec:
               value: production
             - name: STATIC_URL
               value: https://files.pravnamreza-staging.lb.djnd.si/static/
-            - name: MEDIA_URL
-              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
-            - name: MEDIA_ROOT
-              value: /pvc/media/
             - name: PYTHONPATH
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
@@ -143,12 +135,8 @@ spec:
               value: production
             - name: STATIC_URL
               value: https://files.pravnamreza-staging.lb.djnd.si/static/
-            - name: MEDIA_URL
-              value: https://files.pravnamreza-staging.lb.djnd.si/media/
             - name: STATIC_ROOT
               value: /pvc/static/
-            - name: MEDIA_ROOT
-              value: /pvc/media/
             - name: PYTHONPATH
               value: /code:$PYTHONPATH
             - name: DJANGO_SETTINGS_MODULE
