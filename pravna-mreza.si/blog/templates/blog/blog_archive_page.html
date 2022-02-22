@@ -32,12 +32,9 @@
                 <a class="blog-title" href="{{ blogpost.url }}">
                     <h1 class="mb-1">{{ blogpost.title }}</h1>
                 </a>
-                {% if blogpost.author %}
+                {% if blogpost.authors %}
                 <div class="d-flex align-items-center">
-                    {% if blogpost.author.image %}
-                    <div class="blog-preview-image">{% image blogpost.author.image width-1100 class="img-fluid" %}</div>
-                    {% endif %}
-                    <span class="blog-author">{{ blogpost.author }}</span>
+                    <span class="blog-author">{{ blogpost.authors_list_string }}</span>
                     <span class="vertical-line px-1"> | </span>
                     <time class="blog-subtitle">{{ blogpost.date|date:'d. m. Y' }}</time>
                 </div>

@@ -12,17 +12,17 @@
         <h2>
           {{ page.title }}
         </h2>
-        {% if page.author %}
-        <div class="d-flex align-items-center my-2">
-          {% if page.author.image %}
-          <div class="blog-image">{% image page.author.image width-1100 class="img-fluid" %}</div>
+        {% for author in page.authors %}
+        <div class="d-flex align-items-center mt-2 mb-4">
+          {% if author.image %}
+          <div class="blog-image">{% image author.image width-1100 class="img-fluid" %}</div>
           {% endif %}
           <div>
-            <span class="blog-author d-block">{{ page.author }}</span>
+            <span class="blog-author d-block">{{ author }}</span>
             <time class="blog-subtitle d-block">{{ page.date|date:'d. m. Y' }}</time>
           </div>
         </div>
-        {% endif %}
+        {% endfor %}
         <div>
           {{ page.intro_text|safe }}
         </div>

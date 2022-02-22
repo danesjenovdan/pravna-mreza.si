@@ -92,9 +92,9 @@
       </div>
       <div class="col-lg-8">
         <a class="blog-title" href="{{ blogpost.url }}"><h1>{{ blogpost.title }}</h1></a>
-        {% if blogpost.author %}
+        {% if blogpost.authors %}
         <div class="blog-author">
-          <span>{{ blogpost.author }}</span>
+          <span>{{ blogpost.authors_list_string }}</span>
         </div>
         {% endif %}
         <div class="blog-subtitle">
