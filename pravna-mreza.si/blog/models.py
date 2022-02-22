@@ -1,5 +1,6 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
@@ -24,7 +25,6 @@ class BlogPage(Page):
     date = models.DateField(verbose_name='Datum')
     preview_text = RichTextField(verbose_name='Opis na seznamu', blank=False, null=False, default='')
     preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Avtor')
     intro_text = RichTextField(blank=True, null=True, verbose_name='Opis pod naslovom')
     related_blog_posts = StreamField(
         [('blog_post', blocks.PageChooserBlock(label="Povezava do blog zapisa")),],
@@ -46,9 +46,21 @@ class BlogPage(Page):
         verbose_name='OG slika'
     )
 
+    @property
+    def authors(self):
+        authors = [
+            n.author for n in self.blog_author_relationship.all()
+        ]
+        return authors
+
+    @property
+    def authors_list_string(self):
+        return ', '.join([str(elem) for elem in self.authors])
+
+
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        FieldPanel('author'),
+        InlinePanel('blog_author_relationship', label='Avtorji'),
         FieldPanel('preview_text'),
         ImageChooserPanel('preview_image'),
         FieldPanel('intro_text'),
@@ -72,6 +84,25 @@ class BlogPage(Page):
     class Meta:
         verbose_name = "Blog"
         verbose_name_plural = "Blog"
+
+
+class BlogAuthorRelationship(models.Model):
+    # the model that connects blog posts and authors
+    blog = ParentalKey(
+        'BlogPage',
+        related_name='blog_author_relationship',
+        on_delete=models.CASCADE
+    )
+    author = models.ForeignKey(
+        'Author',
+        related_name="+",
+        on_delete=models.CASCADE,
+        verbose_name='Avtor_ica'
+    )
+
+    panels = [
+        FieldPanel('author')
+    ]
 
 
 class BlogArchivePage(Page):
