@@ -844,6 +844,24 @@ hr.short {
   line-height: 1.5;
 }
 
+.custom-video-embed {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .custom-video-embed {
+    height: 380px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .custom-video-embed {
+    height: 420px;
+  }
+}
+
 .back-link {
   color: #3a1791;
   font-size: 20px;
