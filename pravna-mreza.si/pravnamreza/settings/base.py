@@ -183,6 +183,23 @@ if os.getenv('DJANGO_ENABLE_S3', False):
 # Wagtail settings
 WAGTAIL_SITE_NAME = "pravnamreza"
 
+rtv_provider = {
+    'endpoint': 'https://365.rtvslo.si/embed',
+    'urls': [
+        '^http(?:s)?://365\.rtvslo\.si/embed/.+$',
+    ]
+}
+
+WAGTAILEMBEDS_FINDERS = [
+    {
+        'class': 'wagtail.embeds.finders.oembed'
+    },
+    {
+        'class': 'pravnamreza.embeds.rtv_embed.RtvEmbedFinder',
+        'providers': [rtv_provider],
+    }
+]
+
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
