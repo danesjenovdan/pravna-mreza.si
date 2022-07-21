@@ -19,7 +19,8 @@ class AchievementTag(models.Model):
 class Achievement(models.Model):
     title = models.TextField(verbose_name='Naslov', blank=True)
     tag = models.ForeignKey(AchievementTag, on_delete=models.SET_NULL, null=True, blank=True)
-    date = models.DateField()
+    date = models.DateField(verbose_name='Datum (oz. začetni datum, če gre za obdobje)')
+    date2 = models.DateField(verbose_name='Končni datum, če gre za obdobje (neobvezno)', null=True, blank=True)
     description = models.TextField(verbose_name='Opis', blank=True)
     link = StreamField(
         [
@@ -36,6 +37,7 @@ class Achievement(models.Model):
         FieldPanel('title'),
         FieldPanel('tag'),
         FieldPanel('date'),
+        FieldPanel('date2'),
         FieldPanel('description'),
         StreamFieldPanel("link"),
     ]

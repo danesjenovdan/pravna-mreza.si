@@ -43,6 +43,10 @@
                             <span class="vertical-line">|</span>
                             {% language 'sl' %}
                             <time class="blog-subtitle">{{ achievement.date|date:'F Y' }}</time>
+                            {% if achievement.date2 %}
+                            <span> – </span>
+                            <time class="blog-subtitle">{{ achievement.date2|date:'F Y' }}</time>
+                            {% endif %}
                             {% endlanguage %}
                         </div>
                         <div>
