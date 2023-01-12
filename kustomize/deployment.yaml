@@ -74,6 +74,12 @@ spec:
             - 0.0.0.0:8000
             - --log-level
             - DEBUG
+            - --workers
+            - "1"
+            - --threads
+            - "3"
+            - --timeout
+            - "90"
           ports:
             - name: http
               containerPort: 8000
