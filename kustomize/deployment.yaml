@@ -102,8 +102,8 @@ spec:
                 name: pmvd-config
           resources:
             requests:
-              memory: 200Mi
+              memory: 400Mi
               cpu: 200m
             limits:
-              memory: 200Mi
+              memory: 400Mi
               cpu: 200m
