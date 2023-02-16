@@ -47,9 +47,10 @@ class NovicaPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        if self.get_parent().specific.news_section_archive_link:
-            novice_archive = self.get_parent().specific.news_section_archive_link.url
-        else:
+        try:
+            homepage = Page.objects.get(slug='home')
+            novice_archive = homepage.specific.news_section_archive_link.url
+        except:
             novice_archive = '/'
         context['novice_archive'] = novice_archive
         return context
