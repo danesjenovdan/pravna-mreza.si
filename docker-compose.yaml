@@ -15,8 +15,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://wagtail:changeme@db/pmvd
       PYTHONPATH: /code:$PYTHONPATH
+      DJANGO_SETTINGS_MODULE: pravnamreza.settings.production
+      DJANGO_DEBUG: "yes"
     depends_on:
       - db
 
