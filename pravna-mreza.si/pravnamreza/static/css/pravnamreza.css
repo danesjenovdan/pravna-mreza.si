@@ -274,9 +274,14 @@ hr.short {
 
 .social-media {
   border: 2px solid #d8d1e9;
-  height: 130px;
-  width: 130px;
-  margin: 30px;
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+}
+
+.social-media img {
+  max-height: 60%;
+  max-width: 60%;
 }
 
 .social-media:hover {

@@ -95,6 +95,7 @@ class FooterSettings(BaseSetting):
     footer_text = models.TextField(verbose_name='Besedilo v footerju', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
     twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
+    instagram_link = models.URLField(verbose_name='Instagram URL', blank=True, null=True)
     footer_links_left = StreamField(
         [
             ("page_link", PageLinkBlock()),
@@ -116,6 +117,7 @@ class FooterSettings(BaseSetting):
         FieldPanel('footer_text'),
         FieldPanel('facebook_link'),
         FieldPanel('twitter_link'),
+        FieldPanel('instagram_link'),
         StreamFieldPanel("footer_links_left"),
         StreamFieldPanel("footer_links_right"),
     ]
@@ -130,12 +132,14 @@ class SocialMedia(BaseSetting):
     social_media_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
     twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
+    instagram_link = models.URLField(verbose_name='Instagram URL', blank=True, null=True)
 
     panels = [
         FieldPanel('social_media_title_part_one'),
         FieldPanel('social_media_title_part_two'),
         FieldPanel('facebook_link'),
         FieldPanel('twitter_link'),
+        FieldPanel('instagram_link'),
     ]
 
     class Meta:
