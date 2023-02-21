@@ -81,13 +81,47 @@
                         </div>
                         {% endif %}
 
-                        {% for page_num in publications.paginator.page_range %}
-                        <div class="page-num {% if page_num == publications.number %} active{% endif %}">
-                            <a href="?page={{ page_num }}">
-                                {{ page_num }}
-                            </a>
+                        {% if publications.number > 2 %}
+                        <div class="page-num">
+                          <a href="?page=1">1</a>
                         </div>
-                        {% endfor %}
+                        {% endif %}
+
+                        {% if publications.number > 3 %}
+                        <div class="page-num">
+                          <span>...</span>
+                        </div>
+                        {% endif %}
+
+                        {% if publications.number|add:"-1" > 0 %}
+                        <div class="page-num">
+                          <a href="?page={{ publications.number|add:"-1" }}">{{ publications.number|add:"-1" }}</a>
+                        </div>
+                        {% endif %}
+
+                        <div class="page-num active">
+                          <a href="?page={{ publications.number }}">{{ publications.number }}</a>
+                        </div>
+
+                        {% if publications.number|add:"1" < publications.paginator.num_pages %}
+                        <div class="page-num">
+                          <a href="?page={{ publications.number|add:"1" }}">{{ publications.number|add:"1" }}</a>
+                        </div>
+                        {% endif %}
+
+                        {% if publications.paginator.num_pages > publications.number|add:"2" %}
+                        <div class="page-num">
+                          <span>...</span>
+                        </div>
+                        {% endif %}
+
+                        {% if publications.number < publications.paginator.num_pages %}
+                        <div class="page-num">
+                          <a href="?page={{ publications.paginator.num_pages }}">
+                            {{ publications.paginator.num_pages }}
+                          </a>
+                        </div>
+                        {% endif %}
 
                         {% if publications.has_next %}
                         <div class="page-num">

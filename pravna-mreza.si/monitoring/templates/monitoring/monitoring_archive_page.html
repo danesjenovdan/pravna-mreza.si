@@ -81,13 +81,47 @@
                     </div>
                     {% endif %}
 
-                    {% for page_num in monitoring_pages.paginator.page_range %}
-                    <div class="page-num {% if page_num == monitoring_pages.number %} active{% endif %}">
-                        <a href="?page={{ page_num }}">
-                            {{ page_num }}
+                    {% if monitoring_pages.number > 2 %}
+                    <div class="page-num">
+                        <a href="?page=1">1</a>
+                    </div>
+                    {% endif %}
+
+                    {% if monitoring_pages.number > 3 %}
+                    <div class="page-num">
+                        <span>...</span>
+                    </div>
+                    {% endif %}
+
+                    {% if monitoring_pages.number|add:"-1" > 0 %}
+                    <div class="page-num">
+                        <a href="?page={{ monitoring_pages.number|add:"-1" }}">{{ monitoring_pages.number|add:"-1" }}</a>
+                    </div>
+                    {% endif %}
+
+                    <div class="page-num active">
+                        <a href="?page={{ monitoring_pages.number }}">{{ monitoring_pages.number }}</a>
+                    </div>
+
+                    {% if monitoring_pages.number|add:"1" < monitoring_pages.paginator.num_pages %}
+                    <div class="page-num">
+                        <a href="?page={{ monitoring_pages.number|add:"1" }}">{{ monitoring_pages.number|add:"1" }}</a>
+                    </div>
+                    {% endif %}
+
+                    {% if monitoring_pages.paginator.num_pages > monitoring_pages.number|add:"2" %}
+                    <div class="page-num">
+                        <span>...</span>
+                    </div>
+                    {% endif %}
+
+                    {% if monitoring_pages.number < monitoring_pages.paginator.num_pages %}
+                    <div class="page-num">
+                        <a href="?page={{ monitoring_pages.paginator.num_pages }}">
+                        {{ monitoring_pages.paginator.num_pages }}
                         </a>
                     </div>
-                    {% endfor %}
+                    {% endif %}
 
                     {% if monitoring_pages.has_next %}
                     <div class="page-num">
