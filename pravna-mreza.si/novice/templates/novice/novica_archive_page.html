@@ -57,13 +57,47 @@
                         </div>
                         {% endif %}
 
-                        {% for page_num in novice.paginator.page_range %}
-                        <div class="page-num {% if page_num == novice.number %} active{% endif %}">
-                            <a href="?page={{ page_num }}">
-                                {{ page_num }}
+                        {% if novice.number > 2 %}
+                        <div class="page-num">
+                            <a href="?page=1">1</a>
+                        </div>
+                        {% endif %}
+
+                        {% if novice.number > 3 %}
+                        <div class="page-num">
+                            <span>...</span>
+                        </div>
+                        {% endif %}
+
+                        {% if novice.number|add:"-1" > 0 %}
+                        <div class="page-num">
+                            <a href="?page={{ novice.number|add:"-1" }}">{{ novice.number|add:"-1" }}</a>
+                        </div>
+                        {% endif %}
+
+                        <div class="page-num active">
+                            <a href="?page={{ novice.number }}">{{ novice.number }}</a>
+                        </div>
+
+                        {% if novice.number|add:"1" < novice.paginator.num_pages %}
+                        <div class="page-num">
+                            <a href="?page={{ novice.number|add:"1" }}">{{ novice.number|add:"1" }}</a>
+                        </div>
+                        {% endif %}
+
+                        {% if novice.paginator.num_pages > novice.number|add:"2" %}
+                        <div class="page-num">
+                            <span>...</span>
+                        </div>
+                        {% endif %}
+
+                        {% if novice.number < novice.paginator.num_pages %}
+                        <div class="page-num">
+                            <a href="?page={{ novice.paginator.num_pages }}">
+                            {{ novice.paginator.num_pages }}
                             </a>
                         </div>
-                        {% endfor %}
+                        {% endif %}
 
                         {% if novice.has_next %}
                         <div class="page-num">
@@ -82,10 +116,10 @@
 <div class="row row-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 {% include "home/includes/newsletter-box.html" %}
             </div>
-            <div class="col-md-6 my-4 my-lg-0">
+            <div class="col-lg-6 my-4 my-xl-0">
                 {% include "home/includes/support-box.html" %}
             </div>
         </div>
