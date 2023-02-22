@@ -8,4 +8,4 @@ resources:
 images:
   - name: pravnamreza
     newName: rg.fr-par.scw.cloud/djnd/pravna-mreza.si
-    newTag: '41af2ac62a185ffe55487bdb78ba20009d07c0c7'
+    newTag: '7d097db3874fe6b385282b5e403c061d1bd08d4e'
