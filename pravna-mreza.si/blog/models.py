@@ -74,9 +74,10 @@ class BlogPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        if self.get_parent().specific.blog_section_archive_link:
-            blogpost_archive = self.get_parent().specific.blog_section_archive_link.url
-        else:
+        try:
+            homepage = Page.objects.get(slug='home')
+            blogpost_archive = homepage.specific.blog_section_archive_link.url
+        except:
             blogpost_archive = '/'
         context['blogpost_archive'] = blogpost_archive
         return context

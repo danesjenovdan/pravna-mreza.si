@@ -28,14 +28,14 @@ PGPASSWORD=$DATABASE_PASSWORD \
 
 echo
 echo "DROPPING THE DB VOLUME"
-sudo docker-compose down -v
-sudo docker-compose up -d
+sudo docker compose down -v
+sudo docker compose up -d
 
 sleep 5
 
 echo
 echo "LOADING DB INTO CONTAINER"
-sudo docker container exec -i $(sudo docker-compose ps -q db) psql -U wagtail wagtail < db.dump
+sudo docker container exec -i $(sudo docker compose ps -q db) psql -U wagtail wagtail < db.dump
 
 sudo docker-compose down
 
