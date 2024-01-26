@@ -23,15 +23,15 @@
 
 <div class="row row-white px-4 px-lg-0">
     <div class="container">
-        {% for project in projects %}
+        {% for project in page.projects %}
         <div class="row news-preview mb-lg-5">
             <div class="col-lg-8">
                 <div>
-                    <a class="news-title" href="{{ project.url }}"><h1>{{ project.title }}</h1></a>
+                    <a class="news-title" href="{{ project.value.project.url }}"><h1>{{ project.value.project.title }}</h1></a>
                 </div>
                 <div class="mt-3 news-desc">
-                    {{ project.preview_text|safe }}
-                    <a class="{{ project.url }}" href="{{ project.url }}">VEČ &gt;&gt;&gt;</a>
+                    {{ project.value.project.preview_text|safe }}
+                    <a class="{{ project.value.project.url }}" href="{{ project.value.project.url }}">VEČ &gt;&gt;&gt;</a>
                 </div>
             </div>
         </div>
