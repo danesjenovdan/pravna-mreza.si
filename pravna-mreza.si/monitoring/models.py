@@ -1,6 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -21,7 +20,7 @@ class MonitoringPage(Page):
         FieldPanel('date'),
         FieldPanel('preview_text'),
         FieldPanel('intro_text'),
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     def get_context(self, request):
@@ -57,9 +56,9 @@ class MonitoringArchivePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
+        FieldPanel('headline_image'),
         FieldPanel('intro_text'),
-        StreamFieldPanel('link'),
+        FieldPanel('link'),
     ]
 
     def get_context(self, request):

@@ -2,12 +2,12 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from blog.models import BlogPage
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 
@@ -68,7 +68,7 @@ class OgSettings(BaseSetting):
     panels = [
         FieldPanel('og_title'),
         FieldPanel('og_description'),
-        ImageChooserPanel('og_image'),
+        FieldPanel('og_image'),
     ]
 
 
@@ -83,7 +83,7 @@ class NavigationSettings(BaseSetting):
     )
 
     panels = [
-        StreamFieldPanel("navigation_links"),
+        FieldPanel("navigation_links"),
     ]
 
     class Meta:
@@ -118,8 +118,8 @@ class FooterSettings(BaseSetting):
         FieldPanel('facebook_link'),
         FieldPanel('twitter_link'),
         FieldPanel('instagram_link'),
-        StreamFieldPanel("footer_links_left"),
-        StreamFieldPanel("footer_links_right"),
+        FieldPanel("footer_links_left"),
+        FieldPanel("footer_links_right"),
     ]
 
     class Meta:
@@ -236,7 +236,7 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
-        ImageChooserPanel('intro_image'),
+        FieldPanel('intro_image'),
         FieldPanel('news_section_title'),
         FieldPanel('news_section_archive_link_title'),
         FieldPanel('news_section_archive_link'),
@@ -278,8 +278,8 @@ class GenericPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('headline_image'),
+        FieldPanel('body'),
         FieldPanel('monitor_box'),
         FieldPanel('newsletter_box'),
         FieldPanel('social_media_box'),
@@ -307,7 +307,7 @@ class DonationPage(Page):
     right_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Desna škatla - gumb povezava')
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
         FieldPanel('left_box_heading_part_one'),
         FieldPanel('left_box_heading_part_two'),
         FieldPanel('left_box_description'),
@@ -350,7 +350,7 @@ class NewsletterPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
+        FieldPanel('headline_image'),
         FieldPanel("description"),
     ]
 

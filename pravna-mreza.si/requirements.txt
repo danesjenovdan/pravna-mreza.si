@@ -1,5 +1,5 @@
 Django==3.2
-wagtail==3.0
+wagtail==4.0
 psycopg2
 django-storages
 boto3

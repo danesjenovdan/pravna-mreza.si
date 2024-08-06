@@ -1,6 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -36,13 +35,13 @@ class NovicaPage(Page):
         FieldPanel('date'),
         FieldPanel('tag'),
         FieldPanel('preview_text', classname="full"),
-        ImageChooserPanel('preview_image'),
+        FieldPanel('preview_image'),
         FieldPanel('intro_text'),
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     promote_panels = Page.promote_panels + [
-        ImageChooserPanel("meta_image"),
+        FieldPanel("meta_image"),
     ]
 
     def get_context(self, request):
@@ -68,7 +67,7 @@ class NovicaArchivePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
+        FieldPanel('headline_image'),
     ]
 
     def get_context(self, request):

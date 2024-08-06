@@ -1,6 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -19,8 +18,8 @@ class AboutUsPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('headline_image'),
+        FieldPanel('body'),
 
     ]
 
