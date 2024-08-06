@@ -1,9 +1,8 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail import blocks
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from home.models import Objava
 
@@ -14,13 +13,13 @@ class AboutUsPage(Page):
     headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('headline_image'),
+        FieldPanel('body'),
 
     ]
 

@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('footer_text', models.TextField(blank=True, verbose_name='Besedilo v footerju')),
                 ('facebook_link', models.URLField(blank=True, null=True, verbose_name='Facebook URL')),
                 ('twitter_link', models.URLField(blank=True, null=True, verbose_name='Twitter URL')),
-                ('footer_links_left', wagtail.core.fields.StreamField([('page_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.core.blocks.PageChooserBlock(label='Stran')), ('has_border', wagtail.core.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))])), ('external_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(label='Ime')), ('url', wagtail.core.blocks.URLBlock(label='Povezava')), ('has_border', wagtail.core.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))]))], verbose_name='Povezave v nogi na levi')),
-                ('footer_links_right', wagtail.core.fields.StreamField([('page_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.core.blocks.PageChooserBlock(label='Stran')), ('has_border', wagtail.core.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))])), ('external_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(label='Ime')), ('url', wagtail.core.blocks.URLBlock(label='Povezava')), ('has_border', wagtail.core.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))]))], verbose_name='Povezave v nogi na desni')),
+                ('footer_links_left', wagtail.fields.StreamField([('page_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.blocks.PageChooserBlock(label='Stran')), ('has_border', wagtail.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))])), ('external_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(label='Ime')), ('url', wagtail.blocks.URLBlock(label='Povezava')), ('has_border', wagtail.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))]))], verbose_name='Povezave v nogi na levi')),
+                ('footer_links_right', wagtail.fields.StreamField([('page_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.blocks.PageChooserBlock(label='Stran')), ('has_border', wagtail.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))])), ('external_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(label='Ime')), ('url', wagtail.blocks.URLBlock(label='Povezava')), ('has_border', wagtail.blocks.BooleanBlock(label='Gumb ima obrobo?', required=False))]))], verbose_name='Povezave v nogi na desni')),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
             ],
             options={

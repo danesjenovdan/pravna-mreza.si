@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             name='DonationPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('body', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock())])),
+                ('body', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock())])),
                 ('left_box_heading_part_one', models.TextField(blank=True, verbose_name='Leva škatla - naslov prvi del')),
                 ('left_box_heading_part_two', models.TextField(blank=True, verbose_name='Leva škatla - naslov drugi del')),
                 ('left_box_description', models.TextField(blank=True, verbose_name='Leva škatla - opis')),

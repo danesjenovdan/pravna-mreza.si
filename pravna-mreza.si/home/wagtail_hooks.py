@@ -3,10 +3,10 @@ from django.utils.translation import gettext
 from draftjs_exporter.dom import DOM
 from wagtail.admin.rich_text.converters.html_to_contentstate import BlockElementHandler
 from wagtail.admin.rich_text.editors.draftail import features as draftail_features
-from wagtail.core import hooks
-from wagtail.core.rich_text import LinkHandler
+from wagtail import hooks
+from wagtail.rich_text import LinkHandler
 from django.utils.text import slugify
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin, modeladmin_register)
 from .models import Objava
 from novice.models import NovicaTag

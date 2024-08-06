@@ -1,9 +1,8 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail.admin.panels import FieldPanel
+from wagtail import blocks
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from home.models import PageLinkBlock, ExternalLinkBlock, EmailLinkBlock
@@ -31,6 +30,7 @@ class Achievement(models.Model):
         null=True,
         blank=True,
         verbose_name="Povezava",
+        use_json_field=True
     )
 
     panels = [
@@ -39,7 +39,7 @@ class Achievement(models.Model):
         FieldPanel('date2'),
         FieldPanel('date'),
         FieldPanel('description'),
-        StreamFieldPanel("link"),
+        FieldPanel("link"),
     ]
 
     def __str__(self):
@@ -54,7 +54,7 @@ class AchievementArchivePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
+        FieldPanel('headline_image'),
     ]
 
     def get_context(self, request):

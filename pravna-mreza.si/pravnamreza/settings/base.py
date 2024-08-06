@@ -34,10 +34,11 @@ INSTALLED_APPS = [
     'aboutus',
     'projects',
 
+    "wagtail_modeladmin",
+
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.settings',
-    'wagtail.contrib.modeladmin',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'wagtail.images',
     'wagtail.search',
     'wagtail.admin',
-    'wagtail.core',
+    'wagtail',
 
     'modelcluster',
     'taggit',
@@ -204,4 +205,7 @@ WAGTAILEMBEDS_FINDERS = [
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'https://pravna-mreza.si/'
+WAGTAILADMIN_BASE_URL = 'https://pravna-mreza.si/'
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

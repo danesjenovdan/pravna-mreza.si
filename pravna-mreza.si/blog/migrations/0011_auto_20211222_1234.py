@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogpage',
             name='body',
-            field=wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock())], verbose_name='Besedilo'),
+            field=wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock())], verbose_name='Besedilo'),
         ),
         migrations.AlterField(
             model_name='blogpage',
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogpage',
             name='intro_text',
-            field=wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Opis pod naslovom'),
+            field=wagtail.fields.RichTextField(blank=True, null=True, verbose_name='Opis pod naslovom'),
         ),
         migrations.AlterField(
             model_name='blogpage',
@@ -42,6 +42,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogpage',
             name='preview_text',
-            field=wagtail.core.fields.RichTextField(default='', verbose_name='Opis na seznamu'),
+            field=wagtail.fields.RichTextField(default='', verbose_name='Opis na seznamu'),
         ),
     ]

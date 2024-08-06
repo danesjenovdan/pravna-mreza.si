@@ -2,12 +2,12 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from blog.models import BlogPage
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import PageChooserPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
+from wagtail import blocks
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 
@@ -60,7 +60,7 @@ class Infopush(models.Model):
 
 
 @register_setting
-class OgSettings(BaseSetting):
+class OgSettings(BaseGenericSetting):
     og_title = models.CharField(max_length=255)
     og_description = models.CharField(max_length=255)
     og_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
@@ -68,22 +68,23 @@ class OgSettings(BaseSetting):
     panels = [
         FieldPanel('og_title'),
         FieldPanel('og_description'),
-        ImageChooserPanel('og_image'),
+        FieldPanel('og_image'),
     ]
 
 
 @register_setting()
-class NavigationSettings(BaseSetting):
+class NavigationSettings(BaseGenericSetting):
     navigation_links = StreamField(
         [
             ('page_link', PageLinkBlock()),
             ('external_link', ExternalLinkBlock()),
         ],
         verbose_name=_("Povezave v glavi"),
+        use_json_field=True
     )
 
     panels = [
-        StreamFieldPanel("navigation_links"),
+        FieldPanel("navigation_links"),
     ]
 
     class Meta:
@@ -91,7 +92,7 @@ class NavigationSettings(BaseSetting):
 
 
 @register_setting()
-class FooterSettings(BaseSetting):
+class FooterSettings(BaseGenericSetting):
     footer_text = models.TextField(verbose_name='Besedilo v footerju', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
     twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
@@ -103,6 +104,7 @@ class FooterSettings(BaseSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na levi"),
+        use_json_field=True
     )
     footer_links_right = StreamField(
         [
@@ -111,6 +113,7 @@ class FooterSettings(BaseSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na desni"),
+        use_json_field=True
     )
 
     panels = [
@@ -118,8 +121,8 @@ class FooterSettings(BaseSetting):
         FieldPanel('facebook_link'),
         FieldPanel('twitter_link'),
         FieldPanel('instagram_link'),
-        StreamFieldPanel("footer_links_left"),
-        StreamFieldPanel("footer_links_right"),
+        FieldPanel("footer_links_left"),
+        FieldPanel("footer_links_right"),
     ]
 
     class Meta:
@@ -127,7 +130,7 @@ class FooterSettings(BaseSetting):
 
 
 @register_setting()
-class SocialMedia(BaseSetting):
+class SocialMedia(BaseGenericSetting):
     social_media_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     social_media_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
@@ -147,7 +150,7 @@ class SocialMedia(BaseSetting):
 
 
 @register_setting()
-class Newsletter(BaseSetting):
+class Newsletter(BaseGenericSetting):
     newsletter_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     newsletter_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     newsletter_terms = models.TextField(verbose_name='Novičnik pogoji', blank=True)
@@ -167,7 +170,7 @@ class Newsletter(BaseSetting):
 
 
 @register_setting()
-class Support(BaseSetting):
+class Support(BaseGenericSetting):
     support_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     support_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     support_text = models.TextField(verbose_name='Opis', blank=True)
@@ -187,7 +190,7 @@ class Support(BaseSetting):
 
 
 @register_setting()
-class Monitor(BaseSetting):
+class Monitor(BaseGenericSetting):
     monitor_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     monitor_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     monitor_text = models.TextField(verbose_name='Opis', blank=True)
@@ -236,7 +239,7 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('intro_text', classname="full"),
-        ImageChooserPanel('intro_image'),
+        FieldPanel('intro_image'),
         FieldPanel('news_section_title'),
         FieldPanel('news_section_archive_link_title'),
         FieldPanel('news_section_archive_link'),
@@ -269,7 +272,7 @@ class GenericPage(Page):
     headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
     social_media_box = models.BooleanField(default=False, verbose_name='Škatla družbena omrežja')
     newsletter_box = models.BooleanField(default=False, verbose_name='Škatla novičnik')
     support_box = models.BooleanField(default=False, verbose_name='Škatla podpri')
@@ -278,8 +281,8 @@ class GenericPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('headline_image'),
+        FieldPanel('body'),
         FieldPanel('monitor_box'),
         FieldPanel('newsletter_box'),
         FieldPanel('social_media_box'),
@@ -294,7 +297,7 @@ class GenericPage(Page):
 class DonationPage(Page):
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
     left_box_heading_part_one = models.TextField(blank=True, verbose_name='Leva škatla - naslov prvi del')
     left_box_heading_part_two = models.TextField(blank=True, verbose_name='Leva škatla - naslov drugi del')
     left_box_description = models.TextField(blank=True, verbose_name='Leva škatla - opis')    
@@ -307,7 +310,7 @@ class DonationPage(Page):
     right_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Desna škatla - gumb povezava')
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
         FieldPanel('left_box_heading_part_one'),
         FieldPanel('left_box_heading_part_two'),
         FieldPanel('left_box_description'),
@@ -350,7 +353,7 @@ class NewsletterPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('headline_first'),
         FieldPanel('headline_second'),
-        ImageChooserPanel('headline_image'),
+        FieldPanel('headline_image'),
         FieldPanel("description"),
     ]
 

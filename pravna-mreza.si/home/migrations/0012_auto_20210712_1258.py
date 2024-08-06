@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='genericpage',
             name='body',
-            field=wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.StructBlock([('part_one', wagtail.core.blocks.CharBlock(required=False)), ('part_two', wagtail.core.blocks.CharBlock(required=False)), ('intro_text', wagtail.core.blocks.RichTextBlock(required=False))], icon='title')), ('paragraph', wagtail.core.blocks.RichTextBlock()), ('donation_section', wagtail.core.blocks.StructBlock([('left_button_heading_part_one', wagtail.core.blocks.CharBlock(required=False)), ('left_button_heading_part_two', wagtail.core.blocks.CharBlock(required=False)), ('left_button_description', wagtail.core.blocks.CharBlock(required=False)), ('left_button_donation_page', wagtail.core.blocks.PageChooserBlock(label='Povezava do strani')), ('right_heading_part_one', wagtail.core.blocks.CharBlock(required=False)), ('right_heading_part_two', wagtail.core.blocks.CharBlock(required=False)), ('right_button_description', wagtail.core.blocks.CharBlock(required=False)), ('right_button_donation_page', wagtail.core.blocks.PageChooserBlock(label='Povezava do strani'))]))]),
+            field=wagtail.fields.StreamField([('heading', wagtail.blocks.StructBlock([('part_one', wagtail.blocks.CharBlock(required=False)), ('part_two', wagtail.blocks.CharBlock(required=False)), ('intro_text', wagtail.blocks.RichTextBlock(required=False))], icon='title')), ('paragraph', wagtail.blocks.RichTextBlock()), ('donation_section', wagtail.blocks.StructBlock([('left_button_heading_part_one', wagtail.blocks.CharBlock(required=False)), ('left_button_heading_part_two', wagtail.blocks.CharBlock(required=False)), ('left_button_description', wagtail.blocks.CharBlock(required=False)), ('left_button_donation_page', wagtail.blocks.PageChooserBlock(label='Povezava do strani')), ('right_heading_part_one', wagtail.blocks.CharBlock(required=False)), ('right_heading_part_two', wagtail.blocks.CharBlock(required=False)), ('right_button_description', wagtail.blocks.CharBlock(required=False)), ('right_button_donation_page', wagtail.blocks.PageChooserBlock(label='Povezava do strani'))]))]),
         ),
     ]

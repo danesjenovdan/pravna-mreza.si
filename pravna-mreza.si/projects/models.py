@@ -1,10 +1,9 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail.admin.panels import FieldPanel
+from wagtail import blocks
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
@@ -37,7 +36,7 @@ class ProjectPage(Page):
     body = StreamField(
         [
             ("paragraph", blocks.RichTextBlock()),
-        ]
+        ], use_json_field=True
     )
     meta_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -52,13 +51,13 @@ class ProjectPage(Page):
         # FieldPanel('date'),
         # FieldPanel('tag'),
         FieldPanel("preview_text", classname="full"),
-        ImageChooserPanel("preview_image"),
+        FieldPanel("preview_image"),
         FieldPanel("intro_text"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     promote_panels = Page.promote_panels + [
-        ImageChooserPanel("meta_image"),
+        FieldPanel("meta_image"),
     ]
 
     def get_context(self, request):
@@ -92,13 +91,14 @@ class ProjectsArchivePage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True
     )
 
     content_panels = Page.content_panels + [
         FieldPanel("headline_first"),
         FieldPanel("headline_second"),
-        ImageChooserPanel("headline_image"),
-        StreamFieldPanel("projects"),
+        FieldPanel("headline_image"),
+        FieldPanel("projects"),
     ]
 
     # def get_context(self, request):

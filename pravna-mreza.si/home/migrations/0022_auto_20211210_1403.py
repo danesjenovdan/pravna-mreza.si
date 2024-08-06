@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='infopush',
             name='text',
-            field=wagtail.core.fields.RichTextField(verbose_name='Opis'),
+            field=wagtail.fields.RichTextField(verbose_name='Opis'),
         ),
         migrations.AlterField(
             model_name='infopush',
