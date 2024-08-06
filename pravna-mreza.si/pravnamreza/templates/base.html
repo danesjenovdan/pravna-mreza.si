@@ -51,14 +51,6 @@
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
 
-        <script defer data-domain="pravna-mreza.si" src="https://plausible.lb.djnd.si/js/plausible.js"></script>
-    </head>
-
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
-
-        {% block content %}{% endblock %}
-
         {# Bootstrap JS #}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}?cacheme=3"></script>
@@ -69,5 +61,13 @@
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+
+        <script defer data-domain="pravna-mreza.si" src="https://plausible.lb.djnd.si/js/plausible.js"></script>
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {% block content %}{% endblock %}
     </body>
 </html>

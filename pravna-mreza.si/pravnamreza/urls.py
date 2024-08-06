@@ -1,8 +1,7 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 from django.views.generic import RedirectView
-from django.conf.urls import url
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -11,7 +10,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 urlpatterns = [
-    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
 
     path('django-admin/', admin.site.urls),
 
