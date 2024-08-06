@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='NavigationSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('navigation_links', wagtail.core.fields.StreamField([('page_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.core.blocks.PageChooserBlock(label='Stran'))])), ('external_link', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(label='Ime')), ('url', wagtail.core.blocks.URLBlock(label='Povezava'))]))], verbose_name='Povezave v glavi')),
+                ('navigation_links', wagtail.fields.StreamField([('page_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(help_text='Če je prazno se uporabi naslov strani.', label='Ime', required=False)), ('page', wagtail.blocks.PageChooserBlock(label='Stran'))])), ('external_link', wagtail.blocks.StructBlock([('name', wagtail.blocks.CharBlock(label='Ime')), ('url', wagtail.blocks.URLBlock(label='Povezava'))]))], verbose_name='Povezave v glavi')),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
             ],
             options={

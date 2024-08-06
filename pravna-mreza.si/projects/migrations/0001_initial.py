@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
             name='ProjectPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('preview_text', wagtail.core.fields.RichTextField(default='')),
-                ('intro_text', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Opis')),
-                ('body', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock())])),
+                ('preview_text', wagtail.fields.RichTextField(default='')),
+                ('intro_text', wagtail.fields.RichTextField(blank=True, null=True, verbose_name='Opis')),
+                ('body', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock())])),
                 ('meta_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image', verbose_name='OG slika')),
                 ('preview_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
             ],

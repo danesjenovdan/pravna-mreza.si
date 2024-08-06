@@ -2,12 +2,12 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from novice.models import NovicaPage
 from blog.models import BlogPage
-from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail import blocks
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 
