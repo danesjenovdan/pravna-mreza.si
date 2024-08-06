@@ -11,7 +11,7 @@ class Author(models.Model):
     name = models.TextField()
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika')
 
-    content_panels = [
+    panels = [
         FieldPanel('name'),
         FieldPanel('image'),
     ]

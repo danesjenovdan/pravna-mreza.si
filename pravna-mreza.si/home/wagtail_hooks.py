@@ -6,7 +6,7 @@ from wagtail.admin.rich_text.editors.draftail import features as draftail_featur
 from wagtail import hooks
 from wagtail.rich_text import LinkHandler
 from django.utils.text import slugify
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin, modeladmin_register)
 from .models import Objava
 from novice.models import NovicaTag
