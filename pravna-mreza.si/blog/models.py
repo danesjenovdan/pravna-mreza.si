@@ -31,11 +31,12 @@ class BlogPage(Page):
         null=True,
         # min_num=0,
         # max_num=3,
-        verbose_name="Povezani blog zapisi"
+        verbose_name="Povezani blog zapisi",
+        use_json_field=True
     )
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ], verbose_name='Besedilo')
+    ], verbose_name='Besedilo', use_json_field=True)
     meta_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

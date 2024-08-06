@@ -30,6 +30,7 @@ class Achievement(models.Model):
         null=True,
         blank=True,
         verbose_name="Povezava",
+        use_json_field=True
     )
 
     panels = [

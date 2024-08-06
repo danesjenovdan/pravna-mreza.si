@@ -21,7 +21,7 @@ class NovicaPage(Page):
     intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
     meta_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

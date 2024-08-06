@@ -4,7 +4,7 @@ from novice.models import NovicaPage
 from blog.models import BlogPage
 from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import FieldPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail import blocks
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
@@ -60,7 +60,7 @@ class Infopush(models.Model):
 
 
 @register_setting
-class OgSettings(BaseSetting):
+class OgSettings(BaseGenericSetting):
     og_title = models.CharField(max_length=255)
     og_description = models.CharField(max_length=255)
     og_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
@@ -73,13 +73,14 @@ class OgSettings(BaseSetting):
 
 
 @register_setting()
-class NavigationSettings(BaseSetting):
+class NavigationSettings(BaseGenericSetting):
     navigation_links = StreamField(
         [
             ('page_link', PageLinkBlock()),
             ('external_link', ExternalLinkBlock()),
         ],
         verbose_name=_("Povezave v glavi"),
+        use_json_field=True
     )
 
     panels = [
@@ -91,7 +92,7 @@ class NavigationSettings(BaseSetting):
 
 
 @register_setting()
-class FooterSettings(BaseSetting):
+class FooterSettings(BaseGenericSetting):
     footer_text = models.TextField(verbose_name='Besedilo v footerju', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
     twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
@@ -103,6 +104,7 @@ class FooterSettings(BaseSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na levi"),
+        use_json_field=True
     )
     footer_links_right = StreamField(
         [
@@ -111,6 +113,7 @@ class FooterSettings(BaseSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na desni"),
+        use_json_field=True
     )
 
     panels = [
@@ -127,7 +130,7 @@ class FooterSettings(BaseSetting):
 
 
 @register_setting()
-class SocialMedia(BaseSetting):
+class SocialMedia(BaseGenericSetting):
     social_media_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     social_media_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
@@ -147,7 +150,7 @@ class SocialMedia(BaseSetting):
 
 
 @register_setting()
-class Newsletter(BaseSetting):
+class Newsletter(BaseGenericSetting):
     newsletter_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     newsletter_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     newsletter_terms = models.TextField(verbose_name='Novičnik pogoji', blank=True)
@@ -167,7 +170,7 @@ class Newsletter(BaseSetting):
 
 
 @register_setting()
-class Support(BaseSetting):
+class Support(BaseGenericSetting):
     support_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     support_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     support_text = models.TextField(verbose_name='Opis', blank=True)
@@ -187,7 +190,7 @@ class Support(BaseSetting):
 
 
 @register_setting()
-class Monitor(BaseSetting):
+class Monitor(BaseGenericSetting):
     monitor_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
     monitor_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
     monitor_text = models.TextField(verbose_name='Opis', blank=True)
@@ -269,7 +272,7 @@ class GenericPage(Page):
     headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
     social_media_box = models.BooleanField(default=False, verbose_name='Škatla družbena omrežja')
     newsletter_box = models.BooleanField(default=False, verbose_name='Škatla novičnik')
     support_box = models.BooleanField(default=False, verbose_name='Škatla podpri')
@@ -294,7 +297,7 @@ class GenericPage(Page):
 class DonationPage(Page):
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
     left_box_heading_part_one = models.TextField(blank=True, verbose_name='Leva škatla - naslov prvi del')
     left_box_heading_part_two = models.TextField(blank=True, verbose_name='Leva škatla - naslov drugi del')
     left_box_description = models.TextField(blank=True, verbose_name='Leva škatla - opis')    

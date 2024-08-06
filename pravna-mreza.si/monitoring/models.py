@@ -14,7 +14,7 @@ class MonitoringPage(Page):
     intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
-    ])
+    ], use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
@@ -51,6 +51,7 @@ class MonitoringArchivePage(Page):
         null=True,
         blank=True,
         verbose_name="Povezava v opisu",
+        use_json_field=True
     )
 
     content_panels = Page.content_panels + [
