@@ -49,3 +49,6 @@ LOGGING = {
         },
     },
 }
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", 'https://pravna-mreza.si']
+
