@@ -1,12 +1,11 @@
 import re
-
-from wagtail.embeds.finders.base import EmbedFinder
-from wagtail.embeds.exceptions import EmbedNotFoundException
-
 from urllib import request as urllib_request
 from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import Request
+
+from wagtail.embeds.exceptions import EmbedNotFoundException
+from wagtail.embeds.finders.base import EmbedFinder
 
 
 class RtvEmbedFinder(EmbedFinder):
@@ -38,7 +37,7 @@ class RtvEmbedFinder(EmbedFinder):
 
         # check if url matches any of the providers
         return self._get_endpoint(url) is not None
-        
+
     def find_embed(self, url, max_width=None):
         """
         Takes a URL and max width and returns a dictionary of information about the
@@ -48,12 +47,12 @@ class RtvEmbedFinder(EmbedFinder):
         """
 
         return {
-            'title': "",
-            'author_name': "Multimedijski center RTV Slovenija",
-            'provider_name': "RTVSLO.si",
-            'type': "video",
-            'thumbnail_url': "",
-            'width': "",
-            'height': "",
-            'html': f'<iframe class="custom-video-embed" src="{url}"></iframe>',
+            "title": "",
+            "author_name": "Multimedijski center RTV Slovenija",
+            "provider_name": "RTVSLO.si",
+            "type": "video",
+            "thumbnail_url": "",
+            "width": "",
+            "height": "",
+            "html": f'<iframe class="custom-video-embed" src="{url}"></iframe>',
         }

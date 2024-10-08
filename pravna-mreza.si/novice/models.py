@@ -1,9 +1,9 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from wagtail.admin.panels import FieldPanel
 from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 class NovicaTag(models.Model):
@@ -15,29 +15,38 @@ class NovicaTag(models.Model):
 
 class NovicaPage(Page):
     date = models.DateField()
-    preview_text = RichTextField(blank=False, null=False, default='')
+    preview_text = RichTextField(blank=False, null=False, default="")
     tag = models.ForeignKey(NovicaTag, on_delete=models.SET_NULL, null=True, blank=True)
-    preview_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
-    intro_text = RichTextField(blank=True, null=True, verbose_name='Opis')
-    body = StreamField([
-        ('paragraph', blocks.RichTextBlock()),
-    ], use_json_field=True)
-    meta_image = models.ForeignKey(
-        'wagtailimages.Image',
+    preview_image = models.ForeignKey(
+        "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name='OG slika'
+        related_name="+",
+    )
+    intro_text = RichTextField(blank=True, null=True, verbose_name="Opis")
+    body = StreamField(
+        [
+            ("paragraph", blocks.RichTextBlock()),
+        ],
+        use_json_field=True,
+    )
+    meta_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="OG slika",
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('date'),
-        FieldPanel('tag'),
-        FieldPanel('preview_text', classname="full"),
-        FieldPanel('preview_image'),
-        FieldPanel('intro_text'),
-        FieldPanel('body'),
+        FieldPanel("date"),
+        FieldPanel("tag"),
+        FieldPanel("preview_text", classname="full"),
+        FieldPanel("preview_image"),
+        FieldPanel("intro_text"),
+        FieldPanel("body"),
     ]
 
     promote_panels = Page.promote_panels + [
@@ -47,11 +56,11 @@ class NovicaPage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         try:
-            homepage = Page.objects.get(slug='home')
+            homepage = Page.objects.get(slug="home")
             novice_archive = homepage.specific.news_section_archive_link.url
         except:
-            novice_archive = '/'
-        context['novice_archive'] = novice_archive
+            novice_archive = "/"
+        context["novice_archive"] = novice_archive
         return context
 
     class Meta:
@@ -60,21 +69,28 @@ class NovicaPage(Page):
 
 
 class NovicaArchivePage(Page):
-    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
-    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
-    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
+    headline_first = models.TextField(verbose_name="Naslovnica prvi del", blank=True)
+    headline_second = models.TextField(verbose_name="Naslovnica drugi del", blank=True)
+    headline_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Slika na naslovnici",
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel('headline_first'),
-        FieldPanel('headline_second'),
-        FieldPanel('headline_image'),
+        FieldPanel("headline_first"),
+        FieldPanel("headline_second"),
+        FieldPanel("headline_image"),
     ]
 
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         # Get all novice
-        vse_novice = NovicaPage.objects.all().live().order_by('-date')
+        vse_novice = NovicaPage.objects.all().live().order_by("-date")
         # Paginate all novice by 2 per page
         paginator = Paginator(vse_novice, 10)
         # Try to get the ?page=x value
@@ -89,7 +105,7 @@ class NovicaArchivePage(Page):
             # If the ?page=x is out of range (too high most likely)
             # Then return the last page
             novice = paginator.page(paginator.num_pages)
-        context['novice'] = novice
+        context["novice"] = novice
         return context
 
     class Meta:

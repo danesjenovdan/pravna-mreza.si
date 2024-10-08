@@ -6,20 +6,29 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0038_auto_20211226_1959'),
+        ("home", "0038_auto_20211226_1959"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='donationembedpage',
-            options={'verbose_name': 'Stran za donacijo', 'verbose_name_plural': 'Strani za donacijo'},
+            name="donationembedpage",
+            options={
+                "verbose_name": "Stran za donacijo",
+                "verbose_name_plural": "Strani za donacijo",
+            },
         ),
         migrations.AlterModelOptions(
-            name='genericpage',
-            options={'verbose_name': 'Generična stran', 'verbose_name_plural': 'Generične strani'},
+            name="genericpage",
+            options={
+                "verbose_name": "Generična stran",
+                "verbose_name_plural": "Generične strani",
+            },
         ),
         migrations.AlterModelOptions(
-            name='homepage',
-            options={'verbose_name': 'Domača stran', 'verbose_name_plural': 'Domače strani'},
+            name="homepage",
+            options={
+                "verbose_name": "Domača stran",
+                "verbose_name_plural": "Domače strani",
+            },
         ),
     ]

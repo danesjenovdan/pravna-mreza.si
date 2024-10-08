@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0044_genericpage_headline_image'),
+        ("home", "0044_genericpage_headline_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='footersettings',
-            name='instagram_link',
-            field=models.URLField(blank=True, null=True, verbose_name='Instagram URL'),
+            model_name="footersettings",
+            name="instagram_link",
+            field=models.URLField(blank=True, null=True, verbose_name="Instagram URL"),
         ),
         migrations.AddField(
-            model_name='socialmedia',
-            name='instagram_link',
-            field=models.URLField(blank=True, null=True, verbose_name='Instagram URL'),
+            model_name="socialmedia",
+            name="instagram_link",
+            field=models.URLField(blank=True, null=True, verbose_name="Instagram URL"),
         ),
     ]

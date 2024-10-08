@@ -1,11 +1,10 @@
-from django.utils.translation import gettext_lazy as _
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from wagtail.admin.panels import FieldPanel
+from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
 
 # class ProjectTag(models.Model):
 #     name = models.TextField()
@@ -36,7 +35,8 @@ class ProjectPage(Page):
     body = StreamField(
         [
             ("paragraph", blocks.RichTextBlock()),
-        ], use_json_field=True
+        ],
+        use_json_field=True,
     )
     meta_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -91,7 +91,7 @@ class ProjectsArchivePage(Page):
         ],
         null=True,
         blank=True,
-        use_json_field=True
+        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [

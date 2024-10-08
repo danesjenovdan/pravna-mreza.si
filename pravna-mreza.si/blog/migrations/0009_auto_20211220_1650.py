@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0008_blogpage_archive_page'),
+        ("blog", "0008_blogpage_archive_page"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='blogpage',
-            name='archive_page',
+            model_name="blogpage",
+            name="archive_page",
         ),
         migrations.AddField(
-            model_name='blogpage',
-            name='blogpost_archive_button',
-            field=models.TextField(blank=True, verbose_name='Besedilo gumba za nazaj'),
+            model_name="blogpage",
+            name="blogpost_archive_button",
+            field=models.TextField(blank=True, verbose_name="Besedilo gumba za nazaj"),
         ),
     ]

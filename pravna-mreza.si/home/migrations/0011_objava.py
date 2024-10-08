@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0010_auto_20210127_1232'),
+        ("home", "0010_auto_20210127_1232"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Objava',
+            name="Objava",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.TextField()),
-                ('url', models.URLField()),
-                ('source', models.TextField()),
-                ('date', models.DateField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.TextField()),
+                ("url", models.URLField()),
+                ("source", models.TextField()),
+                ("date", models.DateField()),
             ],
         ),
     ]

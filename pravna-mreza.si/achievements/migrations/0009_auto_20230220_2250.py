@@ -6,18 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('achievements', '0008_auto_20220720_2028'),
+        ("achievements", "0008_auto_20220720_2028"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='achievement',
-            name='date',
-            field=models.DateField(verbose_name='Datum oz. končni datum, če gre za obdobje'),
+            model_name="achievement",
+            name="date",
+            field=models.DateField(
+                verbose_name="Datum oz. končni datum, če gre za obdobje"
+            ),
         ),
         migrations.AlterField(
-            model_name='achievement',
-            name='date2',
-            field=models.DateField(blank=True, null=True, verbose_name='Začetni datum, če gre za obdobje (sicer naj ostane prazno)'),
+            model_name="achievement",
+            name="date2",
+            field=models.DateField(
+                blank=True,
+                null=True,
+                verbose_name="Začetni datum, če gre za obdobje (sicer naj ostane prazno)",
+            ),
         ),
     ]
