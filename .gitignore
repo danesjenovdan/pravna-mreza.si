@@ -25,7 +25,7 @@ coverage/
 client/node_modules
 
 ### vscode
-.vscode
+# .vscode
 
 ### secrets
 secrets.yaml
