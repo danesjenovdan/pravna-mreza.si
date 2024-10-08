@@ -22,8 +22,8 @@ jobs:
 
       - name: Check formatting with black
         run: |
-          black . --check --diff
+          (cd ./pravna-mreza.si && black . --check --diff)
 
       - name: Check formatting with isort
         run: |
-          isort . --check --diff --profile black
+          (cd ./pravna-mreza.si && isort . --check --diff --profile black)
