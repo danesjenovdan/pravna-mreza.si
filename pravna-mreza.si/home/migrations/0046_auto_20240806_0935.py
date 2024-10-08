@@ -6,36 +6,36 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0045_auto_20230220_2250'),
+        ("home", "0045_auto_20230220_2250"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='footersettings',
-            name='site',
+            model_name="footersettings",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='monitor',
-            name='site',
+            model_name="monitor",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='navigationsettings',
-            name='site',
+            model_name="navigationsettings",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='newsletter',
-            name='site',
+            model_name="newsletter",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='ogsettings',
-            name='site',
+            model_name="ogsettings",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='socialmedia',
-            name='site',
+            model_name="socialmedia",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='support',
-            name='site',
+            model_name="support",
+            name="site",
         ),
     ]

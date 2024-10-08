@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('achievements', '0001_initial'),
+        ("achievements", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='achievement',
-            name='link',
-            field=models.URLField(blank=True, null=True, verbose_name='Povezava do predloga zakona'),
+            model_name="achievement",
+            name="link",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Povezava do predloga zakona"
+            ),
         ),
     ]

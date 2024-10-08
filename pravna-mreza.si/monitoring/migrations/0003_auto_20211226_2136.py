@@ -6,16 +6,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('monitoring', '0002_monitoringarchivepage_get_in_touch_text'),
+        ("monitoring", "0002_monitoringarchivepage_get_in_touch_text"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='monitoringarchivepage',
-            options={'verbose_name': 'Seznam poročil', 'verbose_name_plural': 'Seznam poročil'},
+            name="monitoringarchivepage",
+            options={
+                "verbose_name": "Seznam poročil",
+                "verbose_name_plural": "Seznam poročil",
+            },
         ),
         migrations.AlterModelOptions(
-            name='monitoringpage',
-            options={'verbose_name': 'Poročilo', 'verbose_name_plural': 'Poročilo'},
+            name="monitoringpage",
+            options={"verbose_name": "Poročilo", "verbose_name_plural": "Poročilo"},
         ),
     ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('monitoring', '0001_initial'),
+        ("monitoring", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='monitoringarchivepage',
-            name='get_in_touch_text',
-            field=models.TextField(blank=True, verbose_name='Ime povezave'),
+            model_name="monitoringarchivepage",
+            name="get_in_touch_text",
+            field=models.TextField(blank=True, verbose_name="Ime povezave"),
         ),
     ]

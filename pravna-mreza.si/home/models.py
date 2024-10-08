@@ -1,58 +1,71 @@
-from django.utils.translation import gettext_lazy as _
 from django.db import models
-from novice.models import NovicaPage
-from blog.models import BlogPage
-from wagtail.admin.panels import PageChooserPanel
-from wagtail.admin.panels import FieldPanel
-from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
+from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
+from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Page
 from wagtail.images.models import Image
+from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
+
+from blog.models import BlogPage
+from novice.models import NovicaPage
 
 
 class ExternalLinkBlock(blocks.StructBlock):
-    name = blocks.CharBlock(label=_('Ime'))
-    url = blocks.URLBlock(label=_('Povezava'))
-    has_border = blocks.BooleanBlock(label='Gumb ima obrobo?', required=False)
+    name = blocks.CharBlock(label=_("Ime"))
+    url = blocks.URLBlock(label=_("Povezava"))
+    has_border = blocks.BooleanBlock(label="Gumb ima obrobo?", required=False)
 
     class Meta:
-        label = _('Zunanja povezava')
-        icon = 'link'
+        label = _("Zunanja povezava")
+        icon = "link"
 
 
 class PageLinkBlock(blocks.StructBlock):
-    name = blocks.CharBlock(required=False, label=_('Ime'), help_text=_('Če je prazno se uporabi naslov strani.'))
-    page = blocks.PageChooserBlock(label=_('Stran'))
-    has_border = blocks.BooleanBlock(label='Gumb ima obrobo?', required=False)
+    name = blocks.CharBlock(
+        required=False,
+        label=_("Ime"),
+        help_text=_("Če je prazno se uporabi naslov strani."),
+    )
+    page = blocks.PageChooserBlock(label=_("Stran"))
+    has_border = blocks.BooleanBlock(label="Gumb ima obrobo?", required=False)
 
     class Meta:
-        label = _('Povezava do strani')
-        icon = 'link'
+        label = _("Povezava do strani")
+        icon = "link"
 
 
 class EmailLinkBlock(blocks.StructBlock):
-    name = blocks.CharBlock(label=_('Ime'))
-    email = blocks.EmailBlock(label=_('Email povezava'))
+    name = blocks.CharBlock(label=_("Ime"))
+    email = blocks.EmailBlock(label=_("Email povezava"))
 
     class Meta:
-        label = _('Email povezava')
-        icon = 'link'
+        label = _("Email povezava")
+        icon = "link"
 
 
 @register_snippet
 class Infopush(models.Model):
-    title = models.TextField(null=True, blank=True, verbose_name='Naslov (neobvezno)')
-    text = RichTextField(verbose_name='Opis')
-    page = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do strani (neobvezno)')
-    page_text = models.TextField(null=True, blank=True, verbose_name='Besedilo na gumbu s povezavo (neobvezno)')
+    title = models.TextField(null=True, blank=True, verbose_name="Naslov (neobvezno)")
+    text = RichTextField(verbose_name="Opis")
+    page = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava do strani (neobvezno)",
+    )
+    page_text = models.TextField(
+        null=True, blank=True, verbose_name="Besedilo na gumbu s povezavo (neobvezno)"
+    )
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('text', classname="full"),
-        FieldPanel('page_text'),
-        PageChooserPanel('page'),
+        FieldPanel("title"),
+        FieldPanel("text", classname="full"),
+        FieldPanel("page_text"),
+        PageChooserPanel("page"),
     ]
 
     def __str__(self):
@@ -63,12 +76,18 @@ class Infopush(models.Model):
 class OgSettings(BaseGenericSetting):
     og_title = models.CharField(max_length=255)
     og_description = models.CharField(max_length=255)
-    og_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    og_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
 
     panels = [
-        FieldPanel('og_title'),
-        FieldPanel('og_description'),
-        FieldPanel('og_image'),
+        FieldPanel("og_title"),
+        FieldPanel("og_description"),
+        FieldPanel("og_image"),
     ]
 
 
@@ -76,11 +95,11 @@ class OgSettings(BaseGenericSetting):
 class NavigationSettings(BaseGenericSetting):
     navigation_links = StreamField(
         [
-            ('page_link', PageLinkBlock()),
-            ('external_link', ExternalLinkBlock()),
+            ("page_link", PageLinkBlock()),
+            ("external_link", ExternalLinkBlock()),
         ],
         verbose_name=_("Povezave v glavi"),
-        use_json_field=True
+        use_json_field=True,
     )
 
     panels = [
@@ -88,15 +107,17 @@ class NavigationSettings(BaseGenericSetting):
     ]
 
     class Meta:
-        verbose_name = 'Navigacija'
+        verbose_name = "Navigacija"
 
 
 @register_setting()
 class FooterSettings(BaseGenericSetting):
-    footer_text = models.TextField(verbose_name='Besedilo v footerju', blank=True)
-    facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
-    twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
-    instagram_link = models.URLField(verbose_name='Instagram URL', blank=True, null=True)
+    footer_text = models.TextField(verbose_name="Besedilo v footerju", blank=True)
+    facebook_link = models.URLField(verbose_name="Facebook URL", blank=True, null=True)
+    twitter_link = models.URLField(verbose_name="Twitter URL", blank=True, null=True)
+    instagram_link = models.URLField(
+        verbose_name="Instagram URL", blank=True, null=True
+    )
     footer_links_left = StreamField(
         [
             ("page_link", PageLinkBlock()),
@@ -104,7 +125,7 @@ class FooterSettings(BaseGenericSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na levi"),
-        use_json_field=True
+        use_json_field=True,
     )
     footer_links_right = StreamField(
         [
@@ -113,100 +134,128 @@ class FooterSettings(BaseGenericSetting):
             ("email_link", EmailLinkBlock()),
         ],
         verbose_name=_("Povezave v nogi na desni"),
-        use_json_field=True
+        use_json_field=True,
     )
 
     panels = [
-        FieldPanel('footer_text'),
-        FieldPanel('facebook_link'),
-        FieldPanel('twitter_link'),
-        FieldPanel('instagram_link'),
+        FieldPanel("footer_text"),
+        FieldPanel("facebook_link"),
+        FieldPanel("twitter_link"),
+        FieldPanel("instagram_link"),
         FieldPanel("footer_links_left"),
         FieldPanel("footer_links_right"),
     ]
 
     class Meta:
-        verbose_name = 'Footer'
+        verbose_name = "Footer"
 
 
 @register_setting()
 class SocialMedia(BaseGenericSetting):
-    social_media_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
-    social_media_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
-    facebook_link = models.URLField(verbose_name='Facebook URL', blank=True, null=True)
-    twitter_link = models.URLField(verbose_name='Twitter URL', blank=True, null=True)
-    instagram_link = models.URLField(verbose_name='Instagram URL', blank=True, null=True)
+    social_media_title_part_one = models.TextField(
+        verbose_name="Naslov 1. del", blank=True
+    )
+    social_media_title_part_two = models.TextField(
+        verbose_name="Naslov 2. del", blank=True
+    )
+    facebook_link = models.URLField(verbose_name="Facebook URL", blank=True, null=True)
+    twitter_link = models.URLField(verbose_name="Twitter URL", blank=True, null=True)
+    instagram_link = models.URLField(
+        verbose_name="Instagram URL", blank=True, null=True
+    )
 
     panels = [
-        FieldPanel('social_media_title_part_one'),
-        FieldPanel('social_media_title_part_two'),
-        FieldPanel('facebook_link'),
-        FieldPanel('twitter_link'),
-        FieldPanel('instagram_link'),
+        FieldPanel("social_media_title_part_one"),
+        FieldPanel("social_media_title_part_two"),
+        FieldPanel("facebook_link"),
+        FieldPanel("twitter_link"),
+        FieldPanel("instagram_link"),
     ]
 
     class Meta:
-        verbose_name = 'Družbena omrežja'
+        verbose_name = "Družbena omrežja"
 
 
 @register_setting()
 class Newsletter(BaseGenericSetting):
-    newsletter_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
-    newsletter_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
-    newsletter_terms = models.TextField(verbose_name='Novičnik pogoji', blank=True)
-    newsletter_success = models.TextField(verbose_name='Sporočilo ob uspešni prijavi', blank=True)
-    newsletter_failure = models.TextField(verbose_name='Sporočilo ob neuspešni prijavi', blank=True)
+    newsletter_title_part_one = models.TextField(
+        verbose_name="Naslov 1. del", blank=True
+    )
+    newsletter_title_part_two = models.TextField(
+        verbose_name="Naslov 2. del", blank=True
+    )
+    newsletter_terms = models.TextField(verbose_name="Novičnik pogoji", blank=True)
+    newsletter_success = models.TextField(
+        verbose_name="Sporočilo ob uspešni prijavi", blank=True
+    )
+    newsletter_failure = models.TextField(
+        verbose_name="Sporočilo ob neuspešni prijavi", blank=True
+    )
 
     panels = [
-        FieldPanel('newsletter_title_part_one'),
-        FieldPanel('newsletter_title_part_two'),
-        FieldPanel('newsletter_terms'),
-        FieldPanel('newsletter_success'),
-        FieldPanel('newsletter_failure'),
+        FieldPanel("newsletter_title_part_one"),
+        FieldPanel("newsletter_title_part_two"),
+        FieldPanel("newsletter_terms"),
+        FieldPanel("newsletter_success"),
+        FieldPanel("newsletter_failure"),
     ]
 
     class Meta:
-        verbose_name = 'Novičnik'
+        verbose_name = "Novičnik"
 
 
 @register_setting()
 class Support(BaseGenericSetting):
-    support_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
-    support_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
-    support_text = models.TextField(verbose_name='Opis', blank=True)
-    support_button = models.TextField(verbose_name='Besedilo na gumbu', blank=True)
-    support_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava')
+    support_title_part_one = models.TextField(verbose_name="Naslov 1. del", blank=True)
+    support_title_part_two = models.TextField(verbose_name="Naslov 2. del", blank=True)
+    support_text = models.TextField(verbose_name="Opis", blank=True)
+    support_button = models.TextField(verbose_name="Besedilo na gumbu", blank=True)
+    support_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava",
+    )
 
     panels = [
-        FieldPanel('support_title_part_one'),
-        FieldPanel('support_title_part_two'),
-        FieldPanel('support_text'),
-        FieldPanel('support_button'),
-        FieldPanel('support_link'),
+        FieldPanel("support_title_part_one"),
+        FieldPanel("support_title_part_two"),
+        FieldPanel("support_text"),
+        FieldPanel("support_button"),
+        FieldPanel("support_link"),
     ]
 
     class Meta:
-        verbose_name = 'Donacije'
+        verbose_name = "Donacije"
 
 
 @register_setting()
 class Monitor(BaseGenericSetting):
-    monitor_title_part_one = models.TextField(verbose_name='Naslov 1. del', blank=True)
-    monitor_title_part_two = models.TextField(verbose_name='Naslov 2. del', blank=True)
-    monitor_text = models.TextField(verbose_name='Opis', blank=True)
-    monitor_button = models.TextField(verbose_name='Besedilo na gumbu', blank=True)
-    monitor_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava')
+    monitor_title_part_one = models.TextField(verbose_name="Naslov 1. del", blank=True)
+    monitor_title_part_two = models.TextField(verbose_name="Naslov 2. del", blank=True)
+    monitor_text = models.TextField(verbose_name="Opis", blank=True)
+    monitor_button = models.TextField(verbose_name="Besedilo na gumbu", blank=True)
+    monitor_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava",
+    )
 
     panels = [
-        FieldPanel('monitor_title_part_one'),
-        FieldPanel('monitor_title_part_two'),
-        FieldPanel('monitor_text'),
-        FieldPanel('monitor_button'),
-        FieldPanel('monitor_link'),
+        FieldPanel("monitor_title_part_one"),
+        FieldPanel("monitor_title_part_two"),
+        FieldPanel("monitor_text"),
+        FieldPanel("monitor_button"),
+        FieldPanel("monitor_link"),
     ]
 
     class Meta:
-        verbose_name = 'Prispevaj'
+        verbose_name = "Prispevaj"
 
 
 class Objava(models.Model):
@@ -216,10 +265,10 @@ class Objava(models.Model):
     date = models.DateField()
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('url', classname="full"),
-        FieldPanel('source'),
-        FieldPanel('date'),
+        FieldPanel("title"),
+        FieldPanel("url", classname="full"),
+        FieldPanel("source"),
+        FieldPanel("date"),
     ]
 
     def __str__(self):
@@ -228,25 +277,60 @@ class Objava(models.Model):
 
 class HomePage(Page):
     intro_text = RichTextField(blank=True, null=True)
-    intro_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
-    news_section_title = models.TextField(verbose_name='Naslov sekcije z novicami', blank=True)
-    news_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama novic', blank=True)
-    news_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama novic')
-    blog_section_title = models.TextField(verbose_name='Naslov blog sekcije', blank=True)
-    blog_section_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama blog zapisov')
-    blog_section_archive_link_title = models.TextField(verbose_name='Ime povezave do seznama blog zapisov', blank=True)
-    monitor_archive_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Povezava do seznama monitoring zapisov')
+    intro_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    news_section_title = models.TextField(
+        verbose_name="Naslov sekcije z novicami", blank=True
+    )
+    news_section_archive_link_title = models.TextField(
+        verbose_name="Ime povezave do seznama novic", blank=True
+    )
+    news_section_archive_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava do seznama novic",
+    )
+    blog_section_title = models.TextField(
+        verbose_name="Naslov blog sekcije", blank=True
+    )
+    blog_section_archive_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava do seznama blog zapisov",
+    )
+    blog_section_archive_link_title = models.TextField(
+        verbose_name="Ime povezave do seznama blog zapisov", blank=True
+    )
+    monitor_archive_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Povezava do seznama monitoring zapisov",
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro_text', classname="full"),
-        FieldPanel('intro_image'),
-        FieldPanel('news_section_title'),
-        FieldPanel('news_section_archive_link_title'),
-        FieldPanel('news_section_archive_link'),
-        FieldPanel('blog_section_title'),
-        FieldPanel('blog_section_archive_link'),
-        FieldPanel('blog_section_archive_link_title'),
-        FieldPanel('monitor_archive_link'),
+        FieldPanel("intro_text", classname="full"),
+        FieldPanel("intro_image"),
+        FieldPanel("news_section_title"),
+        FieldPanel("news_section_archive_link_title"),
+        FieldPanel("news_section_archive_link"),
+        FieldPanel("blog_section_title"),
+        FieldPanel("blog_section_archive_link"),
+        FieldPanel("blog_section_archive_link_title"),
+        FieldPanel("monitor_archive_link"),
     ]
 
     parent_page_types = []
@@ -254,10 +338,10 @@ class HomePage(Page):
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        novice = NovicaPage.objects.all().live().order_by('-date')[:3]
-        blogposts = BlogPage.objects.all().live().order_by('-first_published_at')[:1]
-        context['novice'] = novice
-        context['blogposts'] = blogposts
+        novice = NovicaPage.objects.all().live().order_by("-date")[:3]
+        blogposts = BlogPage.objects.all().live().order_by("-first_published_at")[:1]
+        context["novice"] = novice
+        context["blogposts"] = blogposts
         # context['pojavljanja'] = pojavljanja
         return context
 
@@ -267,26 +351,38 @@ class HomePage(Page):
 
 
 class GenericPage(Page):
-    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
-    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
-    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
-    body = StreamField([
-        ('paragraph', blocks.RichTextBlock()),
-    ], use_json_field=True)
-    social_media_box = models.BooleanField(default=False, verbose_name='Škatla družbena omrežja')
-    newsletter_box = models.BooleanField(default=False, verbose_name='Škatla novičnik')
-    support_box = models.BooleanField(default=False, verbose_name='Škatla podpri')
-    monitor_box = models.BooleanField(default=False, verbose_name='Škatla prispevaj')
+    headline_first = models.TextField(verbose_name="Naslovnica prvi del", blank=True)
+    headline_second = models.TextField(verbose_name="Naslovnica drugi del", blank=True)
+    headline_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Slika na naslovnici",
+    )
+    body = StreamField(
+        [
+            ("paragraph", blocks.RichTextBlock()),
+        ],
+        use_json_field=True,
+    )
+    social_media_box = models.BooleanField(
+        default=False, verbose_name="Škatla družbena omrežja"
+    )
+    newsletter_box = models.BooleanField(default=False, verbose_name="Škatla novičnik")
+    support_box = models.BooleanField(default=False, verbose_name="Škatla podpri")
+    monitor_box = models.BooleanField(default=False, verbose_name="Škatla prispevaj")
 
     content_panels = Page.content_panels + [
-        FieldPanel('headline_first'),
-        FieldPanel('headline_second'),
-        FieldPanel('headline_image'),
-        FieldPanel('body'),
-        FieldPanel('monitor_box'),
-        FieldPanel('newsletter_box'),
-        FieldPanel('social_media_box'),
-        FieldPanel('support_box'),
+        FieldPanel("headline_first"),
+        FieldPanel("headline_second"),
+        FieldPanel("headline_image"),
+        FieldPanel("body"),
+        FieldPanel("monitor_box"),
+        FieldPanel("newsletter_box"),
+        FieldPanel("social_media_box"),
+        FieldPanel("support_box"),
     ]
 
     class Meta:
@@ -295,32 +391,65 @@ class GenericPage(Page):
 
 
 class DonationPage(Page):
-    body = StreamField([
-        ('paragraph', blocks.RichTextBlock()),
-    ], use_json_field=True)
-    left_box_heading_part_one = models.TextField(blank=True, verbose_name='Leva škatla - naslov prvi del')
-    left_box_heading_part_two = models.TextField(blank=True, verbose_name='Leva škatla - naslov drugi del')
-    left_box_description = models.TextField(blank=True, verbose_name='Leva škatla - opis')    
-    left_box_button_text = models.TextField(blank=True, verbose_name='Leva škatla - gumb besedilo')
-    left_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Leva škatla - gumb povezava')
-    right_box_heading_part_one = models.TextField(blank=True, verbose_name='Desna škatla - naslov prvi del')
-    right_box_heading_part_two = models.TextField(blank=True, verbose_name='Desna škatla - naslov drugi del')
-    right_box_description = models.TextField(blank=True, verbose_name='Desna škatla - opis')    
-    right_box_button_text = models.TextField(blank=True, verbose_name='Desna škatla - gumb besedilo')
-    right_box_button_link = models.ForeignKey('wagtailcore.Page', null=True, blank=True, related_name='+', on_delete=models.SET_NULL, verbose_name='Desna škatla - gumb povezava')
+    body = StreamField(
+        [
+            ("paragraph", blocks.RichTextBlock()),
+        ],
+        use_json_field=True,
+    )
+    left_box_heading_part_one = models.TextField(
+        blank=True, verbose_name="Leva škatla - naslov prvi del"
+    )
+    left_box_heading_part_two = models.TextField(
+        blank=True, verbose_name="Leva škatla - naslov drugi del"
+    )
+    left_box_description = models.TextField(
+        blank=True, verbose_name="Leva škatla - opis"
+    )
+    left_box_button_text = models.TextField(
+        blank=True, verbose_name="Leva škatla - gumb besedilo"
+    )
+    left_box_button_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Leva škatla - gumb povezava",
+    )
+    right_box_heading_part_one = models.TextField(
+        blank=True, verbose_name="Desna škatla - naslov prvi del"
+    )
+    right_box_heading_part_two = models.TextField(
+        blank=True, verbose_name="Desna škatla - naslov drugi del"
+    )
+    right_box_description = models.TextField(
+        blank=True, verbose_name="Desna škatla - opis"
+    )
+    right_box_button_text = models.TextField(
+        blank=True, verbose_name="Desna škatla - gumb besedilo"
+    )
+    right_box_button_link = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        verbose_name="Desna škatla - gumb povezava",
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel('body'),
-        FieldPanel('left_box_heading_part_one'),
-        FieldPanel('left_box_heading_part_two'),
-        FieldPanel('left_box_description'),
-        FieldPanel('left_box_button_text'),
-        FieldPanel('left_box_button_link'),
-        FieldPanel('right_box_heading_part_one'),
-        FieldPanel('right_box_heading_part_two'),
-        FieldPanel('right_box_description'),
-        FieldPanel('right_box_button_text'),
-        FieldPanel('right_box_button_link'),
+        FieldPanel("body"),
+        FieldPanel("left_box_heading_part_one"),
+        FieldPanel("left_box_heading_part_two"),
+        FieldPanel("left_box_description"),
+        FieldPanel("left_box_button_text"),
+        FieldPanel("left_box_button_link"),
+        FieldPanel("right_box_heading_part_one"),
+        FieldPanel("right_box_heading_part_two"),
+        FieldPanel("right_box_description"),
+        FieldPanel("right_box_button_text"),
+        FieldPanel("right_box_button_link"),
     ]
 
     class Meta:
@@ -332,7 +461,7 @@ class DonationEmbedPage(Page):
     embed_url = models.URLField()
 
     content_panels = Page.content_panels + [
-        FieldPanel('embed_url', classname="full"),
+        FieldPanel("embed_url", classname="full"),
     ]
 
     class Meta:
@@ -341,9 +470,16 @@ class DonationEmbedPage(Page):
 
 
 class NewsletterPage(Page):
-    headline_first = models.TextField(verbose_name='Naslovnica prvi del', blank=True)
-    headline_second = models.TextField(verbose_name='Naslovnica drugi del', blank=True)
-    headline_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Slika na naslovnici')
+    headline_first = models.TextField(verbose_name="Naslovnica prvi del", blank=True)
+    headline_second = models.TextField(verbose_name="Naslovnica drugi del", blank=True)
+    headline_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Slika na naslovnici",
+    )
     description = models.TextField(
         null=True,
         blank=True,
@@ -351,9 +487,9 @@ class NewsletterPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('headline_first'),
-        FieldPanel('headline_second'),
-        FieldPanel('headline_image'),
+        FieldPanel("headline_first"),
+        FieldPanel("headline_second"),
+        FieldPanel("headline_image"),
         FieldPanel("description"),
     ]
 
@@ -363,8 +499,8 @@ class NewsletterPage(Page):
 
 
 class MaintenancePage(Page):
-    text = models.TextField(verbose_name='Besedilo', blank=True)
+    text = models.TextField(verbose_name="Besedilo", blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('text'),
+        FieldPanel("text"),
     ]

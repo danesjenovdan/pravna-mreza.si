@@ -6,108 +6,130 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0023_auto_20211214_2208'),
+        ("home", "0023_auto_20211214_2208"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='homepage',
-            name='blog_section_archive_link_title',
-            field=models.TextField(default='', verbose_name='Ime povezave do seznama blog zapisov'),
+            model_name="homepage",
+            name="blog_section_archive_link_title",
+            field=models.TextField(
+                default="", verbose_name="Ime povezave do seznama blog zapisov"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='blog_section_title',
-            field=models.TextField(default='', verbose_name='Naslov blog sekcije'),
+            model_name="homepage",
+            name="blog_section_title",
+            field=models.TextField(default="", verbose_name="Naslov blog sekcije"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='facebook_link',
-            field=models.URLField(default='', verbose_name='Facebook URL'),
+            model_name="homepage",
+            name="facebook_link",
+            field=models.URLField(default="", verbose_name="Facebook URL"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='monitor_button',
-            field=models.TextField(default='', verbose_name='Škatla monitoring - gumb'),
+            model_name="homepage",
+            name="monitor_button",
+            field=models.TextField(default="", verbose_name="Škatla monitoring - gumb"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='monitor_text',
-            field=models.TextField(default='', verbose_name='Škatla monitoring - opis'),
+            model_name="homepage",
+            name="monitor_text",
+            field=models.TextField(default="", verbose_name="Škatla monitoring - opis"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='monitor_title_part_one',
-            field=models.TextField(default='', verbose_name='Škatla monitoring - naslov 1. del'),
+            model_name="homepage",
+            name="monitor_title_part_one",
+            field=models.TextField(
+                default="", verbose_name="Škatla monitoring - naslov 1. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='monitor_title_part_two',
-            field=models.TextField(default='', verbose_name='Škatla monitoring - naslov 2. del'),
+            model_name="homepage",
+            name="monitor_title_part_two",
+            field=models.TextField(
+                default="", verbose_name="Škatla monitoring - naslov 2. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='news_section_archive_link_title',
-            field=models.TextField(default='', verbose_name='Ime povezave do seznama novic'),
+            model_name="homepage",
+            name="news_section_archive_link_title",
+            field=models.TextField(
+                default="", verbose_name="Ime povezave do seznama novic"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='news_section_title',
-            field=models.TextField(default='', verbose_name='Naslov sekcije z novicami'),
+            model_name="homepage",
+            name="news_section_title",
+            field=models.TextField(
+                default="", verbose_name="Naslov sekcije z novicami"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='newsletter_button',
-            field=models.TextField(default='', verbose_name='Škatla novičnik - gumb'),
+            model_name="homepage",
+            name="newsletter_button",
+            field=models.TextField(default="", verbose_name="Škatla novičnik - gumb"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='newsletter_terms',
-            field=models.TextField(default='', verbose_name='Škatla novičnik - pogoji'),
+            model_name="homepage",
+            name="newsletter_terms",
+            field=models.TextField(default="", verbose_name="Škatla novičnik - pogoji"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='newsletter_title_part_one',
-            field=models.TextField(default='', verbose_name='Škatla novičnik - naslov 1. del'),
+            model_name="homepage",
+            name="newsletter_title_part_one",
+            field=models.TextField(
+                default="", verbose_name="Škatla novičnik - naslov 1. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='newsletter_title_part_two',
-            field=models.TextField(default='', verbose_name='Škatla novičnik - naslov 2. del'),
+            model_name="homepage",
+            name="newsletter_title_part_two",
+            field=models.TextField(
+                default="", verbose_name="Škatla novičnik - naslov 2. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='social_media_title_part_one',
-            field=models.TextField(default='', verbose_name='Škatla socialna omrežja - naslov 1. del'),
+            model_name="homepage",
+            name="social_media_title_part_one",
+            field=models.TextField(
+                default="", verbose_name="Škatla socialna omrežja - naslov 1. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='social_media_title_part_two',
-            field=models.TextField(default='', verbose_name='Škatla socialna omrežja - naslov 2. del'),
+            model_name="homepage",
+            name="social_media_title_part_two",
+            field=models.TextField(
+                default="", verbose_name="Škatla socialna omrežja - naslov 2. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='support_button',
-            field=models.TextField(default='', verbose_name='Škatla podpri - gumb'),
+            model_name="homepage",
+            name="support_button",
+            field=models.TextField(default="", verbose_name="Škatla podpri - gumb"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='support_text',
-            field=models.TextField(default='', verbose_name='Škatla podpri - opis'),
+            model_name="homepage",
+            name="support_text",
+            field=models.TextField(default="", verbose_name="Škatla podpri - opis"),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='support_title_part_one',
-            field=models.TextField(default='', verbose_name='Škatla podpri - naslov 1. del'),
+            model_name="homepage",
+            name="support_title_part_one",
+            field=models.TextField(
+                default="", verbose_name="Škatla podpri - naslov 1. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='support_title_part_two',
-            field=models.TextField(default='', verbose_name='Škatla podpri - naslov 2. del'),
+            model_name="homepage",
+            name="support_title_part_two",
+            field=models.TextField(
+                default="", verbose_name="Škatla podpri - naslov 2. del"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='twitter_link',
-            field=models.URLField(default='', verbose_name='Twitter URL'),
+            model_name="homepage",
+            name="twitter_link",
+            field=models.URLField(default="", verbose_name="Twitter URL"),
         ),
     ]

@@ -6,12 +6,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('achievements', '0003_achievement_link_text'),
+        ("achievements", "0003_achievement_link_text"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='achievementarchivepage',
-            options={'verbose_name': 'Stran z dosežki', 'verbose_name_plural': 'Strani z dosežki'},
+            name="achievementarchivepage",
+            options={
+                "verbose_name": "Stran z dosežki",
+                "verbose_name_plural": "Strani z dosežki",
+            },
         ),
     ]

@@ -6,16 +6,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('novice', '0008_novicapage_meta_image'),
+        ("novice", "0008_novicapage_meta_image"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='novicaarchivepage',
-            options={'verbose_name': 'Seznam novic', 'verbose_name_plural': 'Seznami novic'},
+            name="novicaarchivepage",
+            options={
+                "verbose_name": "Seznam novic",
+                "verbose_name_plural": "Seznami novic",
+            },
         ),
         migrations.AlterModelOptions(
-            name='novicapage',
-            options={'verbose_name': 'Novica', 'verbose_name_plural': 'Novice'},
+            name="novicapage",
+            options={"verbose_name": "Novica", "verbose_name_plural": "Novice"},
         ),
     ]
